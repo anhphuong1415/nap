@@ -1,0 +1,22 @@
+#RUN {
+    background-color: chartreuse;
+    border-radius: 5%;
+    width: 30vw;
+    height: 5vh;
+}
+
+#SAVE {
+    background-color: chartreuse;
+    border-radius: 5%;
+    position: relative;
+    width: 30vw;
+    height: 5vh;
+}
+
+#LOAD {
+    background-color: chartreuse;
+    border-radius: 5%;
+    position: relative;
+    width: 30vw;
+    height: 5vh;
+}
