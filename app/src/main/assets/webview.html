@@ -5,6 +5,7 @@
     <meta name="Decription" content="BLOCKLY TRY OUT">
     <title> BLOCKLY TEST </title>
     <link rel="stylesheet" type="text/css" href="webview.css">
+    <link rel="stylesheet" href="toolbox_style.css">
     <script src="node_modules/blockly/blockly_compressed.js"></script>
     <script src="node_modules/blockly/blocks_compressed.js"></script>
     <script src="node_modules/blockly/javascript_compressed.js"></script>
@@ -12,6 +13,8 @@
     <script src="node_modules/blockly/msg/vi.js"></script>
     <script src="CustomBlockForRange1.js"></script>
     <script src="GenneratorForRange.js"></script>
+    <script src="custom_category_es6.js"></script>
+    <script src="toolbox_label_es6.js"></script>
 </head>
 <body>
     <div style="width: 100%; height: 90vh">
@@ -404,7 +407,7 @@
                 disable: true,
                 maxBlocks: Infinity,
                 trashcan: true,
-                horizontalLayout: true,
+                horizontalLayout: false,
                 toolboxPosition: 'start',
                 css: true,
                 rtl: false,

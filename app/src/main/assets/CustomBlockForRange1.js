@@ -1,6 +1,7 @@
 Blockly.Blocks['move'] = {
     init: function() {
         this.appendDummyInput()
+//            .appendField(new Blockly.FieldImage("move_icon.png", 50, 0, "#"))
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("Di chuyển")
             .appendField(new Blockly.FieldDropdown([
