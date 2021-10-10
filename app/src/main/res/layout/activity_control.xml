@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="0dp"
+    android:paddingRight="16dp"
+    android:background="@drawable/bg_control_menu"
+    tools:context=".Main.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id ="@+id/layoutHeader"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnCtrBack"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/ic_back_icon" />
+
+        <TextView
+            android:id="@+id/label_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_text_control" />
+
+        <ImageButton
+            android:id="@+id/btnConnectBluetooth"
+            android:layout_width="13pt"
+            android:layout_height="13pt"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/ic_ble_off" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_horizontal_line"
+        android:background="@drawable/ic_thanhngang">
+    </RelativeLayout>
+    <!--- ***************************Start layout Top Body******************************************-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id ="@+id/layoutBodyTop"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+        <!--- _______Start layout Set command to sensor Ring, Matrix, Buzzer, RGB________-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutSetModule"
+            android:orientation ="horizontal">
+            <!--- _______Start layout , Matrix, RGB________-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutMatrixRgb"
+                android:layout_marginTop="31dp">
+
+                <ImageButton
+                    android:id="@+id/btn_ledmatrix"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_marginLeft="35dp"
+                    android:background="@drawable/matrix_config" />
+
+                <ImageButton
+                    android:id="@+id/btn_ledRGB"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_below="@id/btn_ledmatrix"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/ic_rgb_off" />
+            </RelativeLayout>
+            <!--- ______Stop layout , Matrix, RGB________-->
+
+            <!--- ______Start layout  Ring, Buzzer________-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutRingBuzzer"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="82dp">
+
+                <ImageButton
+                    android:id="@+id/btn_ringled"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_marginRight="100dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/ringled_config" />
+
+                <ImageButton
+                    android:id="@+id/btn_buzzer"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_below="@id/btn_ringled"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/buzzer_config" />
+            </RelativeLayout>
+            <!--- ______Stop layout  Ring, Buzzer________-->
+            <!--- ______Stop layout Set command to sensor Ring, Matrix, Buzzer, RGB________-->
+
+        </RelativeLayout>
+        <!--- _______Start layout Button, Soundsensor________-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutButton"
+            android:layout_marginTop="0dp"
+            android:orientation ="horizontal"
+            android:layout_centerHorizontal="true">
+
+            <ImageButton
+                android:id="@+id/btnMode1"
+                android:layout_width="20pt"
+                android:layout_height="12pt"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/ic_mode1" />
+            <ImageButton
+                android:id="@+id/btnMode2"
+                android:layout_width="20pt"
+                android:layout_height="12pt"
+                android:layout_toRightOf="@+id/btnMode1"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/ic_mode1" />
+            <ImageButton
+                android:id="@+id/btnMode3"
+                android:layout_width="20pt"
+                android:layout_height="12pt"
+                android:layout_toRightOf="@+id/btnMode2"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/ic_mode1" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutSoundSensor"
+            android:layout_below="@+id/layoutButton"
+            android:layout_marginTop="1dp"
+            android:orientation ="horizontal"
+            android:layout_centerHorizontal="true" >
+            <!--            <ImageButton-->
+            <!--                android:id="@+id/btnSound"-->
+            <!--                android:layout_width="62pt"-->
+            <!--                android:layout_height="12pt"-->
+            <!--                android:layout_marginLeft="1dp"-->
+            <!--                android:layout_marginTop="0dp"-->
+            <!--                android:background="@drawable/ic_sound"/>-->
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/btnSound"
+                android:layout_width="62pt"
+                android:layout_height="12pt"
+                android:background="@drawable/ic_sound"/>
+
+        </RelativeLayout>
+        <!--- _____Start layout contain mode working of Ranzer_______-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutModeOperation"
+            android:orientation ="horizontal"
+            android:layout_toRightOf="@id/layoutButton"
+            android:layout_marginRight="0dp"
+            android:layout_alignParentRight="true" >
+
+            <!--- ______Start layout Round-TVC mode________-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutRoundTVC"
+                android:layout_marginTop="31dp"
+                android:layout_marginRight="35dp"
+                android:layout_alignParentRight="true" >
+
+                <ImageButton
+                    android:id="@+id/btnRoundMode"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/ic_round_mode" />
+
+                <ImageButton
+                    android:id="@+id/btnSRF05Mode"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_below="@id/btnRoundMode"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/ic_srf05_mode" />
+            </RelativeLayout>
+            <!--- ______Stop layout Round-TVC mode________-->
+
+            <!--- _______Start layout Sound Line_______-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutSoundLine"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="82dp"
+                android:layout_alignParentRight="true" >
+
+                <ImageButton
+                    android:id="@+id/btnSoundMode"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/ic_sound_mode" />
+
+                <ImageButton
+                    android:id="@+id/btnLineMode"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_below="@id/btnSoundMode"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/ic_line_mode" />
+            </RelativeLayout>
+            <!--- ______Stop layout Sound -line Mode________-->
+            <!--- _______Start layout Sound Line_______-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutDance"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="128dp"
+                android:layout_alignParentRight="true" >
+
+                <ImageButton
+                    android:id="@+id/btnDanceMode"
+                    android:layout_width="28pt"
+                    android:layout_height="26pt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/runaround_config" />
+            </RelativeLayout>
+            <!--- ______Stop layout Sound -line Mode________-->
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <!-- *****************************************Start layout bottomBody**********************************-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id ="@+id/layoutBodyBottom"
+        android:orientation="horizontal">
+
+        <!--- ____________Start layout Joystick________-->
+        <RelativeLayout
+            android:layout_width="105pt"
+            android:layout_height="105pt"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="35dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="105pt"
+                android:layout_height="105pt"
+                android:id="@+id/layout_joystick"
+                android:orientation = "horizontal"
+                android:background="@drawable/ic_joystick">
+            </RelativeLayout>
+            /*Design joystick*/
+        </RelativeLayout>
+        <!--- _____________End layout Joystick________-->
+        <!--- ____________Start layout Read Line, SRF05, COLOR, LIGHT sensor________-->
+        <!--- ____________Start layout Read Line Sensor________-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutGetLine"
+            android:layout_marginTop="0dp"
+            android:orientation ="horizontal"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/line_left"
+                android:layout_width="20pt"
+                android:layout_height="17pt"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/ic_line_off"/>
+            <ImageButton
+                android:id="@+id/btnIconLine"
+                android:layout_width="40pt"
+                android:layout_height="15pt"
+                android:layout_marginLeft="39dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/ic_read_line"/>
+            <TextView
+                android:id="@+id/line_right"
+                android:layout_width="20pt"
+                android:layout_height="17pt"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/ic_line_off"/>
+        </RelativeLayout>
+        <!--- ____________Start layout Read button, sound Sensor________-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutGetSoundButton"
+            android:layout_marginTop="42dp"
+            android:orientation ="horizontal"
+            android:layout_centerHorizontal="true">
+
+            <ImageButton
+                android:id="@+id/btnIconSound"
+                android:layout_width="43pt"
+                android:layout_height="18pt"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/ic_read_sound" />
+            <ImageButton
+                android:id="@+id/btnIconButton"
+                android:layout_width="39pt"
+                android:layout_height="18pt"
+                android:layout_marginLeft="82dp"
+                android:background="@drawable/ic_read_button" />
+        </RelativeLayout>
+        <!--- ____________Start layout Read SRF05 Sensor________-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutGetSrf05"
+            android:layout_marginTop="84dp"
+            android:orientation ="horizontal"
+            android:layout_centerHorizontal="true">
+
+            <ImageButton
+                android:id="@+id/btnIconSrf05"
+                android:layout_width="75pt"
+                android:layout_height="18pt"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="60dp"
+                android:background="@drawable/ic_read_srf05" />
+            <TextView
+                android:id="@+id/text_srf05"
+                android:layout_width="75pt"
+                android:layout_height="18pt"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="10dp"
+                android:text="Read srf05" />
+        </RelativeLayout>
+        <!--- ____________Start layout Read Color Sensor________-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutGetColor"
+            android:layout_marginTop="126dp"
+            android:orientation ="horizontal"
+            android:layout_centerHorizontal="true">
+
+            <ImageButton
+                android:id="@+id/btnIconColor"
+                android:layout_width="75pt"
+                android:layout_height="18pt"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="56dp"
+                android:background="@drawable/ic_read_color" />
+            <TextView
+                android:id="@+id/text_color"
+                android:layout_width="75pt"
+                android:layout_height="18pt"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="8dp"
+                android:text="Read color"
+                android:textColor="#ffFFFF"/>
+        </RelativeLayout>
+        <!--- ____________Start layout Read Light  Sensor________-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutGetLight"
+            android:layout_marginTop="168dp"
+            android:orientation ="horizontal"
+            android:layout_centerHorizontal="true">
+
+            <ImageButton
+                android:id="@+id/btnIconLight"
+                android:layout_width="75pt"
+                android:layout_height="18pt"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="60dp"
+                android:background="@drawable/ic_read_light" />
+            <TextView
+                android:id="@+id/text_light"
+                android:layout_width="75pt"
+                android:layout_height="18pt"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="10dp"
+                android:text="Read light" />
+        </RelativeLayout>
+        <!--- __________________End_________________________-->
+
+        <!--- ____________Start layout Servo_____________-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutServo"
+            android:orientation ="vertical"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true" >
+
+            <TextView
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:id="@+id/val_servo1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="70dp"
+                android:textColor="#58FFFF"
+                android:max = "360"
+                android:progress= "0"/>
+            <SeekBar
+                android:id="@+id/sbServo1"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginRight="35dp"
+                android:progressBackgroundTint="#24b6ce"
+                android:progressTint="#58FFFF"
+                android:max = "360"
+                android:progress= "0"
+                android:thumb="@drawable/point" />
+
+            <TextView
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:id="@+id/val_servo2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="150dp"
+                android:textColor="#58FFFF"
+                android:max = "360"
+                android:progress= "0"/>
+            <SeekBar
+                android:id="@+id/sbServo2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp"
+                android:layout_marginRight="35dp"
+                android:progressBackgroundTint="#24b6ce"
+                android:progressTint="#58FFFF"
+                android:max = "360"
+                android:progress= "0"
+                android:thumb="@drawable/point" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>
+
+
+
+
+
+
+
+
