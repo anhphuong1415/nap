@@ -40,69 +40,70 @@ public class DrapDropPresenter implements DrapDropContract.DrapDropPresenter {
     }
 
     @Override
-   public void sendCmd(int action, int module, int data1, int data2,
-                       int data3, int data4, int data5, int data6, int data) {
+   public int sendCmd(int action,int port, int module, int duration, int value,
+                       int dirMove, int additionModule, String [] ringLedColo) {
         Toast.makeText(mView.getViewContext(), "Send cmd", Toast.LENGTH_LONG).show();
 //        mModel.sendCommand(cmd);
-        Log.i("TAG","action:" + Integer.toString(action)  + " module:" + Integer.toString(module) + " data1:" +Integer.toString(data1) + " data2:" +Integer.toString(data2) +
-                " data3:" + Integer.toString(data3)  + " data4:" + Integer.toString(data4) + " data5:" + Integer.toString(data5) + " data6:" + Integer.toString(data6) + " data:" + Integer.toString(data));
-        switch (module) {
-            case define.SRF05:
-                break;
-            case define.LINE:
-                break;
-            case define.LIGHT:
-                break;
-            case define.COLOR:
-                break;
-            case define.JOYSTICK:
-                break;
-            case define.MODE_BTN:
-                break;
-            case define.LED_MATRIX:
-                break;
-            case define.LED_RGB:
-                break;
-            case define.BUZZER:
-                handle_buzzer(data1);
-                break;
-            case define.SOUND:
-                break;
-            case define.RING_LED:
-                break;
-            default:
-                break;
-        }
-    }
-    public void handle_buzzer(int data1) {
-        switch (data1) {
-            case 1:
-                shareFunction.runTone(define.C);
-                break;
-            case 2:
-                shareFunction.runTone(define.C_D);
-                break;
-            case 3:
-                shareFunction.runTone(define.D);
-                break;
-            case 4:
-                shareFunction.runTone(define.D_E);
-                break;
-            case 5:
-                shareFunction.runTone(define.E);
-                break;
-            case 6:
-                shareFunction.runTone(define.F);
-                break;
-            case 7:
-                shareFunction.runTone(define.F_G);
-                break;
-            case 8:
-                shareFunction.runTone(define.G);
-                break;
-            case 9:
-                shareFunction.runTone(define.G_A);
-                break;
-        }
+//        Log.i("TAG","action:" + Integer.toString(action)  + " module:" + Integer.toString(module) + " data1:" +Integer.toString(data1) + " data2:" +Integer.toString(data2) +
+//                " data3:" + Integer.toString(data3)  + " data4:" + Integer.toString(data4) + " data5:" + Integer.toString(data5) + " data6:" + Integer.toString(data6) + " data:" + Integer.toString(data));
+//        switch (module) {
+//            case define.SRF05:
+//                break;
+//            case define.LINE:
+//                break;
+//            case define.LIGHT:
+//                break;
+//            case define.COLOR:
+//                break;
+//            case define.JOYSTICK:
+//                break;
+//            case define.MODE_BTN:
+//                break;
+//            case define.LED_MATRIX:
+//                break;
+//            case define.LED_RGB:
+//                break;
+//            case define.BUZZER:
+//                handle_buzzer(data1);
+//                break;
+//            case define.SOUND:
+//                break;
+//            case define.RING_LED:
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+//    public void handle_buzzer(int data1) {
+//        switch (data1) {
+//            case 1:
+//                shareFunction.runTone(define.C);
+//                break;
+//            case 2:
+//                shareFunction.runTone(define.C_D);
+//                break;
+//            case 3:
+//                shareFunction.runTone(define.D);
+//                break;
+//            case 4:
+//                shareFunction.runTone(define.D_E);
+//                break;
+//            case 5:
+//                shareFunction.runTone(define.E);
+//                break;
+//            case 6:
+//                shareFunction.runTone(define.F);
+//                break;
+//            case 7:
+//                shareFunction.runTone(define.F_G);
+//                break;
+//            case 8:
+//                shareFunction.runTone(define.G);
+//                break;
+//            case 9:
+//                shareFunction.runTone(define.G_A);
+//                break;
+//        }
+        return 1;
     }
 }

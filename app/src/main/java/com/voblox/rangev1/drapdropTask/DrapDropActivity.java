@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -92,6 +93,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
                 mWebView.setWebViewClient(new JavaScriptWebViewClient());
             }
         }
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     @Override
