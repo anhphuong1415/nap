@@ -2,6 +2,7 @@ package com.voblox.rangev1.Utilities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -87,6 +88,16 @@ public class connectingBluetooth extends AppCompatActivity {
         return stateConnected;
     }
 
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +133,7 @@ public class connectingBluetooth extends AppCompatActivity {
                 stateBond = false;
             }
         };
-
+        blueConnecting.setStateConnectBluetooth(false);
         bAdapter = BluetoothAdapter.getDefaultAdapter();
         if(!bAdapter.isEnabled()){
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -157,8 +168,13 @@ public class connectingBluetooth extends AppCompatActivity {
         bindService(intent, Connection, Context.BIND_AUTO_CREATE);
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(mBroadcastGetData);
+
         Intent serviceIntent = new Intent(this, classicBluetooth.class);
+//        if (isMyServiceRunning(classicBluetooth.class))
+//            blueConnecting.stopService(serviceIntent);
+//        else
         startService(serviceIntent);
+        
         check_connected();
 
         btnCancle.setOnClickListener(new View.OnClickListener() {

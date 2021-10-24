@@ -37,35 +37,12 @@ public class Music extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 1;
     Timer timer;
 
-    classicBluetooth bluemusic;
-    boolean stateBond = false;
-
-    void run_tone (int fre_tone) {
-        shareFunction.runBuzzer(0,0,0, fre_tone,250);
-        if (bluemusic.getInstance() != null) {
-            bluemusic.getInstance().write(define.cmdRunModule);
-        }
-    }
-    ServiceConnection musicConnection = new ServiceConnection()
-    {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            LocalBinder binder = (LocalBinder) service;
-            bluemusic = binder.getService();
-            stateBond = true;
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            stateBond = false;
-        }
-    };
-
     private void check_connected() {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 try {
-                    if (bluemusic.get_state_blue_connect()) {
+                    if (shareFunction.getStateConnectBluetooth()) {
                         musicConnectBluetooth.setBackgroundResource(R.drawable.ic_ble_on);
                         timer.cancel();
                     } else {
@@ -112,8 +89,6 @@ public class Music extends AppCompatActivity {
         g_a_s = (View)findViewById(R.id.g_a_sound);
         a_b_s = (View)findViewById(R.id.a_b_sound);
 
-        Intent intent = new Intent(this, classicBluetooth.class);
-        bindService(intent, musicConnection, Context.BIND_AUTO_CREATE);
         check_connected();
 
         MusicBackBtn.setOnClickListener(new View.OnClickListener() {
@@ -135,73 +110,73 @@ public class Music extends AppCompatActivity {
         c_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.C);
+                shareFunction.runTone(define.C);
             }
         });
         d_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.D);
+                shareFunction.runTone(define.D);
             }
         });
         e_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.E);
+                shareFunction.runTone(define.E);
             }
         });
         f_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.F);
+                shareFunction.runTone(define.F);
             }
         });
         g_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.G);
+                shareFunction.runTone(define.G);
             }
         });
         a_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.A);
+                shareFunction.runTone(define.A);
             }
         });
         b_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.B);
+                shareFunction.runTone(define.B);
             }
         });
         c_d_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.C_D);
+                shareFunction.runTone(define.C_D);
             }
         });
         d_e_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.D_E);
+                shareFunction.runTone(define.D_E);
             }
         });
         f_g_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.F_G);
+                shareFunction.runTone(define.F_G);
             }
         });
         g_a_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.G_A);
+                shareFunction.runTone(define.G_A);
             }
         });
         a_b_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                run_tone(define.A_B);
+                shareFunction.runTone(define.A_B);
             }
         });
     }

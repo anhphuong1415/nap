@@ -94,7 +94,7 @@ public class define {
             {(long)0x000000, (long)0x000000 , (long)0x000000 , (long)0x000000, (long)0x000000, (long)0x000000, (long)0x000000 , (long)0x000000, (long)0x000000, (long)0x000000, (long)0x000000, (long)0x000000},
     };
     /*Define freq music tone*/
-    public static final int C = 525 ;
+    public static final int  C = 525 ;
     public static final int C_D = 554;
     public static final int D = 587 ;
     public static final int D_E = 622;

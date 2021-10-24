@@ -51,30 +51,19 @@ public class VoiceControl extends AppCompatActivity {
             "dance", "Red", "sáng đỏ", "green", "sáng xanh lá", "blue", "sáng xanh lam",
             "yellow", "sáng vàng", "pink", "sáng hồng", "off", "tắt", "mix color", "sound mode", "ring", "ring off"};
 
-    classicBluetooth blueVoiceControl;
-    boolean stateBond = false;
     boolean state = false;
 
     void run_motor (int leftSpeed, int rightSpeed) {
         shareFunction.runJoystick(0,0,0, leftSpeed,rightSpeed);
-        if (blueVoiceControl.getInstance() != null) {
-            blueVoiceControl.getInstance().write(define.cmdRunModule);
-        }
     }
 
     void run_rgb(byte[] color)
     {
         shareFunction.runRGB(0, 0, 0, color);
-        if (blueVoiceControl.getInstance() != null) {
-            blueVoiceControl.getInstance().write(define.cmdRunModule);
-        }
     }
     void run_ring_led()
     {
         shareFunction.runRingLed(0,0,0, define.ring_led_effect[0]);
-        if (blueVoiceControl.getInstance() != null) {
-            blueVoiceControl.getInstance().write(define.cmdRunModule);
-        }
     }
     void resetText ()
     {
@@ -92,25 +81,12 @@ public class VoiceControl extends AppCompatActivity {
         }
     }
     /*********************************Handle bluetooth connection******************************/
-    ServiceConnection musicConnection = new ServiceConnection()
-    {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            classicBluetooth.LocalBinder binder = (classicBluetooth.LocalBinder) service;
-            blueVoiceControl = binder.getService();
-            stateBond = true;
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            stateBond = false;
-        }
-    };
     private void check_connected() {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 try {
-                    if (blueVoiceControl.get_state_blue_connect()) {
+                    if (shareFunction.getStateConnectBluetooth()) {
                         vcBlueConnection.setBackgroundResource(R.drawable.ic_ble_on);
                         timer.cancel();
                     } else {
@@ -150,8 +126,6 @@ public class VoiceControl extends AppCompatActivity {
         commandList = (ListView)findViewById(R.id.listCommand);
         test = (TextView)findViewById(R.id.textTest);
 
-        Intent intent = new Intent(this, classicBluetooth.class);
-        bindService(intent, musicConnection, Context.BIND_AUTO_CREATE);
         check_connected();
         /******************************************************************************************/
         SpeechRecognizer speechRecognizer;

@@ -75,43 +75,14 @@ public class Control extends AppCompatActivity {
     public static final String mBroadcastGetData = "VrobotGetData";
     private IntentFilter mIntentFilter;
 
-    classicBluetooth blueControl;
-    boolean stateBond = false;
     final BluetoothAdapter bAdapter = BluetoothAdapter.getDefaultAdapter();
-
-    private ServiceConnection ctrConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            LocalBinder binder = (LocalBinder) service;
-            blueControl = binder.getService();
-            stateBond = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            stateBond = false;
-        }
-    };
-    void sendRunCommand()
-    {
-        if (blueControl.getInstance() != null) {
-            blueControl.getInstance().write(define.cmdRunModule);
-        }
-    }
-    void sendGetCommand(int module, int stateModule) {
-        if (blueControl.getInstance() != null) {
-            define.cmd_get_valModule[5] = (byte) module;
-            define.cmd_get_valModule[6] = (byte) stateModule;
-            blueControl.getInstance().write(define.cmd_get_valModule);
-        }
-    }
     int _module = 0;
     public void getData(int module) {
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                sendGetCommand(module, define.ON_MODULE);
+                shareFunction.sendGetCommand(module, define.ON_MODULE);
                 Log.i("hhhh", "Sent request read sensor data");
             }
         };
@@ -123,7 +94,7 @@ public class Control extends AppCompatActivity {
             _module = module;
         }
         else {
-            sendGetCommand(_module, define.OFF_MODULE);
+            shareFunction.sendGetCommand(_module, define.OFF_MODULE);
             textSrf05.setText("");
             textLight.setText("");
             if (timer != null) {
@@ -136,7 +107,7 @@ public class Control extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    if (blueControl.get_state_blue_connect()) {
+                    if (shareFunction.getStateConnectBluetooth()) {
                         Log.i("TAG"," connectedr");
                         btnConnect.setBackgroundResource(R.drawable.ic_ble_on);
                         timer.cancel();
@@ -272,13 +243,14 @@ public class Control extends AppCompatActivity {
         });
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(mBroadcastGetData);
-        Intent intent = new Intent(this, classicBluetooth.class);
-        bindService(intent, ctrConnection, Context.BIND_AUTO_CREATE);
         /* Handle connect button when clicked*/
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 check_connected();
+                Toast.makeText(Control.this,
+                        "start",
+                        Toast.LENGTH_LONG).show();
                 startActivity(new Intent(Control.this, connectingBluetooth.class));
             }
         });
@@ -290,9 +262,6 @@ public class Control extends AppCompatActivity {
                     leftSpeed = -(255 - i);
                     rightSpeed = -(255 - i);
                     shareFunction.runJoystick(0, 0, 0, leftSpeed, rightSpeed);
-                    if (blueControl.getInstance() != null) {
-                        blueControl.getInstance().write(define.cmdRunModule);
-                    }
                     for (int j = 0; j< 10000; j++) {
                         for (int k = 0; k < 2000; k++) {}
                     }
@@ -336,7 +305,6 @@ public class Control extends AppCompatActivity {
                         shareFunction.runRGB(0, 0, 0, define.BLACK_COLOR);
                         break;
                 }
-                sendRunCommand();
                 ledColor++;
                 if (ledColor > define.WHITE)
                     ledColor = 0;
@@ -350,7 +318,6 @@ public class Control extends AppCompatActivity {
                 if (cnt_effect_ring >= define.NUM_RING_EFFECT)
                     cnt_effect_ring = 0;
                 shareFunction.runRingLed(0,0,0, define.ring_led_effect[cnt_effect_ring]);
-                sendRunCommand();
             }
         });
         btnLedMatrix.setOnClickListener(new View.OnClickListener() {
@@ -362,7 +329,6 @@ public class Control extends AppCompatActivity {
                 if (cnt_effect >= 12)
                     cnt_effect = 0;
                 shareFunction.runMaTrix(0, 0, 0, define.motion_effect[cnt_effect], duration);
-                sendRunCommand();
             }
         });
         btnBuzzer.setOnClickListener(new View.OnClickListener() {
@@ -373,7 +339,6 @@ public class Control extends AppCompatActivity {
                 buzzerFreq = define.hpbdSong[index];
                 buzzerDuration = 250;
                 shareFunction.runBuzzer(0, 0, 0, buzzerFreq, buzzerDuration);
-                sendRunCommand();
                 index++;
             }
         });
@@ -391,7 +356,6 @@ public class Control extends AppCompatActivity {
                 else {
                     define.cmdRunModule[5] = define.NORMAL_MODE;
                 }
-                sendRunCommand();
             }
         });
 
@@ -408,7 +372,6 @@ public class Control extends AppCompatActivity {
                 else {
                     define.cmdRunModule[5] = define.NORMAL_MODE;
                 }
-                sendRunCommand();
             }
         });
 
@@ -425,7 +388,6 @@ public class Control extends AppCompatActivity {
                 else {
                     define.cmdRunModule[5] = define.NORMAL_MODE;
                 }
-                sendRunCommand();
             }
         });
 
@@ -442,7 +404,6 @@ public class Control extends AppCompatActivity {
                 else {
                     define.cmdRunModule[5] = define.NORMAL_MODE;
                 }
-                sendRunCommand();
             }
         });
 
@@ -649,9 +610,9 @@ public class Control extends AppCompatActivity {
                     rightSpeed = 0;
                 }
                 shareFunction.runJoystick(0, 0, 0, leftSpeed, rightSpeed);
-                if (blueControl.getInstance() != null) {
-                    blueControl.getInstance().write(define.cmdRunModule);
-                }
+//                if (blueControl.getInstance() != null) {
+//                    blueControl.getInstance().write(define.cmdRunModule);
+//                }
                 return true;
             }
         });
@@ -733,16 +694,12 @@ public class Control extends AppCompatActivity {
                     }
                     case define.LIGHT: {
                         if (stateGetLightSensor) {
-//                            textSrf05.setText("");
-//                            textColor.setText("");
                             textLight.setText(displayText + "%");
                         }
                         break;
                     }
                     case define.COLOR: {
                         if (stateGetColor) {
-//                            textSrf05.setText("");
-//                            textLight.setText("");
                             switch ((int) shareFunction.byteArray2Float(fbData)) {
                                 case define.RED:
                                     btnGetColor.setBackgroundResource(R.drawable.ic_read_color_red);
@@ -779,9 +736,6 @@ public class Control extends AppCompatActivity {
                     }
                     case define.MODE_BTN:{
                         if (stateGetButton) {
-//                            textSrf05.setText("");
-//                            textColor.setText(displayText);
-//                            textLight.setText("");
                             switch ((int) shareFunction.byteArray2Float(fbData)) {
                                 case define.MODE_1:
                                     showMode1.setBackgroundResource(R.drawable.ic_mode2);
@@ -809,10 +763,6 @@ public class Control extends AppCompatActivity {
                     }
                     case define.SOUND: {
                         if (stateGetSound) {
-//                            textSrf05.setText("");
-//                            textColor.setText("");
-//                            textLight.setText("");
-
                             if (shareFunction.byteArray2Float(fbData) >= 1) {
                                 soundSignal.setBackgroundResource(R.drawable.have_sound);
                             } else {

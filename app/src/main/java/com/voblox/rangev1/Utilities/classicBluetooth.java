@@ -53,7 +53,7 @@ public class classicBluetooth  extends Service {
     public static final int STATE_LISTEN = 1;
     public static final int STATE_CONNECTING = 2;
     public static final int STATE_CONNECTED = 3;
-    public boolean statusConnect = false;
+    private static boolean statusConnect = false;
 
     private ConnectBtThread mConnectThread;
     private static ConnectedBtThread mConnectedThread;
@@ -193,12 +193,12 @@ public class classicBluetooth  extends Service {
         }
         if (mConnectedThread != null){
             mConnectedThread.cancel();
+            if (mBluetoothAdapter != null){
+                mBluetoothAdapter.cancelDiscovery();
+            }
+            stopSelf();
             mConnectedThread = null;
         }
-        if (mBluetoothAdapter != null){
-            mBluetoothAdapter.cancelDiscovery();
-        }
-        stopSelf();
     }
 
     public void sendData(String message)
@@ -230,9 +230,13 @@ public class classicBluetooth  extends Service {
         return super.stopService(name);
     }
 
-    public boolean get_state_blue_connect()
+    public static boolean get_state_blue_connect()
     {
         return statusConnect;
+    }
+    public static void setStateConnectBluetooth(boolean state)
+    {
+        statusConnect = state;
     }
     public void retry_connect()
     {
