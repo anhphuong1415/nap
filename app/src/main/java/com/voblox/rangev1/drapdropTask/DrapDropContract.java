@@ -11,7 +11,7 @@ public interface DrapDropContract {
     }
 
     public interface DrapDropPresenter extends BasePresenter{
-        void sendCmd(int action, int module, int data1, int data2,
-                     int data3, int data4, int data5, int data6, int data);
+        int sendCmd(int action,int port, int module, int duration, int value,
+                    int dirMove, int additionModule, String [] ringLedColo);
     }
 }
