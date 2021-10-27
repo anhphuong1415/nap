@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.voblox.rangev1">
+
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,21 +18,57 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Voblox">
-        <activity android:name="com.voblox.rangev1.Main.MainActivity">
+        <activity
+            android:name=".Utilities.connectingBluetooth"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Main.play.listCommand" />
+        <activity
+            android:name=".Main.play.Play"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Main.mechanical.PictureShow"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Main.mechanical.Mechanical"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Main.play.VoiceControl"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Main.play.Music"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Main.play.Control"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Main.MainActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Main.StartApp"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.voblox.rangev1.drapdropTask.DrapDropActivity"
+            android:name=".drapdropTask.DrapDropActivity"
             android:label="@string/title_activity_drap_drop"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme.Voblox.NoActionBar">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+
+        <service
+            android:name=".Utilities.classicBluetooth"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
