@@ -2,7 +2,7 @@
     position: absolute;
     top: 2mm;
     right: 38mm;
-    background-color: #8F0005;
+    background-color: #d1e7ee;
     border-radius: 1.5mm;
     color: white;
     text-transform: uppercase;
@@ -13,7 +13,7 @@
     position: absolute;
     top: 2mm;
     right: 20mm;
-    background-color: #125d22;
+    background-color: #d1e7ee;
     border-radius: 1.5mm;
     color: white;
     text-transform: uppercase;
@@ -24,7 +24,7 @@
     position: absolute;
     top: 2mm;
     right: 2mm;
-    background-color: #f3e419;
+    background-color: #d1e7ee;
     border-radius: 1.5mm;
     color: white;
     text-transform: uppercase;
@@ -36,4 +36,19 @@
     position: absolute;
     top: 0;
     left: 0
+}
+
+#SAVE_ICON {
+    width: 5mm;
+    height: 5mm;
+}
+
+#RUN_ICON {
+    width: 5mm;
+    height: 5mmm;
+}
+
+#LOAD_ICON {
+    width: 5mm;
+    height: 5mmm;
 }

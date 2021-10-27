@@ -11,6 +11,7 @@ public class JavaInterface {
     private DrapDropPresenter   mDrapDropPresenter;
     private Context             mContext;
     private BaseView                mView;
+    private long                    modelValue = 30;
     JavaInterface(Context c){mContext = c;}
 
     void setPresenter(DrapDropPresenter p){mDrapDropPresenter = p;}
@@ -35,9 +36,9 @@ public class JavaInterface {
     * led_matrix 7
     * rgb_led 8
     * speaker 9
-    * ring_led 10
-    * servo 11
-    * follow sound sensor 12
+    * follow sound sensor 10
+    * ring_led 11
+    * servo 12
     * */
 
     /*diretion for move
@@ -51,10 +52,14 @@ public class JavaInterface {
     * right 2
     * both 3*/
 
-    /*return int = sensor value when want to get data*/
+    /*return long = sensor value when want to get data for reserve when color sensor return rgb code
+    * return value need to be store in modelValue for display Toast when get sensor data
+    * value: velocity - angle - pitch - color code(3 byte hexa for RGB code with RGB led command)
+    * ringLedColor: 12 long (3 byte hexa for RGB coded) for each led on RingLEd at order
+    *  */
     @JavascriptInterface
-    public int sendCmd(int action,int port, int module, int duration, int value,
-                        int dirMove, int additionModule, String [] ringLedColo)
+    public long sendCmd(int action,int port, int module, int duration, long value,
+                        int dirMove, int additionModule, long [] ringLedColo)
     {
         Toast.makeText(mView.getViewContext(), "Send cmd", Toast.LENGTH_LONG).show();
 //        mDrapDropPresenter.sendCmd(action, module, data1, data2, data3, data4, data5, data6, data7);
@@ -67,6 +72,11 @@ public class JavaInterface {
 
     }
 
+    @JavascriptInterface
+    public void JSrequsetShow(String prefix)
+    {
+        Toast.makeText(mView.getViewContext(), prefix + String.valueOf(modelValue), Toast.LENGTH_LONG).show();
+    }
     @JavascriptInterface
     public void closeWebView() {
     }

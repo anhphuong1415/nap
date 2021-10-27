@@ -21,7 +21,7 @@ Blockly.JavaScript['playmusicnote'] = function(block) {
 Blockly.JavaScript['rgb_led'] = function(block) {
     var colour_color = block.getFieldValue('color');
     var number_duration = block.getFieldValue('duration');
-    var code = 'Android.sendCmd(' + '2,0,8,' + number_duration + ',' + colour_color + ',0,0,[]);\n';
+    var code = 'Android.sendCmd(' + '2,0,8,' + number_duration + ',' + colour_color.replace('#', '0x') + ',0,0,[]);\n';
     return code;
 };
 
@@ -49,7 +49,7 @@ Blockly.JavaScript['playwithmatrixledchar'] = function(block) {
     else if (dropdown_port == "Port 6") var port = 6;
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
-    var code = 'Android.sendCmd(' + '2,' + port + ',7,0,' + '(int)' + "'" + text_char + "'" + ',0,0,[]);\n';
+    var code = 'Android.sendCmd(' + '2,' + port + ',7,0,'  + text_char.charCodeAt(0) + ',0,0,[]);\n';
     return code;
 };
 
@@ -111,19 +111,19 @@ Blockly.JavaScript['ringled'] = function(block) {
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
 
-    var code = 'Android.sendCmd(' + '2,' + port + ',10,0,0,0,0,' +
-        '[' + '"' + colour_led_1 + '"' + ', ' +
-        '"' + colour_led_2 + '"' + ', ' +
-        '"' + colour_led_3 + '"' + ', ' +
-        '"' + colour_led_4 + '"' + ', ' +
-        '"' + colour_led_5 + '"' + ', ' +
-        '"' + colour_led_6 + '"' + ', ' +
-        '"' + colour_led_7 + '"' + ', ' +
-        '"' + colour_led_8 + '"' + ', ' +
-        '"' + colour_led_9 + '"' + ', ' +
-        '"' + colour_led_10 + '"' + ', ' +
-        '"' + colour_led_11 + '"' + ', ' +
-        '"' + colour_led_12 + '"' + ']);\n'
+    var code = 'Android.sendCmd(' + '2,' + port + ',11,0,0,0,0,' +
+        '[' + colour_led_1.replace('#', '0x') + ', ' +
+        colour_led_2.replace('#', '0x') + ', ' +
+        colour_led_3.replace('#', '0x') + ', ' +
+        colour_led_4.replace('#', '0x') + ', ' +
+        colour_led_5.replace('#', '0x') + ', ' +
+        colour_led_6.replace('#', '0x') + ', ' +
+        colour_led_7.replace('#', '0x') + ', ' +
+        colour_led_8.replace('#', '0x') + ', ' +
+        colour_led_9.replace('#', '0x') + ', ' +
+        colour_led_10.replace('#', '0x') + ', ' +
+        colour_led_11.replace('#', '0x') + ', ' +
+        colour_led_12.replace('#', '0x') + ']);\n';
     return code;
 };
 
@@ -133,7 +133,7 @@ Blockly.JavaScript['servo'] = function(block) {
     if (dropdown_servo_select == "Servo_1") var servo = 1;
     else if (dropdown_servo_select == "Servo_2") var servo = 2;
     else if (dropdown_servo_select == "Both") var servo = 3;
-    var code = 'Android.sendCmd(' + '2,0,11,0,' + angle_angle + ',0,' + servo + ',[]);\n';
+    var code = 'Android.sendCmd(' + '2,0,12,0,' + angle_angle + ',0,' + servo + ',[]);\n';
     return code;
 };
 
@@ -144,7 +144,7 @@ Blockly.JavaScript['motorselect'] = function(block) {
     if (dropdown_motorselect == "Left") var motor = 1;
     else if (dropdown_motorselect == "Right") var motor = 2;
     else if (dropdown_motorselect == "Both") var motor = 3;
-    var code = 'Android.sendCmd(' + '2,0,5,' + number_duration + ',' + number_velocity + ',' + dir + ',' + motor + ',[]);\n';
+    var code = 'Android.sendCmd(' + '2,0,5,' + number_duration + ',' + number_velocity + ',0,' + motor + ',[]);\n';
     return code;
 };
 
@@ -160,7 +160,7 @@ Blockly.JavaScript['srf05'] = function(block) {
     else if (dropdown_port == "Port 8") var port = 8;
 
     var code = 'Android.sendCmd(' + '1,' + port + ',1,0,0,0,0,[])';
-    // TODO: Change ORDER_NONE to the correct strength.
+     Android.JSrequsetShow("Super sonic sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -176,7 +176,7 @@ Blockly.JavaScript['light_sensor'] = function(block) {
     else if (dropdown_port == "Port 8") var port = 8;
 
     var code = 'Android.sendCmd(' + '1,' + port + ',3,0,0,0,0,[])';
-    // TODO: Change ORDER_NONE to the correct strength.
+     Android.JSrequsetShow("light sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -192,7 +192,7 @@ Blockly.JavaScript['colorsensor'] = function(block) {
     else if (dropdown_port == "Port 8") var port = 8;
 
     var code = 'Android.sendCmd(' + '1,' + port + ',4,0,0,0,0,[])';
-    // TODO: Change ORDER_NONE to the correct strength.
+     Android.JSrequsetShow("Color sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -207,8 +207,8 @@ Blockly.JavaScript['sound_sensor'] = function(block) {
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
 
-    var code = 'Android.sendCmd(' + '1,' + port + ',12,0,0,0,0,[])';
-    // TODO: Change ORDER_NONE to the correct strength.
+    var code = 'Android.sendCmd(' + '1,' + port + ',10,0,0,0,0,[])';
+     Android.JSrequsetShow("Sound sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -232,6 +232,7 @@ Blockly.JavaScript['path_detecter'] = function(block) {
     else var colorFinding = 2;
 
     var code = 'Android.sendCmd(' + '1,' + port + ',2,0,' + colorFinding + ', ' + side + ',0,[])';
+    Android.JSrequsetShow("Line detect sensor: ");
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
