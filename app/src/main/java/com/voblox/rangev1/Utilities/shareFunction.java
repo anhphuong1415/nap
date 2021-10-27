@@ -47,7 +47,14 @@ public class shareFunction extends AppCompatActivity {
         Intent intent = new Intent(this, classicBluetooth.class);
         bindService(intent, shareConnection, Context.BIND_AUTO_CREATE);
     };
-
+    public static void delay_ms(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch(
+                Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void sendData() {
         if (blueshare.getInstance() != null) {
             blueshare.getInstance().write(define.cmdRunModule);
@@ -81,10 +88,6 @@ public class shareFunction extends AppCompatActivity {
         define.cmdRunModule[11] = (byte)((duration  >> 8) & (byte)0xff);
         sendData();
     }
-    public static void runTone(int freq) {
-        runBuzzer(0,0,0, freq,250);
-    }
-
     public static void runRGB(int id, int port, int slot, byte[] color)
     {
         define.cmdRunModule[2] =  0x09;

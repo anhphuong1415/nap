@@ -42,10 +42,8 @@ public class DrapDropPresenter implements DrapDropContract.DrapDropPresenter {
     @Override
    public int sendCmd(int action,int port, int module, int duration, int value,
                        int dirMove, int additionModule, String [] ringLedColo) {
-        Toast.makeText(mView.getViewContext(), "Send cmd", Toast.LENGTH_LONG).show();
+        Toast.makeText(mView.getViewContext(), "Send cmd___", Toast.LENGTH_LONG).show();
 //        mModel.sendCommand(cmd);
-//        Log.i("TAG","action:" + Integer.toString(action)  + " module:" + Integer.toString(module) + " data1:" +Integer.toString(data1) + " data2:" +Integer.toString(data2) +
-//                " data3:" + Integer.toString(data3)  + " data4:" + Integer.toString(data4) + " data5:" + Integer.toString(data5) + " data6:" + Integer.toString(data6) + " data:" + Integer.toString(data));
 //        switch (module) {
 //            case define.SRF05:
 //                break;

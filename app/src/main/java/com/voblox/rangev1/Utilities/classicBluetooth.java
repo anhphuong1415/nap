@@ -77,14 +77,6 @@ public class classicBluetooth  extends Service {
     }
     private final IBinder mBinder = new LocalBinder();
 
-    void delay_ms(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch(
-                Exception e) {
-            e.printStackTrace();
-        }
-    }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
