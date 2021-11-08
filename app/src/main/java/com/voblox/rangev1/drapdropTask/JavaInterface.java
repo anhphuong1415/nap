@@ -13,7 +13,8 @@ import com.voblox.rangev1.Utilities.define;
 public class JavaInterface {
     private DrapDropPresenter   mDrapDropPresenter;
     private Context             mContext;
-    private BaseView            mView;
+    private BaseView                mView;
+    private long                    modelValue = 30;
 
     JavaInterface(Context c){
         mContext = c;
@@ -43,9 +44,9 @@ public class JavaInterface {
     * led_matrix 7
     * rgb_led 8
     * speaker 9
-    * ring_led 10
-    * servo 11
-    * follow sound sensor 12
+    * follow sound sensor 10
+    * ring_led 11
+    * servo 12
     * */
 
     /*diretion for move
@@ -58,7 +59,8 @@ public class JavaInterface {
     * left 1
     * right 2
     * both 3*/
-    public void handle_buzzer(int freq, int duration) {
+    public void handle_buzzer(int freq, int duration)
+    {
         Toast.makeText(mView.getViewContext(), "run buzzer", Toast.LENGTH_LONG).show();
         switch (freq) {
             case 1:
@@ -99,7 +101,8 @@ public class JavaInterface {
                 break;
         }
     }
-    void handleMotor(int direct, int speed, int timeRun) {
+    void handleMotor(int direct, int speed, int timeRun)
+    {
         switch (direct) {
             case define.FORWARD:
                 shareFunction.runJoystick(0, 0, 0, speed, -speed);
@@ -120,15 +123,30 @@ public class JavaInterface {
         }
         shareFunction.runJoystick(0, 0, 0, 0, 0);
     }
+
+    void handleRGB(long colorLed1, long colorLed2, int time)
+    {
+        byte[] off = {0x00, 0x00, 0x00};
+        shareFunction.runRGB(1,0,0,shareFunction.toBytes(colorLed1));
+        shareFunction.runRGB(2,0,0,shareFunction.toBytes(colorLed2));
+        shareFunction.delay_ms(time * 1000);
+        shareFunction.runRGB(0,0,0, off);
+    }
     /*return int = sensor value when want to get data*/
+
+    /*return long = sensor value when want to get data for reserve when color sensor return rgb code
+    * return value need to be store in modelValue for display Toast when get sensor data
+    * value: velocity - angle - pitch - color code(3 byte hexa for RGB code with RGB led command)
+    * ringLedColor: 12 long (3 byte hexa for RGB coded) for each led on RingLEd at order
+    *  */
     @JavascriptInterface
-    public int sendCmd(int action,int port, int module, int duration, int value,
-                        int dirMove, int additionModule, String [] ringLedColo)
+    public long sendCmd(int action,int port, int module, int duration, long value,
+                        int dirMove, int additionModule, long [] ringLedColo)
     {
 //        Toast.makeText(mView.getViewContext(), "Send cmd+++", Toast.LENGTH_LONG).show();
         Log.i("TAG","action:" + Integer.toString(action)  + " port:" + Integer.toString(port) +
                 " module:" +Integer.toString(module) + " duration:" +Integer.toString(duration) +
-                " value:" + Integer.toString(value)  + " dirMove:" + Integer.toString(dirMove) +
+                " value:" + Long.toHexString(value)  + " dirMove:" + Integer.toString(dirMove) +
                 " additionModule:" + Integer.toString(additionModule));
 //        mDrapDropPresenter.sendCmd(action, module, data1, data2, data3, data4, data5, data6, data7);
 
@@ -142,16 +160,17 @@ public class JavaInterface {
             case define.COLOR:
                 break;
             case define.JOYSTICK:
-                handleMotor(dirMove, value, duration);
+                handleMotor(dirMove, (int)value, duration);
                 break;
             case define.MODE_BTN:
                 break;
             case define.LED_MATRIX:
                 break;
             case define.LED_RGB:
+                handleRGB(value, value, duration);
                 break;
             case define.BUZZER:
-                handle_buzzer(value, duration);
+                handle_buzzer((int)value, duration);
                 break;
             case define.SOUND:
                 break;
@@ -169,6 +188,11 @@ public class JavaInterface {
 
     }
 
+    @JavascriptInterface
+    public void JSrequsetShow(String prefix)
+    {
+        Toast.makeText(mView.getViewContext(), prefix + String.valueOf(modelValue), Toast.LENGTH_LONG).show();
+    }
     @JavascriptInterface
     public void closeWebView() {
     }

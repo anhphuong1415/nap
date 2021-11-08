@@ -74,6 +74,16 @@ public class shareFunction extends AppCompatActivity {
                 ((byte)bytes[0] & 0xFF);
         return Float.intBitsToFloat(intBits);
     }
+    public static byte[] toBytes(long val)
+    {
+        byte[] result = new byte[3];
+
+        result[0] = (byte) (val >> 16);
+        result[1] = (byte) (val >> 8);
+        result[2] = (byte) (val);
+
+        return result;
+    }
 
     public static void runBuzzer(int id, int port, int slot, int freq, int duration)
     {

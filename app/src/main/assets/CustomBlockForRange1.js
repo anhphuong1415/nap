@@ -223,6 +223,8 @@ Blockly.Blocks['motorselect'] = {
             .appendField("trong")
             .appendField(new Blockly.FieldNumber(1, 0, 255, 1), "duration")
             .appendField("giây");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
         this.setColour(90);
         this.setTooltip("");
         this.setHelpUrl("");
@@ -408,6 +410,8 @@ Blockly.Blocks['break_continue_loop'] = {
                 ["nhảy vòng lặp", "nhảy vòng lặp"],
                 ["thoát vòng lặp", "thoát vòng lặp"]
             ]), "action");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
         this.setColour(330);
         this.setTooltip("");
         this.setHelpUrl("");
