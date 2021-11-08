@@ -35,7 +35,8 @@ Blockly.Blocks['rgb_led'] = {
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/rgb_led.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("Led RGB sáng màu")
-            .appendField(new Blockly.FieldColour("#00cccc"), "color")
+            .appendField(new Blockly.FieldColour("#00cccc"), "color_left")
+            .appendField(new Blockly.FieldColour("#cc0000"), "color_right")
             .appendField("trong thời gian")
             .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "duration")
             .appendField("giây");
