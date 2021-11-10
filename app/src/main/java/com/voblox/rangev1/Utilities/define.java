@@ -25,8 +25,6 @@ public class define {
     public static final int SRF05_RUN_MODE = 103;
     public static final int NORMAL_MODE = 104;
 
-
-
     /*Define RGB LED color*/
     public static final int RED = 1;
     public static final int GREEN = 2;

@@ -15,6 +15,7 @@ import com.voblox.rangev1.R;
 import com.voblox.rangev1.Utilities.classicBluetooth;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import com.voblox.rangev1.Main.play.Control;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -28,6 +29,7 @@ public class shareFunction extends AppCompatActivity {
     boolean stateBond = false;
     private static shareFunction mShareFunction;
     static classicBluetooth blueshare;
+    static Control mControl;
 
     ServiceConnection shareConnection = new ServiceConnection()
     {
@@ -165,28 +167,33 @@ public class shareFunction extends AppCompatActivity {
         }
     }
     public  static boolean getStateConnectBluetooth() {
+
         return blueshare.get_state_blue_connect();
     }
-//        TimerTask timerTask = new TimerTask() {
-//            @Override
-//            public void run() {
-//                try {
-//                    if (blueshare.get_state_blue_connect()) {
-//                        Log.i("TAG"," connectedr");
-//                        timer.cancel();
-//                        statusConnect =  true;
-//                    } else {
-//                        Log.i("TAG"," not connect");
-//                        statusConnect =  false;
-//                    }
-//                } catch (NullPointerException ex) {
-//                }
-//            }
-//        };
-//        if (timer != null)
-//            timer.cancel();
-//        timer = new Timer("Timer");
-//        timer.schedule(timerTask, 0, 1000);
-//        return  statusConnect;
-//    }
+    static int _module = 0;
+    public static void getData(int module) {
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                shareFunction.sendGetCommand(module, define.ON_MODULE);
+                Log.i("hhhh", "Sent request read sensor data");
+            }
+        };
+        if (timer != null)
+            timer.cancel();
+        timer = new Timer("Timer");
+        if (module != 0) {
+            timer.schedule(timerTask, 0, 50);
+            _module = module;
+        }
+        else {
+            sendGetCommand(_module, define.OFF_MODULE);
+            if (timer != null) {
+                timer.cancel();
+            }
+        }
+    }
+
+
 }

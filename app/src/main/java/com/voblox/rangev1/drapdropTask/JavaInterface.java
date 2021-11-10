@@ -132,6 +132,17 @@ public class JavaInterface {
         shareFunction.delay_ms(time * 1000);
         shareFunction.runRGB(0,0,0, off);
     }
+    void handleRingLed(long[] color) {
+
+        shareFunction.runRingLed(0,0,0, color);
+    }
+    void handleLedMatrix(long[] dataDíplay, int duration) {
+        byte[] tmpData = {0};
+        for (int i = 0; i < dataDíplay.length; i++) {
+            tmpData[i] = (byte)(dataDíplay[i]);
+        }
+        shareFunction.runMaTrix(0, 0, 0, tmpData, duration);
+    }
     /*return int = sensor value when want to get data*/
 
     /*return long = sensor value when want to get data for reserve when color sensor return rgb code
@@ -159,14 +170,15 @@ public class JavaInterface {
                         int dirMove, int additionModule, long [] value)
     {
 //        Toast.makeText(mView.getViewContext(), "Send cmd+++", Toast.LENGTH_LONG).show();
-        Log.i("TAG","action:" + Integer.toString(action)  + " port:" + Integer.toString(port) +
-                " module:" +Integer.toString(module) + " duration:" +Integer.toString(duration) +
-                " value:" + Long.toHexString(value)  + " dirMove:" + Integer.toString(dirMove) +
-                " additionModule:" + Integer.toString(additionModule));
+//        Log.i("TAG","action:" + Integer.toString(action)  + " port:" + Integer.toString(port) +
+//                " module:" +Integer.toString(module) + " duration:" +Integer.toString(duration) +
+//                " value:" + Long.toHexString(value[0])  + " dirMove:" + Integer.toString(dirMove) +
+//                " additionModule:" + Integer.toString(additionModule));
 //        mDrapDropPresenter.sendCmd(action, module, data1, data2, data3, data4, data5, data6, data7);
 
         switch (module) {
             case define.SRF05:
+                shareFunction.getData(define.SRF05);
                 break;
             case define.LINE:
                 break;
@@ -175,21 +187,23 @@ public class JavaInterface {
             case define.COLOR:
                 break;
             case define.JOYSTICK:
-                handleMotor(dirMove, (int)value, duration);
+                handleMotor(dirMove, (int)value[0], duration);
                 break;
             case define.MODE_BTN:
                 break;
             case define.LED_MATRIX:
+                handleLedMatrix(value, duration);
                 break;
             case define.LED_RGB:
-                handleRGB(value, value, duration);
+                handleRGB(value[0], value[1], duration);
                 break;
             case define.BUZZER:
-                handle_buzzer((int)value, duration);
+                handle_buzzer((int)value[0], duration);
                 break;
             case define.SOUND:
                 break;
             case define.RING_LED:
+                handleRingLed(value);
                 break;
             default:
                 break;
