@@ -11,7 +11,7 @@ public class JavaInterface {
     private DrapDropPresenter   mDrapDropPresenter;
     private Context             mContext;
     private BaseView                mView;
-    private long                    modelValue = 30;
+    private double                    modelValue = 30;
     JavaInterface(Context c){mContext = c;}
 
     void setPresenter(DrapDropPresenter p){mDrapDropPresenter = p;}
