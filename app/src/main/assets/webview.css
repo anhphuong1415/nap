@@ -1,7 +1,7 @@
 #RUN {
     position: absolute;
     top: 2mm;
-    right: 38mm;
+    right: 2mm;
     background-color: #d1e7ee;
     border-radius: 1.5mm;
     color: white;
@@ -11,8 +11,8 @@
 
 #SAVE {
     position: absolute;
-    top: 2mm;
-    right: 20mm;
+    top: 20mm;
+    right: 2mm;
     background-color: #d1e7ee;
     border-radius: 1.5mm;
     color: white;
@@ -22,20 +22,13 @@
 
 #LOAD {
     position: absolute;
-    top: 2mm;
+    top: 38mm;
     right: 2mm;
     background-color: #d1e7ee;
     border-radius: 1.5mm;
     color: white;
     text-transform: uppercase;
     padding: 3mm 3mm;
-}
-
-#blocklyDiv {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0
 }
 
 #SAVE_ICON {
@@ -52,3 +45,20 @@
     width: 5mm;
     height: 5mmm;
 }
+
+#blocklyDiv {
+    display: inline-block;
+    position: absolute;
+    background-image: url("Utils/Background.png");
+    background-color: royalblue;
+    background-size: cover;
+    top: 0;
+    left: 0;
+}
+
+
+/* #codeSpaceText {
+    position: absolute;
+    top: 0;
+    left: 50vw;
+} */

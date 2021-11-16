@@ -12,17 +12,27 @@
     <script src="toolbox_standard.js"></script>
     <script src="node_modules/blockly/msg/vi.js"></script>
     <script src="CustomBlockForRange1.js"></script>
+    <script>
+        var goog = {
+            provide: function() {},
+            require: function() {}
+        };
+    </script>
+    <script src="field_pitch.js"></script>
+    <script src="field_turtle.js"></script>
     <script src="GenneratorForRange.js"></script>
     <script src="custom_category_es6.js"></script>
     <script src="toolbox_label_es6.js"></script>
     <script src="theme.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="pitch.css">
+    <link rel="stylesheet" type="text/css" href="turtle.css">
 </head>
 
 <body>
     <div style="width: 100%; height: 100vh">
         <xml id="toolbox" style="display: none">
-            <category name="Di chuyển" colour="#a5745b">
+            <category name="Di chuyển" colour="transparent">
                 <block type="robot_move">
                     <field name="Direction">Foward</field>
                     <field name="Velocity">0</field>
@@ -39,7 +49,7 @@
                 </block>
                 <block type="stop_move"></block>
             </category>
-            <category name="Biểu diễn" colour="#9fa55b">
+            <category name="Biểu diễn" colour="transparent">
                 <block type="playmusicnote">
                     <field name="Note">C</field>
                     <field name="Duration">0</field>
@@ -75,7 +85,7 @@
                     <field name="On_Off">OPTIONNAME</field>
                 </block>
             </category>
-            <category name="Cảm biến" colour="#5ba55b">
+            <category name="Cảm biến" colour="transparent">
                 <block type="srf05">
                     <field name="port">OPTIONNAME</field>
                 </block>
@@ -94,7 +104,7 @@
                     <field name="color">white</field>
                 </block>
             </category>
-            <category name="Tính toán" colour="#5b67a5">
+            <category name="Tính toán" colour="transparent">
                 <block type="logic_operation">
                     <field name="OP">AND</field>
                 </block>
@@ -118,7 +128,7 @@
                     <field name="OP">EQ</field>
                 </block>
             </category>
-            <category name="Điều khiển" colour="#5b80a5">
+            <category name="Điều khiển" colour="transparent">
                 <block type="if_block"></block>
                 <block type="stop_move"></block>
                 <block type="loop">
@@ -132,13 +142,16 @@
                     <field name="time">0</field>
                 </block>
             </category>
-            <category name="Hàm" colour="#995ba5">
+            <category name="Hàm" colour="transparent">
                 <block type="create_function">
                     <field name="Function_name">di chuyển</field>
                 </block>
             </category>
-            <category name="Dữ liệu" colour="#a55b80" custom="VARIABLE"></category>
+            <category name="Dữ liệu" colour="transparent" custom="VARIABLE"></category>
         </xml>
+
+        <!-- <textarea id="codeSpaceText" style="height: 100vh; width: 50vw;">
+        </textarea> -->
 
         <div id="blocklyDiv" style="height: 100vh; width: 100vw;">
         </div>
@@ -146,7 +159,6 @@
         <script>
             var workspacePlayground = Blockly.inject('blocklyDiv', {
                 media: 'media/',
-                // toolbox: BLOCKLY_TOOLBOX_XML['standard'],
                 toolbox: document.getElementById('toolbox'),
                 collapse: true,
                 comments: true,
@@ -180,7 +192,7 @@
                     } catch (error1) {
                         alert(error1)
                     }
-                    // <!--                    document.getElementById("codeSpaceText").value = code;-->
+                    // document.getElementById("codeSpaceText").value = code;
                 } catch (error) {
                     alert(error)
                 }

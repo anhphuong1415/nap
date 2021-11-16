@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -23,7 +24,6 @@ import com.voblox.rangev1.BaseInterFace.BasePresenter;
 import com.voblox.rangev1.Model.Model;
 import com.voblox.rangev1.Model.RangeOneModel;
 import com.voblox.rangev1.R;
-import com.voblox.rangev1.Utilities.WebChromeClient;
 
 public class DrapDropActivity extends AppCompatActivity implements DrapDropContract.DrapDropView {
     private BasePresenter mPresenter;
@@ -61,7 +61,6 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         mWebViewSetting.setJavaScriptEnabled(true);
         mWebViewSetting.setDomStorageEnabled(true);
         mWebView.setWebChromeClient(new WebChromeClient());
-
         JavaInterface mJavascriptInterface = new JavaInterface(this);
 
         // set up the Presenter
