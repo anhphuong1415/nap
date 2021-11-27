@@ -10,8 +10,14 @@ import com.voblox.rangev1.BaseInterFace.BaseView;
 public class JavaInterface {
     private DrapDropPresenter   mDrapDropPresenter;
     private Context             mContext;
-    private BaseView                mView;
-    private double                    modelValue = 30;
+    private BaseView             mView;
+
+    // set moduleValue
+    public void setModelValue(double modelValue) {
+        this.modelValue = modelValue;
+    }
+
+    private double              modelValue = 0;
     JavaInterface(Context c){mContext = c;}
 
     void setPresenter(DrapDropPresenter p){mDrapDropPresenter = p;}
@@ -92,6 +98,7 @@ public class JavaInterface {
     {
         Toast.makeText(mView.getViewContext(), prefix + String.valueOf(modelValue), Toast.LENGTH_LONG).show();
     }
+
     @JavascriptInterface
     public void closeWebView() {
     }
