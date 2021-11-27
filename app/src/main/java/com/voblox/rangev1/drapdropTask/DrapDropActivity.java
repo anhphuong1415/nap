@@ -1,8 +1,11 @@
 package com.voblox.rangev1.drapdropTask;
 
+import com.voblox.rangev1.Utilities.shareFunction;
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -10,6 +13,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -24,11 +29,18 @@ import com.voblox.rangev1.Model.Model;
 import com.voblox.rangev1.Model.RangeOneModel;
 import com.voblox.rangev1.R;
 import com.voblox.rangev1.Utilities.WebChromeClient;
+import com.voblox.rangev1.Utilities.define;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 
 public class DrapDropActivity extends AppCompatActivity implements DrapDropContract.DrapDropView {
     private BasePresenter mPresenter;
     private  WebView mWebView;
     static final String LOAD_TMP = "need to load tmpMem";
+    public static final String mBroadcastGetData = "VrobotGetData";
+    private IntentFilter mIntentFilter;
 
     public class JavaScriptWebViewClient extends WebViewClient {
         @Override
@@ -61,6 +73,9 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         mWebViewSetting.setJavaScriptEnabled(true);
         mWebViewSetting.setDomStorageEnabled(true);
         mWebView.setWebChromeClient(new WebChromeClient());
+
+        mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction(mBroadcastGetData);
 
         JavaInterface mJavascriptInterface = new JavaInterface(this);
 
@@ -119,7 +134,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     @Override
     protected void onPause()
     {
-//        super.onPause();
+        unregisterReceiver(mReceiver);
         mWebView.evaluateJavascript("javascript:handleTmpSave();", null);
         super.onPause();
     }
@@ -127,7 +142,6 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     @Override
     protected void onStop()
     {
-//        super.onStop();
         mWebView.evaluateJavascript("javascript:handleTmpSave();", null);
         super.onStop();
     }
@@ -135,15 +149,15 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     @Override
     protected void onResume()
     {
-//        super.onResume();
         mWebView.evaluateJavascript("javascript:handleTmpLOAD();", null);
+        registerReceiver(mReceiver, mIntentFilter);
+        Log.i("testRegistor", "onResume Drag and drop");
         super.onResume();
     }
 
     @Override
     protected void onStart()
     {
-//        super.onStart();
         mWebView.evaluateJavascript("javascript:handleTmpLOAD();", null);
         super.onStart();
     }
@@ -154,6 +168,60 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         outState.putBoolean(LOAD_TMP, true);
         super.onSaveInstanceState(outState);
     }
+
+    byte[] handleData(byte[] inBuffer) {
+    byte[] bufGet = {0, 0, 0, 0};
+
+    for (int i = 0; i < 4; i++) {
+        bufGet[i] = inBuffer[i + 3];
+    }
+    return bufGet;
+}
+    byte[] tmpFbData = {0, 0, 0, 0};
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Charset charset = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                charset = StandardCharsets.ISO_8859_1;
+            }
+            if (intent.getAction().equals(mBroadcastGetData)) {
+                String inputData = intent.getStringExtra("fbData");
+                byte[] buffer = inputData.getBytes(charset);
+//                byte[] buffer1 = blueControl.getInstance().read();
+//                final String msgReceived = String.format(String.format(String.format("%02X", buffer1[0]) + String.format("%02X", buffer1[1]) + String.format("%02X", buffer1[2])
+//                        + String.format("%02X", buffer1[3]) + String.format("%02X", buffer1[4]) + String.format("%02X", buffer1[5])
+//                        + String.format("%02X", buffer1[6]) + String.format("%02X", buffer1[7]) + String.format("%02X", buffer1[8])));
+//                Log.i("mByte ", "++" + msgReceived);
+
+                tmpFbData = handleData(buffer);
+//                String displayText = Float.toString(shareFunction.byteArray2Float(fbData));
+                switch (buffer[2]) {
+                    case define.SRF05: {
+                        Log.i("testRegistor",Float.toString(shareFunction.byteArray2Float(tmpFbData)));
+                        break;
+                    }
+                    case define.LINE: {
+                        break;
+                    }
+                    case define.LIGHT: {
+                        break;
+                    }
+                    case define.COLOR: {
+                        break;
+                    }
+                    case define.MODE_BTN:{
+                        break;
+                    }
+                    case define.SOUND: {
+                        break;
+                    }
+                    default:
+                        break;
+                }
+            }
+        }
+    };
 
     @Override
     protected void onDestroy()

@@ -1,14 +1,23 @@
 package com.voblox.rangev1.drapdropTask;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.voblox.rangev1.BaseInterFace.BaseView;
+import com.voblox.rangev1.R;
 import com.voblox.rangev1.Utilities.shareFunction;
 import com.voblox.rangev1.Utilities.define;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class JavaInterface {
     private DrapDropPresenter   mDrapDropPresenter;
@@ -16,8 +25,11 @@ public class JavaInterface {
     private BaseView                mView;
     private long                    modelValue = 30;
 
+
+
     JavaInterface(Context c){
         mContext = c;
+        Log.i("hhhh", "Java Interface");
     }
 
     void setPresenter(DrapDropPresenter p){
@@ -178,7 +190,7 @@ public class JavaInterface {
 
         switch (module) {
             case define.SRF05:
-                shareFunction.getData(define.SRF05);
+                shareFunction.getInstance().getData(define.SRF05);
                 break;
             case define.LINE:
                 break;
@@ -192,7 +204,7 @@ public class JavaInterface {
             case define.MODE_BTN:
                 break;
             case define.LED_MATRIX:
-                handleLedMatrix(value, duration);
+//                handleLedMatrix(value, duration);
                 break;
             case define.LED_RGB:
                 handleRGB(value[0], value[1], duration);
