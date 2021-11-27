@@ -207,7 +207,9 @@ Blockly.JavaScript['srf05'] = function(block) {
     else if (dropdown_port == "Port 8") var port = 8;
 
     var code = 'Android.sendCmd(' + '1,' + port + ',1,0,0,0,[])';
-    Android.JSrequsetShow("Super sonic sensor: ");
+    var showString = "Sensor value: " + Android.GetValue();
+    showSensor(showString);
+    // Android.JSrequsetShow("Super sonic sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -223,7 +225,9 @@ Blockly.JavaScript['light_sensor'] = function(block) {
     else if (dropdown_port == "Port 8") var port = 8;
 
     var code = 'Android.sendCmd(' + '1,' + port + ',3,0,0,0,[])';
-    Android.JSrequsetShow("light sensor: ");
+    var showString = "Sensor value: " + Android.GetValue();
+    showSensor(showString);
+    // Android.JSrequsetShow("light sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -239,7 +243,9 @@ Blockly.JavaScript['colorsensor'] = function(block) {
     else if (dropdown_port == "Port 8") var port = 8;
 
     var code = 'Android.sendCmd(' + '1,' + port + ',4,0,0,0,[])';
-    Android.JSrequsetShow("Color sensor: ");
+    var showString = "Sensor value: " + Android.GetValue();
+    showSensor(showString);
+    // Android.JSrequsetShow("Color sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -255,7 +261,9 @@ Blockly.JavaScript['sound_sensor'] = function(block) {
     else if (dropdown_port == "Port 8") var port = 8;
 
     var code = 'Android.sendCmd(' + '1,' + port + ',10,0,0,0,[])';
-    Android.JSrequsetShow("Sound sensor: ");
+    var showString = "Sensor value: " + Android.GetValue();
+    showSensor(showString);
+    // Android.JSrequsetShow("Sound sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -280,7 +288,9 @@ Blockly.JavaScript['path_detecter'] = function(block) {
 
     var code = 'Android.sendCmd(' + '1,' + port + ',2,0,' + side + ',0,' +
         '[' + colorFinding + '])';
-    Android.JSrequsetShow("Line detect sensor: ");
+    var showString = "Sensor value: " + Android.GetValue();
+    showSensor(showString);
+    // Android.JSrequsetShow("Line detect sensor: ");
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
