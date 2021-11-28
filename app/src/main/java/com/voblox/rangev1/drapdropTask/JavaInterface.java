@@ -249,4 +249,9 @@ public class JavaInterface {
     @JavascriptInterface
     public void closeWebView() {
     }
+
+    @JavascriptInterface
+    public double GetValue() {
+        return modelValue;
+    }
 }
