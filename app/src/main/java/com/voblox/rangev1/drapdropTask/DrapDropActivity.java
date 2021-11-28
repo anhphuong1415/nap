@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,6 +23,7 @@ import com.voblox.rangev1.BaseInterFace.BasePresenter;
 import com.voblox.rangev1.Model.Model;
 import com.voblox.rangev1.Model.RangeOneModel;
 import com.voblox.rangev1.R;
+import com.voblox.rangev1.Utilities.WebChromeClient;
 
 public class DrapDropActivity extends AppCompatActivity implements DrapDropContract.DrapDropView {
     private BasePresenter mPresenter;
@@ -85,7 +85,6 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         // load the URL for the webView
         mWebView.loadUrl("file:///android_asset/webview.html");
 
-
         if(savedInstanceState != null)
         {
             if(savedInstanceState.getBoolean(LOAD_TMP)) {
@@ -93,6 +92,33 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
             }
         }
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        final int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+
+        getWindow().getDecorView().setSystemUiVisibility(flags);
+
+        // Code below is to handle presses of Volume up or Volume down.
+        // Without this, after pressing volume buttons, the navigation bar will
+        // show up and won't hide
+        final View decorView2 = getWindow().getDecorView();
+        decorView2
+                .setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener()
+                {
+
+                    @Override
+                    public void onSystemUiVisibilityChange(int visibility)
+                    {
+                        if((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0)
+                        {
+                            decorView2.setSystemUiVisibility(flags);
+                        }
+                    }
+                });
     }
 
     @Override
@@ -160,5 +186,19 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
 //        super.onStop();
         mWebView.evaluateJavascript("javascript:handleTmpSave();", null);
         super.onDestroy();
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus)
+    {
+        super.onWindowFocusChanged(hasFocus);
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 }
