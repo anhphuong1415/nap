@@ -166,6 +166,12 @@ public class JavaInterface {
         }
         shareFunction.runMaTrix(0, 0, 0, tmpData, duration);
     }
+    void handleReadSensor(int module)
+    {
+        shareFunction.getInstance().getData(module);
+        shareFunction.delay_ms(1000);
+        shareFunction.getInstance().getData(define.NONE);
+    }
     /*return int = sensor value when want to get data*/
 
     /*return long = sensor value when want to get data for reserve when color sensor return rgb code
@@ -201,13 +207,16 @@ public class JavaInterface {
 
         switch (module) {
             case define.SRF05:
-                shareFunction.getInstance().getData(define.SRF05);
+                handleReadSensor(define.SRF05);
                 break;
             case define.LINE:
+                handleReadSensor(define.LINE);
                 break;
             case define.LIGHT:
+                handleReadSensor(define.LIGHT);
                 break;
             case define.COLOR:
+                handleReadSensor(define.COLOR);
                 break;
             case define.JOYSTICK:
                 handleMotor(dirMove, (int)value[0], duration);
