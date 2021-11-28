@@ -38,11 +38,11 @@ Blockly.Themes.Halloween = Blockly.Theme.defineTheme('halloween', {
         }
     },
     'componentStyles': {
-        'workspaceBackgroundColour': '#ff7518',
-        'toolboxBackgroundColour': '#F9C10E',
-        'toolboxForegroundColour': '#fff',
-        'flyoutBackgroundColour': '#252526',
-        'flyoutForegroundColour': '#ccc',
+        'workspaceBackgroundColour': 'transparent',
+        'toolboxBackgroundColour': 'transparent',
+        'toolboxForegroundColour': 'transparent',
+        'flyoutBackgroundColour': 'transparent',
+        'flyoutForegroundColour': 'transparent',
         'flyoutOpacity': 1,
         'scrollbarColour': '#ff0000',
         'insertionMarkerColour': '#fff',

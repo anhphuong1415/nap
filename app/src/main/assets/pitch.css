@@ -1,0 +1,6 @@
+#notePicker {
+    background-image: url(Utils/BlockIcon/notes.png);
+    border: 1px solid #ccc;
+    height: 109px;
+    width: 46px;
+}

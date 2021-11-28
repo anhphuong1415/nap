@@ -1,6 +1,7 @@
 package com.voblox.rangev1.drapdropTask;
 
 import com.voblox.rangev1.Utilities.shareFunction;
+import com.voblox.rangev1.drapdropTask.JavaInterface;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -28,7 +30,7 @@ import com.voblox.rangev1.BaseInterFace.BasePresenter;
 import com.voblox.rangev1.Model.Model;
 import com.voblox.rangev1.Model.RangeOneModel;
 import com.voblox.rangev1.R;
-import com.voblox.rangev1.Utilities.WebChromeClient;
+//import com.voblox.rangev1.Utilities.WebChromeClient;
 import com.voblox.rangev1.Utilities.define;
 
 import java.nio.charset.Charset;
@@ -170,13 +172,22 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     }
 
     byte[] handleData(byte[] inBuffer) {
-    byte[] bufGet = {0, 0, 0, 0};
+        byte[] bufGet = {0, 0, 0, 0};
 
-    for (int i = 0; i < 4; i++) {
-        bufGet[i] = inBuffer[i + 3];
+        for (int i = 0; i < 4; i++) {
+            bufGet[i] = inBuffer[i + 3];
+        }
+        return bufGet;
     }
-    return bufGet;
-}
+    public Double byteArray2Float1(byte[] bytes)  {
+        long intBits = (((byte)bytes[3] & 0xFF) << 24) |
+                (((byte)bytes[2] & 0xFF) << 16) |
+                (((byte)bytes[1] & 0xFF) << 8) |
+                ((byte)bytes[0] & 0xFF);
+//        return Double.intBitsToFloat(intBits);
+        return Double.longBitsToDouble(intBits);
+    }
+
     byte[] tmpFbData = {0, 0, 0, 0};
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -198,10 +209,12 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
 //                String displayText = Float.toString(shareFunction.byteArray2Float(fbData));
                 switch (buffer[2]) {
                     case define.SRF05: {
-                        Log.i("testRegistor",Float.toString(shareFunction.byteArray2Float(tmpFbData)));
+                        Log.i("testRegistor", Float.toString(shareFunction.byteArray2Float(tmpFbData)));
+                        JavaInterface.getInstance().setModelValue(shareFunction.byteArray2Float(tmpFbData));
                         break;
                     }
                     case define.LINE: {
+
                         break;
                     }
                     case define.LIGHT: {

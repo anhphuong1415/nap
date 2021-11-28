@@ -21,18 +21,30 @@ import java.nio.charset.StandardCharsets;
 
 public class JavaInterface {
     private DrapDropPresenter   mDrapDropPresenter;
-    private Context             mContext;
-    private BaseView                mView;
-    private long                    modelValue = 30;
+    private static Context             mContext;
+    private BaseView             mView;
+    private static JavaInterface mJavaInterface;
 
+    // set moduleValue
+    public void setModelValue(double modelValue) {
+        this.modelValue = modelValue;
+        Log.i("testRegistor+++", Double.toString(modelValue));
+    }
+    private double              modelValue = 0;
 
+    public static JavaInterface getInstance ()
+    {
+        if (mJavaInterface == null)
+            mJavaInterface = new JavaInterface(mContext);
+        return mJavaInterface;
+    }
 
     JavaInterface(Context c){
         mContext = c;
         Log.i("hhhh", "Java Interface");
     }
 
-    void setPresenter(DrapDropPresenter p){
+    void setPresenter(DrapDropPresenter p) {
         mDrapDropPresenter = p;
     }
 
@@ -58,8 +70,7 @@ public class JavaInterface {
     * speaker 9
     * follow sound sensor 10
     * ring_led 11
-    * servo 12
-    * */
+    * servo 12    * */
 
     /*diretion for move
     * tiến 1
@@ -234,6 +245,7 @@ public class JavaInterface {
     {
         Toast.makeText(mView.getViewContext(), prefix + String.valueOf(modelValue), Toast.LENGTH_LONG).show();
     }
+
     @JavascriptInterface
     public void closeWebView() {
     }
