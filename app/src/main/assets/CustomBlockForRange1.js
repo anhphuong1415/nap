@@ -352,20 +352,6 @@ Blockly.Blocks['dummy_play_block'] = {
     }
 };
 
-Blockly.Blocks['wait'] = {
-    init: function() {
-        this.appendDummyInput()
-            .appendField("chờ")
-            .appendField(new Blockly.FieldNumber(0, 0, 255), "time")
-            .appendField("giây");
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(75);
-        this.setTooltip("");
-        this.setHelpUrl("");
-    }
-};
-
 Blockly.Blocks['if_block'] = {
     init: function() {
         this.appendValueInput("condition")
