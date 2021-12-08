@@ -222,8 +222,7 @@ Blockly.JavaScript['light_sensor'] = function(block) {
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
 
-    var code = 'sendCmd(' + '1,' + port + ',3,0,0,0,[]) + ' +
-        'showSensor("Sensor value: " + getValue())';
+    var code = 'sendCmd(' + '1,' + port + ',3,0,0,0,[])';
     // Android.JSrequsetShow("light sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -239,8 +238,7 @@ Blockly.JavaScript['colorsensor'] = function(block) {
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
 
-    var code = 'sendCmd(' + '1,' + port + ',4,0,0,0,[]) +' +
-        'showSensor("Sensor value: " + getValue())';
+    var code = 'sendCmd(' + '1,' + port + ',4,0,0,0,[])';
     // Android.JSrequsetShow("Color sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
@@ -256,8 +254,7 @@ Blockly.JavaScript['sound_sensor'] = function(block) {
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
 
-    var code = 'sendCmd(' + '1,' + port + ',10,0,0,0,[]) +' +
-        'showSensor("Sensor value: " + getValue())';
+    var code = 'sendCmd(' + '1,' + port + ',10,0,0,0,[])';
     // Android.JSrequsetShow("Sound sensor: ");
     return [code, Blockly.JavaScript.ORDER_NONE];
 };

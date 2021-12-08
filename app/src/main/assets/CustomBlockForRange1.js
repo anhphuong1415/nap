@@ -236,14 +236,13 @@ Blockly.Blocks['srf05'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/object_sensor.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
-            .appendField("Sử dụng cảm biến tại")
+            .appendField("Khoảng cách tới vật cản đo được sử dụng cảm biến ở")
             .appendField(new Blockly.FieldDropdown([
                 ["Port 1", "Port 1"],
                 ["Port 2", "Port 2"],
                 ["Port 3", "Port 3"],
                 ["Port 4", "Port 4"]
-            ]), "port")
-            .appendField("và dò tìm vật cản");
+            ]), "port");
         this.setOutput(true, null);
         this.setColour(180);
         this.setTooltip("");
@@ -255,14 +254,13 @@ Blockly.Blocks['light_sensor'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/light_sensor.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
-            .appendField("Sử dụng cảm biến ở")
+            .appendField("Cường độ ánh sáng đo được sử dụng cảm biến ở")
             .appendField(new Blockly.FieldDropdown([
                 ["Port 1", "Port 1"],
                 ["Port 2", "Port 2"],
                 ["Port 3", "Port 3"],
                 ["Port 5", "Port 5"]
-            ]), "Port")
-            .appendField("đo cường độ sáng");
+            ]), "Port");
         this.setOutput(true, null);
         this.setColour(230);
         this.setTooltip("");
@@ -274,14 +272,13 @@ Blockly.Blocks['colorsensor'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/color_sensor.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
-            .appendField("Sử dụng cảm biến ở")
+            .appendField("Màu sắc được xác định bằng cảm biến ở")
             .appendField(new Blockly.FieldDropdown([
                 ["Port 1", "Port 1"],
                 ["Port 2", "Port 2"],
                 ["Port 3", "Port 3"],
                 ["Port 6", "Port 6"]
-            ]), "Port")
-            .appendField("để xác định màu sắc");
+            ]), "Port");
         this.setOutput(true, null);
         this.setColour(75);
         this.setTooltip("");
@@ -293,7 +290,7 @@ Blockly.Blocks['sound_sensor'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/sound_sensor.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
-            .appendField("Sử dụng cảm biến ở")
+            .appendField("Âm thanh được cảm nhận bằng cảm biến ở")
             .appendField(new Blockly.FieldDropdown([
                 ["Port 1", "Port 1"],
                 ["Port 2", "Port 2"],
@@ -312,7 +309,7 @@ Blockly.Blocks['path_detecter'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/path_sensor.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
-            .appendField("Sử dụng cảm biến ở")
+            .appendField("Hành trình đi được đo bằng cảm biến ở")
             .appendField(new Blockly.FieldDropdown([
                 ["Port 1", "Port 1"],
                 ["Port 2", "Port 2"],
@@ -320,12 +317,12 @@ Blockly.Blocks['path_detecter'] = {
                 ["Port 8", "Port 8"]
             ]), "Port");
         this.appendDummyInput()
-            .appendField("dò đường")
+            .appendField("theo chiều")
             .appendField(new Blockly.FieldDropdown([
                 ["bên trái", "bên trái"],
                 ["bên phải", "bên phải"]
             ]), "side")
-            .appendField("theo")
+            .appendField("với màu sắc")
             .appendField(new Blockly.FieldDropdown([
                 ["màu trắng", "màu trắng"],
                 ["màu đen", "màu đen"]

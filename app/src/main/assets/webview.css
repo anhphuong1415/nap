@@ -20,7 +20,8 @@
     padding: 3mm 3mm;
 }
 
-#LOAD {
+
+/* #LOAD {
     position: absolute;
     top: 38mm;
     right: 2mm;
@@ -29,6 +30,27 @@
     color: white;
     text-transform: uppercase;
     padding: 3mm 3mm;
+} */
+
+.a-button {
+    display: table;
+    padding: 7px 15px 8px 15px;
+    border: none;
+    font-family: "open_sans_lightregular";
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.a-button.iconPlay {
+    padding-right: 50px !important;
+    background: url("Utils/BlockIcon/Icon_Play.svg") no-repeat 5px center;
+}
+
+.a-button.iconSave {
+    padding-right: 50px !important;
+    background: url("Utils/BlockIcon/Icon_Save.svg") no-repeat 5px center;
 }
 
 #SAVE_ICON {
