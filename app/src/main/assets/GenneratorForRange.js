@@ -350,10 +350,10 @@ Blockly.Blocks['turtle_basic'] = {
 };
 
 Blockly.JavaScript['while'] = function(block) {
-    var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
+    // var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
     var statements_actions = Blockly.JavaScript.statementToCode(block, 'actions');
     // TODO: Assemble JavaScript into code variable.
-    var code = 'while(' + value_condition + '){\n' +
+    var code = 'for(var i = 0; i < 10000; i++){\n' +
         statements_actions + '\n}'
     return code;
 };
