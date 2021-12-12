@@ -470,3 +470,17 @@ Blockly.Blocks['test_pitch_field'] = {
         this.setStyle('loop_blocks');
     }
 };
+
+Blockly.Blocks['while'] = {
+    init: function() {
+        this.appendValueInput("condition")
+            .setCheck("Boolean")
+            .appendField("Khi mà");
+        this.appendStatementInput("actions")
+            .setCheck(null)
+            .appendField("Thì thực hiện");
+        this.setColour(285);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};

@@ -56,11 +56,6 @@
     left: 0;
 }
 
-#SNACK BAR {
-    width: 5mm;
-    height: 5mmm;
-}
-
 #snackbar {
     visibility: hidden;
     /* Hidden by default. Visible on click */

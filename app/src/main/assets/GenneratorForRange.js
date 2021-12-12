@@ -365,3 +365,12 @@ Blockly.Blocks['turtle_basic'] = {
         this.setCommentText('Demonstrates a turtle field with no validator.');
     }
 };
+
+Blockly.JavaScript['while'] = function(block) {
+    var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
+    var statements_actions = Blockly.JavaScript.statementToCode(block, 'actions');
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'while(' + value_condition + '){\n' +
+        statements_actions + '\n}'
+    return code;
+};
