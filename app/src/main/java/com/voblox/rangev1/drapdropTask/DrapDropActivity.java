@@ -233,7 +233,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
 //                String displayText = Float.toString(shareFunction.byteArray2Float(fbData));
                 switch (buffer[2]) {
                     case define.SRF05: {
-                        //Log.i("testRegistor", Float.toString(shareFunction.byteArray2Float(tmpFbData)));
+//                        Log.i("testRegistor", Float.toString(shareFunction.byteArray2Float(tmpFbData)));
                         JavaInterface.getInstance().setModelValue(shareFunction.byteArray2Float(tmpFbData));
                         break;
                     }

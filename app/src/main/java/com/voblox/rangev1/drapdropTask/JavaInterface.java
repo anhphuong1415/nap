@@ -20,17 +20,17 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 public class JavaInterface {
-    private DrapDropPresenter   mDrapDropPresenter;
-    private static Context             mContext;
-    private BaseView             mView;
-    private static JavaInterface mJavaInterface;
+    private DrapDropPresenter       mDrapDropPresenter;
+    private static Context          mContext;
+    private BaseView                mView;
+    private static JavaInterface    mJavaInterface;
+    private double                  modelValue1 = 0;
 
     // set moduleValue
     public void setModelValue(double modelValue) {
-        this.modelValue = modelValue;
-        Log.i("testRegistor+++", Double.toString(modelValue));
+        this.modelValue1 = modelValue;
+        Log.i("testRegistor+++", Double.toString(modelValue1));
     }
-    private double              modelValue = 0;
 
     public static JavaInterface getInstance ()
     {
@@ -240,7 +240,11 @@ public class JavaInterface {
             default:
                 break;
         }
-        return 1;
+        Log.i("testRegistor+++", Double.toString(modelValue1));
+//        return 1;
+//        Toast.makeText(mView.getViewContext(), Integer.toString(module), Toast.LENGTH_SHORT).show();
+////        mDrapDropPresenter.sendCmd(action, module, data1, data2, data3, data4, data5, data6, data7);
+        return (long)modelValue1;
     }
 
     @JavascriptInterface
@@ -252,7 +256,7 @@ public class JavaInterface {
     @JavascriptInterface
     public void JSrequsetShow(String prefix)
     {
-        Toast.makeText(mView.getViewContext(), prefix + String.valueOf(modelValue), Toast.LENGTH_LONG).show();
+        Toast.makeText(mView.getViewContext(), prefix + String.valueOf(modelValue1), Toast.LENGTH_LONG).show();
     }
 
     @JavascriptInterface
@@ -261,6 +265,6 @@ public class JavaInterface {
 
     @JavascriptInterface
     public double GetValue() {
-        return modelValue;
+        return modelValue1;
     }
 }
