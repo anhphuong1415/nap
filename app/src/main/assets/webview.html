@@ -6,6 +6,7 @@
     <meta name="Decription" content="BLOCKLY TRY OUT">
     <link rel="stylesheet" type="text/css" href="webview.css">
     <link rel="stylesheet" href="toolbox_style.css">
+    <link rel="stylesheet" href="Libs/css/bootstrap.css">
     <script src="acorn_interpreter.js"></script>
     <script src="node_modules/blockly/blockly_compressed.js"></script>
     <script src="node_modules/blockly/blocks_compressed.js"></script>
@@ -14,6 +15,8 @@
     <script src="node_modules/blockly/msg/vi.js"></script>
     <script src="CustomBlockForRange1.js"></script>
     <script src="wait_block.js"></script>
+    <script src="Libs/js/jQuerry.js"></script>
+    <script src="Libs/js/bootstrap.bundle.js"></script>
     <script>
         var goog = {
             provide: function() {},
@@ -41,7 +44,7 @@
 
     <div style="width: 100%; height: 100vh">
         <xml id="toolbox" style="display: none">
-            <category name="Di chuyển" colour="transparent">
+            <category name="Di chuyển">
                 <block type="robot_move">
                     <field name="Direction">Tiến</field>
                     <field name="Velocity">0</field>
@@ -58,7 +61,7 @@
                 </block>
                 <block type="stop_move"></block>
             </category>
-            <category name="Biểu diễn" colour="transparent">
+            <category name="Biểu diễn">
                 <block type="playmusicnote">
                     <field name="Note">C</field>
                     <field name="Duration">0</field>
@@ -94,7 +97,7 @@
                 <block type="turnoffledrbg">
                 </block>
             </category>
-            <category name="Cảm biến" colour="transparent">
+            <category name="Cảm biến">
                 <block type="srf05">
                     <field name="port">Port 1</field>
                 </block>
@@ -113,7 +116,7 @@
                     <field name="color">màu trắng</field>
                 </block>
             </category>
-            <category name="Tính toán" colour="transparent">
+            <category name="Tính toán">
                 <block type="logic_operation">
                     <field name="OP">AND</field>
                 </block>
@@ -137,7 +140,7 @@
                     <field name="OP">EQ</field>
                 </block>
             </category>
-            <category name="Điều khiển" colour="transparent">
+            <category name="Điều khiển">
                 <block type="if_block"></block>
                 <block type="stop_move"></block>
                 <block type="loop">
@@ -150,12 +153,12 @@
                 <block type="wait_seconds"></block>
                 <block type="while"></block>
             </category>
-            <category name="Hàm" colour="transparent">
+            <category name="Hàm">
                 <block type="create_function">
                     <field name="Function_name">di chuyển</field>
                 </block>
             </category>
-            <category name="Dữ liệu" colour="transparent" custom="VARIABLE"></category>
+            <category name="Dữ liệu" custom="VARIABLE"></category>
         </xml>
 
         <!-- <textarea id="codeSpaceText" style="height: 100vh; width: 50vw;">
@@ -262,9 +265,9 @@
                     dirMove, additionModule, value);
 
                 if (m_module < 5 || m_module == 10) {
-                    showSensor("Sensor value: " + out);
+                    showSensor("Sensor value: " + getValue());
                 }
-                out = out + 1;
+                // out = out + 1;
                 return out;
             }
 
