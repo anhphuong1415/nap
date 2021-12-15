@@ -52,10 +52,10 @@ public class Control extends AppCompatActivity {
     ImageButton btnDance, btnLed, btnConnect, btnBuzzer, btnLedMatrix, btnRingLed;
     ImageButton btnGetSrf05, btnGetLine, btnGetColor, btnGetSound, btnGetLight, btnGetBtn;
     ImageButton btnModeSrf05, btnModeSoundDetect, btnModeFollwingLine, btnModeRunCircle;
-    TextView textSrf05, textLight, textColor, textSound, textServo1, textServo2, lineRight, lineLeft;
+    TextView textSrf05, textLight, textColor, textSound, textDC1, textDC2, textServo, lineRight, lineLeft;
     ImageButton showMode1, showMode2, showMode3;
     pl.droidsonroids.gif.GifImageView soundSignal;
-    SeekBar servo1, servo2;
+    SeekBar DC1, DC2, servo;
     boolean state_led = false;
     int ledColor = 0;
     int leftSpeed = 0, rightSpeed = 0;
@@ -225,13 +225,17 @@ public class Control extends AppCompatActivity {
         textColor = (TextView) findViewById(R.id.text_color);
         textColor.setTypeface(null, Typeface.BOLD);
 
-        textServo1 = (TextView) findViewById(R.id.val_servo1);
-        textServo1.setTypeface(null, Typeface.BOLD);
-        servo1 = (SeekBar) findViewById(R.id.sbServo1);
+        textServo = (TextView) findViewById(R.id.val_servo);
+        textServo.setTypeface(null, Typeface.BOLD);
+        servo = (SeekBar) findViewById(R.id.sbServo);
 
-        textServo2 = (TextView) findViewById(R.id.val_servo2);
-        textServo2.setTypeface(null, Typeface.BOLD);
-        servo2 = (SeekBar) findViewById(R.id.sbServo2);
+        textDC1 = (TextView) findViewById(R.id.val_dc1);
+        textDC1.setTypeface(null, Typeface.BOLD);
+        DC1 = (SeekBar) findViewById(R.id.sbDC1);
+
+        textDC2 = (TextView) findViewById(R.id.val_dc2);
+        textDC2.setTypeface(null, Typeface.BOLD);
+        DC2 = (SeekBar) findViewById(R.id.sbDC2);
         soundSignal = (pl.droidsonroids.gif.GifImageView) findViewById(R.id.btnSound);
         check_connected();
 //        String srf05Val = getIntent().getStringExtra("Srf05");
@@ -489,10 +493,8 @@ public class Control extends AppCompatActivity {
                 stateGetColor = !stateGetColor;
                 if (stateGetColor) {
                     shareFunction.getInstance().getData(define.COLOR);
-                    textServo1.setText("hello");
                     btnGetColor.setBackgroundResource(R.drawable.ic_read_color_select);
                 } else {
-                    textServo1.setText("");
                     shareFunction.getInstance().getData(define.NONE);
                 }
             }
@@ -504,9 +506,9 @@ public class Control extends AppCompatActivity {
             finish();
             return;
         }
-        servo1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        servo.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textServo1.setText("Servo1 quay: " + progress + " độ");
+                textServo.setText("Servo quay: " + progress + " độ");
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -517,9 +519,9 @@ public class Control extends AppCompatActivity {
             }
         });
 
-        servo2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        DC1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textServo2.setText("Servo2 quay: " + progress + " độ");
+                textDC1.setText("Tốc độ động cơ 1: " + progress/2.55 + "%");
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -529,6 +531,20 @@ public class Control extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
+        DC2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textDC2.setText("Tốc độ động cơ 2: " + progress/2.55 + "%");
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
         js = new joystick(getApplicationContext(), layout_joystick, R.drawable.joystick_center);
         js.setStickSize(180, 180);
         js.setLayoutSize(500, 500);

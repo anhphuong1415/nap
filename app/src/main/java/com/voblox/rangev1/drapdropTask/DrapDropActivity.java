@@ -203,13 +203,12 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         }
         return bufGet;
     }
-    public Double byteArray2Float1(byte[] bytes)  {
-        long intBits = (((byte)bytes[3] & 0xFF) << 24) |
+    public float byteArray2Float1(byte[] bytes)  {
+        int intBits = (((byte)bytes[3] & 0xFF) << 24) |
                 (((byte)bytes[2] & 0xFF) << 16) |
                 (((byte)bytes[1] & 0xFF) << 8) |
                 ((byte)bytes[0] & 0xFF);
-//        return Double.intBitsToFloat(intBits);
-        return Double.longBitsToDouble(intBits);
+        return Float.intBitsToFloat(intBits);
     }
 
     byte[] tmpFbData = {0, 0, 0, 0};
@@ -234,7 +233,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
                 switch (buffer[2]) {
                     case define.SRF05: {
 //                        Log.i("testRegistor", Float.toString(shareFunction.byteArray2Float(tmpFbData)));
-                        JavaInterface.getInstance().setModelValue(shareFunction.byteArray2Float(tmpFbData));
+                        JavaInterface.getInstance().setModelValue(byteArray2Float1(tmpFbData));
                         break;
                     }
                     case define.LINE: {

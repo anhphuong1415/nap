@@ -198,7 +198,7 @@ public class JavaInterface {
     public long sendCmd(int action,int port, int module, int duration,
                         int dirMove, int additionModule, long [] value)
     {
-//        Toast.makeText(mView.getViewContext(), "Send cmd+++", Toast.LENGTH_LONG).show();
+//        Toast.makeText(mView.getViewContext(), Integer.toString(module) + Integer.toString(duration), Toast.LENGTH_LONG).show();
 //        Log.i("TAG","action:" + Integer.toString(action)  + " port:" + Integer.toString(port) +
 //                " module:" +Integer.toString(module) + " duration:" +Integer.toString(duration) +
 //                " value:" + Long.toHexString(value[0])  + " dirMove:" + Integer.toString(dirMove) +
@@ -208,6 +208,7 @@ public class JavaInterface {
         switch (module) {
             case define.SRF05:
                 handleReadSensor(define.SRF05);
+                Toast.makeText(mView.getViewContext(), "handle SRF05", Toast.LENGTH_LONG).show();
                 break;
             case define.LINE:
                 handleReadSensor(define.LINE);
@@ -228,9 +229,11 @@ public class JavaInterface {
                 break;
             case define.LED_RGB:
                 handleRGB(value[0], value[1], duration);
+                Toast.makeText(mView.getViewContext(), "handle rgb", Toast.LENGTH_LONG).show();
                 break;
             case define.BUZZER:
                 handle_buzzer((int)value[0], duration);
+                Toast.makeText(mView.getViewContext(), "handle buzzer", Toast.LENGTH_LONG).show();
                 break;
             case define.SOUND:
                 break;
