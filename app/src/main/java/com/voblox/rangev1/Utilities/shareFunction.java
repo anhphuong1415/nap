@@ -24,12 +24,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
-public class shareFunction extends AppCompatActivity {
+public class shareFunction{
 
     private static classicBluetooth blue;
     private static Timer timer;
     boolean stateBond = false;
-    private static shareFunction mShareFunction;
+    private static shareFunction mShareFunction = null;
     static classicBluetooth blueshare;
 //    static Control mControl;
     private IntentFilter mIntentFilter;
@@ -222,13 +222,6 @@ public class shareFunction extends AppCompatActivity {
 //        return bufGet;
 //    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        registerReceiver(mReceiver, mIntentFilter);
-        Log.i("testRegistor", "Share fucntion on resume");
-    }
-
     int state =  0;
     byte[] tmpFbData = {0, 0, 0, 0};
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -373,11 +366,4 @@ public class shareFunction extends AppCompatActivity {
             }
         }
     };
-
-    @Override
-    protected void onPause() {
-        unregisterReceiver(mReceiver);
-        super.onPause();
-    }
-
 }
