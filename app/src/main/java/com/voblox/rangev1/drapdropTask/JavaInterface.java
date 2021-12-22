@@ -79,12 +79,12 @@ public class JavaInterface {
     *    308: effect 2
     *    309: effect 3 */
     @JavascriptInterface
-    public long sendCmd(int action,int port, int module, int duration,
+    public double sendCmd(int action,int port, int module, int duration,
                         int dirMove, int additionModule, long [] value)
     {
         Toast.makeText(mView.getViewContext(), Integer.toString(module), Toast.LENGTH_SHORT).show();
 //        mDrapDropPresenter.sendCmd(action, module, data1, data2, data3, data4, data5, data6, data7);
-        return (long)modelValue++;
+        return modelValue++;
     }
 
     @JavascriptInterface
@@ -105,6 +105,6 @@ public class JavaInterface {
 
     @JavascriptInterface
     public double GetValue() {
-        return modelValue++;
+        return modelValue;
     }
 }

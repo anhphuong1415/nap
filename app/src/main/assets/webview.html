@@ -259,13 +259,15 @@
 
             Blockly.JavaScript.addReservedWords('exit');
 
+            // var out = 1;
+
             function sendCmd(action, port, m_module, duration,
                 dirMove, additionModule, value) {
                 var out = Android.sendCmd(action, port, m_module, duration,
                     dirMove, additionModule, value);
 
                 if (m_module < 5 || m_module == 10) {
-                    showSensor("Sensor value: " + getValue());
+                    showSensor("Sensor value: " + out);
                 }
                 // out = out + 1;
                 return out;
@@ -316,21 +318,37 @@
                     }
                     setTimeout(function() {
                         nextStep = function() {
-                            if (myInterpreter.step()) {
-                                if (Boolean(stopButton)) {
-                                    setTimeout(nextStep, 10);
-                                    return;
+                            //     if (myInterpreter.step()) {
+                            //         if (Boolean(stopButton)) {
+                            //             setTimeout(nextStep, 10);
+                            //             return;
+                            //         } else {
+                            //             stopFunction();
+                            //         }
+                            //     } else {
+                            //         stopButton = Boolean(9 > 10);
+                            //         resetInterpreter();
+                            //         resetStepUi();
+                            //     }
+                            // }
+                            // nextStep();
+                            if (myInterpreter) {
+                                var hasMore = myInterpreter.run();
+                                if (hasMore) {
+                                    if (Boolean(stopButton)) {
+                                        setTimeout(nextStep, 10);
+                                    } else {
+                                        stopFunction();
+                                    }
                                 } else {
-                                    stopFunction();
+                                    stopButton = Boolean(9 > 10);
+                                    resetInterpreter();
+                                    resetStepUi();
                                 }
-                            } else {
-                                stopButton = Boolean(9 > 10);
-                                resetInterpreter();
-                                resetStepUi();
                             }
-                        }
+                        };
                         nextStep();
-                    }, 10);
+                    }, 1);
                     return;
                 }
             }
