@@ -49,6 +49,7 @@ public class classicBluetooth  extends Service {
     public static final String BT_DEVICE = "Robox";
     public static final String B_UUID = "00001101-0000-1000-8000-00805f9b34fb";
     public static final String mBroadcastGetData = "VrobotGetData";
+    public static final String mBroadcastProgram = "ProgramGetData";
     public static final int STATE_NONE = 0;
     public static final int STATE_LISTEN = 1;
     public static final int STATE_CONNECTING = 2;
@@ -77,14 +78,6 @@ public class classicBluetooth  extends Service {
     }
     private final IBinder mBinder = new LocalBinder();
 
-    void delay_ms(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch(
-                Exception e) {
-            e.printStackTrace();
-        }
-    }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -412,11 +405,11 @@ public class classicBluetooth  extends Service {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                try {
-                    send_Data();
-                }
-                catch (NullPointerException ex) {
-                }
+            try {
+                send_Data();
+            }
+            catch (NullPointerException ex) {
+            }
             }
         };
         if (timer != null)

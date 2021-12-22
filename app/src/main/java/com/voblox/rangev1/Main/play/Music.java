@@ -110,73 +110,73 @@ public class Music extends AppCompatActivity {
         c_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.C);
+                shareFunction.runBuzzer(0,0,0, define.C, 250);
             }
         });
         d_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.D);
+                shareFunction.runBuzzer(0,0,0, define.D, 250);
             }
         });
         e_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.E);
+                shareFunction.runBuzzer(0,0,0, define.E, 250);
             }
         });
         f_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.F);
+                shareFunction.runBuzzer(0,0,0, define.F, 250);
             }
         });
         g_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.G);
+                shareFunction.runBuzzer(0,0,0, define.G, 250);
             }
         });
         a_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.A);
+                shareFunction.runBuzzer(0,0,0, define.A, 250);
             }
         });
         b_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.B);
+                shareFunction.runBuzzer(0,0,0, define.B, 250);
             }
         });
         c_d_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.C_D);
+                shareFunction.runBuzzer(0,0,0, define.C_D, 250);
             }
         });
         d_e_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.D_E);
+                shareFunction.runBuzzer(0,0,0, define.D_E, 250);
             }
         });
         f_g_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.F_G);
+                shareFunction.runBuzzer(0,0,0, define.F_G, 250);
             }
         });
         g_a_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.G_A);
+                shareFunction.runBuzzer(0,0,0, define.G_A, 250);
             }
         });
         a_b_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runTone(define.A_B);
+                shareFunction.runBuzzer(0,0,0, define.A_B, 250);
             }
         });
     }

@@ -17,14 +17,13 @@ public class define {
     public static final int BUZZER = 9;
     public static final int SOUND = 10;
     public static final int RING_LED = 11;
+    public static final int SERVO = 12;
 
     public static final int LINE_DETECT_MODE = 100;
     public static final int LINE_CIRCLE_MODE = 101;
     public static final int SOUND_FOLLOW_MODE = 102;
     public static final int SRF05_RUN_MODE = 103;
     public static final int NORMAL_MODE = 104;
-
-
 
     /*Define RGB LED color*/
     public static final int RED = 1;
@@ -65,6 +64,11 @@ public class define {
     public static final int MODE_1 = 1;
     public static final int MODE_2 = 2;
     public static final int MODE_3 = 3;
+    /*Define state of robot*/
+    public static final int FORWARD = 1;
+    public static final int BACKWARD = 2;
+    public static final int TURNLEFT = 3;
+    public static final int TURNRIGHT = 4;
 
 
     /*Define command send to ESP32 to get value of sensor module*/

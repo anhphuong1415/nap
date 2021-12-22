@@ -76,32 +76,33 @@ public class Control extends AppCompatActivity {
     private IntentFilter mIntentFilter;
 
     final BluetoothAdapter bAdapter = BluetoothAdapter.getDefaultAdapter();
-    int _module = 0;
-    public void getData(int module) {
 
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                shareFunction.sendGetCommand(module, define.ON_MODULE);
-                Log.i("hhhh", "Sent request read sensor data");
-            }
-        };
-        if (timer != null)
-            timer.cancel();
-        timer = new Timer("Timer");
-        if (module != 0) {
-            timer.schedule(timerTask, 0, 50);
-            _module = module;
-        }
-        else {
-            shareFunction.sendGetCommand(_module, define.OFF_MODULE);
-            textSrf05.setText("");
-            textLight.setText("");
-            if (timer != null) {
-                timer.cancel();
-            }
-        }
-    }
+//    static int _module = 0;
+//    public void getData(int module) {
+//
+//        TimerTask timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                shareFunction.sendGetCommand(module, define.ON_MODULE);
+//                Log.i("hhhh", "Sent request read sensor data");
+//            }
+//        };
+//        if (timer != null)
+//            timer.cancel();
+//        timer = new Timer("Timer");
+//        if (module != 0) {
+//            timer.schedule(timerTask, 0, 50);
+//            _module = module;
+//        }
+//        else {
+//            shareFunction.sendGetCommand(_module, define.OFF_MODULE);
+//            textSrf05.setText("");
+//            textLight.setText("");
+//            if (timer != null) {
+//                timer.cancel();
+//            }
+//        }
+//    }
     public void check_connected() {
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -166,7 +167,7 @@ public class Control extends AppCompatActivity {
         textColor.setText("");
         textLight.setText("");
         textSrf05.setText("");
-        getData(define.NONE);
+        shareFunction.getInstance().getData(define.NONE);
     }
 
     @Override
@@ -233,6 +234,8 @@ public class Control extends AppCompatActivity {
         servo2 = (SeekBar) findViewById(R.id.sbServo2);
         soundSignal = (pl.droidsonroids.gif.GifImageView) findViewById(R.id.btnSound);
         check_connected();
+//        String srf05Val = getIntent().getStringExtra("Srf05");
+//        textSrf05.setText(srf05Val);
 
         /* Handle back button when clicked */
         backCtrBtn.setOnClickListener(new View.OnClickListener() {
@@ -406,7 +409,6 @@ public class Control extends AppCompatActivity {
                 }
             }
         });
-
         btnGetSrf05.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -414,10 +416,10 @@ public class Control extends AppCompatActivity {
                 resetState(stateGetSrf05);
                 stateGetSrf05 = !stateGetSrf05;
                 if (stateGetSrf05) {
-                    getData(define.SRF05);
+                    shareFunction.getInstance().getData(define.SRF05);
                     btnGetSrf05.setBackgroundResource(R.drawable.ic_read_srf05_select);
                 } else {
-                    getData(define.NONE);
+                    shareFunction.getInstance().getData(define.NONE);
                 }
             }
         });
@@ -429,10 +431,10 @@ public class Control extends AppCompatActivity {
                 resetState(stateGetLine);
                 stateGetLine = !stateGetLine;
                 if (stateGetLine) {
-                    getData(define.LINE);
+                    shareFunction.getInstance().getData(define.LINE);
                     btnGetLine.setBackgroundResource(R.drawable.ic_read_line_select);
                 } else {
-                    getData(define.NONE);
+                    shareFunction.getInstance().getData(define.NONE);
                 }
             }
         });
@@ -443,10 +445,10 @@ public class Control extends AppCompatActivity {
                 resetState(stateGetLightSensor);
                 stateGetLightSensor = !stateGetLightSensor;
                 if (stateGetLightSensor) {
-                    getData(define.LIGHT);
+                    shareFunction.getInstance().getData(define.LIGHT);
                     btnGetLight.setBackgroundResource(R.drawable.ic_read_light_select);
                 } else {
-                    getData(define.NONE);
+                    shareFunction.getInstance().getData(define.NONE);
                 }
             }
         });
@@ -457,10 +459,10 @@ public class Control extends AppCompatActivity {
                 resetState(stateGetButton);
                 stateGetButton = !stateGetButton;
                 if (stateGetButton) {
-                    getData(define.MODE_BTN);
+                    shareFunction.getInstance().getData(define.MODE_BTN);
                     btnGetBtn.setBackgroundResource(R.drawable.ic_read_button_select);
                 } else {
-                    getData(define.NONE);
+                    shareFunction.getInstance().getData(define.NONE);
                 }
             }
         });
@@ -471,11 +473,11 @@ public class Control extends AppCompatActivity {
                 resetState(stateGetSound);
                 stateGetSound = !stateGetSound;
                 if (stateGetSound) {
-                    getData(define.SOUND);
+                    shareFunction.getInstance().getData(define.SOUND);
                     btnGetSound.setBackgroundResource(R.drawable.ic_read_sound_select);
                 }
                 else {
-                    getData(define.NONE);
+                    shareFunction.getInstance().getData(define.NONE);
                 }
             }
         });
@@ -486,12 +488,12 @@ public class Control extends AppCompatActivity {
                 resetState(stateGetColor);
                 stateGetColor = !stateGetColor;
                 if (stateGetColor) {
-                    getData(define.COLOR);
+                    shareFunction.getInstance().getData(define.COLOR);
                     textServo1.setText("hello");
                     btnGetColor.setBackgroundResource(R.drawable.ic_read_color_select);
                 } else {
                     textServo1.setText("");
-                    getData(define.NONE);
+                    shareFunction.getInstance().getData(define.NONE);
                 }
             }
         });
@@ -636,6 +638,7 @@ public class Control extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         registerReceiver(mReceiver, mIntentFilter);
+        Log.i("testRegistor", "onResume Control");
     }
     int state =  0;
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -645,7 +648,6 @@ public class Control extends AppCompatActivity {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
                 charset = StandardCharsets.ISO_8859_1;
             }
-            Log.i("TAG"," on BroadcastReceiver");
             state++;
             if (intent.getAction().equals(mBroadcastGetData)) {
                 String inputData = intent.getStringExtra("fbData");

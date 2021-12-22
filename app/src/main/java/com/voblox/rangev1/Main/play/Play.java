@@ -19,6 +19,8 @@ import com.voblox.rangev1.Utilities.classicBluetooth;
 import com.voblox.rangev1.Utilities.connectingBluetooth;
 import com.voblox.rangev1.Main.MainActivity;
 import com.voblox.rangev1.Main.play.VoiceControl;
+import com.voblox.rangev1.Utilities.shareFunction;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -88,6 +90,7 @@ public class Play extends AppCompatActivity {
         Intent intent = new Intent(this, classicBluetooth.class);
         bindService(intent, playConnection, Context.BIND_AUTO_CREATE);
         check_connected();
+        shareFunction.getInstance();
 
         btn_previous.setOnClickListener(new View.OnClickListener() {
             @Override
