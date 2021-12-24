@@ -17,7 +17,7 @@ Blockly.Blocks['playmusicnote'] = {
                 ["A/B", "A/B"],
                 ["B", "B"]
             ]), "Note")
-            .appendField("Trong khoảng thời gian")
+            .appendField("trong ")
             .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "Duration")
             .appendField("giây");
         this.setInputsInline(true);
@@ -37,7 +37,7 @@ Blockly.Blocks['rgb_led'] = {
             .appendField("Led RGB sáng màu")
             .appendField(new Blockly.FieldColour("#00cccc"), "color_left")
             .appendField(new Blockly.FieldColour("#00cccc"), "color_right")
-            .appendField("trong thời gian")
+            .appendField("trong ")
             .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "duration")
             .appendField("giây");
         this.setInputsInline(true);
@@ -76,14 +76,14 @@ Blockly.Blocks['playwithmatrixledchar'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/dot_matrix.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
-            .appendField("Kết nối Ma trận Led tới")
+            .appendField("Ma trận Led ở")
             .appendField(new Blockly.FieldDropdown([
                 ["Port 1", "Port 1"],
                 ["Port 2", "Port 2"],
                 ["Port 3", "Port 3"],
                 ["Port 4", "Port 4"]
             ]), "Port")
-            .appendField("và hiển thị chữ")
+            .appendField(" hiển thị chữ")
             .appendField(new Blockly.FieldTextInput("A"), "char");
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
@@ -98,14 +98,14 @@ Blockly.Blocks['matrixlebspecialchar'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/dot_matrix.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
-            .appendField("Kết nối Ma trận Led tới")
+            .appendField("Ma trận Led ở")
             .appendField(new Blockly.FieldDropdown([
                 ["Port 1", "Port 1"],
                 ["Port 2", "Port 2"],
                 ["Port 3", "Port 3"],
                 ["Port 4", "Port 4"]
             ]), "Port")
-            .appendField("hiển thị kí tự")
+            .appendField(" hiển thị ")
             .appendField(new Blockly.FieldDropdown([
                 [{ "src": "Utils/BlockIcon/arrow_l2r.png", "width": 15, "height": 15, "alt": "*" }, "arrowl2r"],
                 [{ "src": "Utils/BlockIcon/arrow_r2l.png", "width": 15, "height": 15, "alt": "*" }, "arrowr2l"],
@@ -147,7 +147,7 @@ Blockly.Blocks['ringled'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage("Utils/BlockIcon/ring_led.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
-            .appendField("Kết nối Ring Led tới")
+            .appendField("Ring Led ở")
             .appendField(new Blockly.FieldDropdown([
                 ["Port 1", "Port 1"],
                 ["Port 2", "Port 2"],
@@ -339,7 +339,7 @@ Blockly.Blocks['dummy_play_block'] = {
         this.appendDummyInput()
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("Nhấn nút")
-            .appendField(new Blockly.FieldImage("Utils/BlockIcon/Play_button.png", 50, 50, { alt: "*", flipRtl: "FALSE" }))
+            .appendField(new Blockly.FieldImage("Utils/Icon/png/Start.png", 50, 50, { alt: "*", flipRtl: "FALSE" }))
             .appendField("để bắt đầu chương trình");
         this.setInputsInline(true);
         this.setNextStatement(true, null);
