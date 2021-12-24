@@ -137,7 +137,7 @@ public class shareFunction{
             tmp[i*3 +1] = (byte)(affectLed[i]>>8);
             tmp[i*3 +2] = (byte)(affectLed[i]);
         }
-        Log.i("code", String.format("%02X", tmp[0]) + String.format("%02X", tmp[1]) + String.format("%02X", tmp[2])
+        Log.e("code", String.format("%02X", tmp[0]) + String.format("%02X", tmp[1]) + String.format("%02X", tmp[2])
                 + String.format("%02X", tmp[3]) + String.format("%02X", tmp[4]) + String.format("%02X", tmp[5]));
         System.arraycopy(tmp, 0, define.cmdRunModule, 9, tmp.length);
         sendData();

@@ -238,10 +238,8 @@
                 interpreter.setProperty(globalObject, 'highlightBlock',
                     interpreter.createNativeFunction(wrapper));
 
-                var wrapper = function(action, port, _module, duration,
-                    dirMove, additionModule, value) {
-                    return sendCmd(action, port, _module, duration,
-                        dirMove, additionModule, value);
+                var wrapper = function(action, port, m_module, duration, dirMove, additionModule, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12) {
+                    return sendCmd(action, port, m_module, duration, dirMove, additionModule, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12);
                 }
                 interpreter.setProperty(globalObject, 'sendCmd',
                     interpreter.createNativeFunction(wrapper));
@@ -259,10 +257,8 @@
 
             Blockly.JavaScript.addReservedWords('exit');
 
-            function sendCmd(action, port, m_module, duration,
-                dirMove, additionModule, value) {
-                var out = Android.sendCmd(action, port, m_module, duration,
-                    dirMove, additionModule, value);
+            function sendCmd(action, port, m_module, duration, dirMove, additionModule, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12) {
+                var out = Android.sendCmd(action, port, m_module, duration, dirMove, additionModule, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10, value11, value12);
 
                 if (m_module < 5 || m_module == 10) {
                     showSensor("Sensor value: " + getValue());
@@ -306,7 +302,7 @@
 
             function handleGenCode() {
                 stopButton = !Boolean(stopButton);
-
+                // eval(latestCode);
                 if (Boolean(stopButton)) {
                     resetStepUi();
                     if (!myInterpreter) {
@@ -330,7 +326,23 @@
                             }
                         }
                         nextStep();
-                    }, 10);
+                        //     if (myInterpreter) {
+                        //         var hasMore = myInterpreter.run();
+                        //         if (hasMore) {
+                        //             if (Boolean(stopButton)) {
+                        //                 setTimeout(nextStep, 10);
+                        //             } else {
+                        //                 stopFunction();
+                        //             }
+                        //         } else {
+                        //             stopButton = Boolean(9 > 10);
+                        //             resetInterpreter();
+                        //             resetStepUi();
+                        //         }
+                        //     }
+                        // };
+                        // nextStep();
+                    }, 1);
                     return;
                 }
             }

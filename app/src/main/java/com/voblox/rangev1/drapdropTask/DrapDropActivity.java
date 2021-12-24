@@ -279,6 +279,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     public void handle_buzzer(int freq, int duration)
     {
         Toast.makeText(this.getViewContext(), "run buzzer", Toast.LENGTH_LONG).show();
+//        shareFunction.runBuzzer(0,0,0, define.C, duration);
         switch (freq) {
             case 1:
                 shareFunction.runBuzzer(0,0,0, define.C, duration);
@@ -350,13 +351,12 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         shareFunction.runRGB(0,0,0, off);
     }
     void handleRingLed(long[] color) {
-
         shareFunction.runRingLed(0,0,0, color);
     }
-    void handleLedMatrix(long[] dataDíplay, int duration) {
+    void handleLedMatrix(long[] dataDisplay, int duration) {
         byte[] tmpData = {0};
-        for (int i = 0; i < dataDíplay.length; i++) {
-            tmpData[i] = (byte)(dataDíplay[i]);
+        for (int i = 0; i < dataDisplay.length; i++) {
+            tmpData[i] = (byte)(dataDisplay[i]);
         }
         shareFunction.runMaTrix(0, 0, 0, tmpData, duration);
     }
@@ -390,7 +390,10 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
      *    309: effect 3 */
     @JavascriptInterface
     public long sendCmd(int action,int port, int module, int duration,
-                        int dirMove, int additionModule, long [] value)
+                        int dirMove, int additionModule,
+                        long value1, long value2, long value3, long value4,
+                        long value5, long value6, long value7, long value8,
+                        long value9, long value10, long value11, long value12)
     {
 //        Toast.makeText(mView.getViewContext(), Integer.toString(module) + Integer.toString(duration), Toast.LENGTH_LONG).show();
 //        Log.i("TAG","action:" + Integer.toString(action)  + " port:" + Integer.toString(port) +
@@ -398,6 +401,9 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
 //                " value:" + Long.toHexString(value[0])  + " dirMove:" + Integer.toString(dirMove) +
 //                " additionModule:" + Integer.toString(additionModule));
 //        mDrapDropPresenter.sendCmd(action, module, data1, data2, data3, data4, data5, data6, data7);
+        long[] value = {value1,  value2,  value3,  value4,
+                value5,  value6,  value7,  value8,
+                value9,  value10,  value11,  value12};
 
         switch (module) {
             case define.SRF05:
@@ -419,11 +425,9 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
             case define.MODE_BTN:
                 break;
             case define.LED_MATRIX:
-//                handleLedMatrix(value, duration);
                 break;
             case define.LED_RGB:
-                handleRGB(value[0], value[1], duration);
-                Toast.makeText(this.getViewContext(), "handle rgb", Toast.LENGTH_LONG).show();
+                handleRGB((long)value[0], (long)value[1], duration);
                 break;
             case define.BUZZER:
                 handle_buzzer((int)value[0], duration);
