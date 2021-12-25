@@ -1,23 +1,41 @@
 #RUN {
     position: absolute;
     top: 2mm;
-    right: 2mm;
-    background-color: #d1e7ee;
-    border-radius: 1.5mm;
-    color: white;
+    right: 4mm;
+    background-color: #082e8157;
+    background: url("Utils/Icon/svg/Start.svg") no-repeat top left;
+    background-size: cover;
+    border-radius: 1mm;
+    color: rgba(255, 255, 255, 0);
     text-transform: uppercase;
     padding: 3mm 3mm;
+    display: inline-block;
+    width: 10mm;
+    height: 10mm;
 }
 
 #SAVE {
-    position: absolute;
+    /* position: absolute;
     top: 20mm;
     right: 2mm;
     background-color: #d1e7ee;
-    border-radius: 1.5mm;
+    border-radius: 3mm;
     color: white;
     text-transform: uppercase;
+    padding: 3mm 3mm; */
+    position: absolute;
+    top: 14mm;
+    right: 4mm;
+    background-color: #f1f2f5;
+    background: url("Utils/BlockIcon/Icon_Save.svg") no-repeat top left;
+    background-size: cover;
+    border-radius: 1mm;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
     padding: 3mm 3mm;
+    display: inline-block;
+    width: 10mm;
+    height: 10mm;
 }
 
 
@@ -69,10 +87,11 @@
     height: 5mmm;
 }
 
-#LOAD_ICON {
-    width: 5mm;
-    height: 5mmm;
-}
+
+/* #LOAD_ICON {
+    width: 10mm;
+    height: 10mmm;
+} */
 
 #blocklyDiv {
     display: inline-block;
@@ -87,13 +106,14 @@
 #snackbar {
     visibility: hidden;
     /* Hidden by default. Visible on click */
-    min-width: 250px;
+    min-width: 5px;
     /* Set a default minimum width */
-    margin-left: -125px;
+    margin-left: -200px;
     /* Divide value of min-width by 2 */
     background-color: 'transparent';
+    /* background-color: rgba(65, 105, 225, 0); */
     /* Black background color */
-    color: #fff;
+    color: #ecebf3;
     /* White text color */
     text-align: center;
     /* Centered text */
@@ -101,14 +121,20 @@
     /* Rounded borders */
     padding: 16px;
     /* Padding */
-    position: fixed;
+    position: absolute;
     /* Sit on top of the screen */
     z-index: 1;
     /* Add a z-index if needed */
-    left: 50%;
+    left: 70vw;
     /* Center the snackbar */
-    bottom: 30px;
+    bottom: 1px;
     /* 30px from the bottom */
+}
+
+#SNACK_BAR {
+    width: 3cm;
+    height: 3cm;
+    color: 'transparent';
 }
 
 
