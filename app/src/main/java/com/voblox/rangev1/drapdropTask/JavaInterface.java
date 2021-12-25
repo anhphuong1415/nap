@@ -84,43 +84,45 @@ public class JavaInterface {
     * both 3*/
     public void handle_buzzer(int freq, int duration)
     {
+        int _duration = duration * 255;
+
         Toast.makeText(mView.getViewContext(), "run buzzer", Toast.LENGTH_LONG).show();
         switch (freq) {
             case 1:
-                shareFunction.runBuzzer(0,0,0, define.C, duration);
+                shareFunction.runBuzzer(0,0,0, define.C, _duration);
                 break;
             case 2:
-                shareFunction.runBuzzer(0,0,0, define.C_D, duration);
+                shareFunction.runBuzzer(0,0,0, define.C_D, _duration);
                 break;
             case 3:
-                shareFunction.runBuzzer(0,0,0, define.D, duration);
+                shareFunction.runBuzzer(0,0,0, define.D, _duration);
                 break;
             case 4:
-                shareFunction.runBuzzer(0,0,0, define.D_E, duration);
+                shareFunction.runBuzzer(0,0,0, define.D_E, _duration);
                 break;
             case 5:
-                shareFunction.runBuzzer(0,0,0, define.E, duration);
+                shareFunction.runBuzzer(0,0,0, define.E, _duration);
                 break;
             case 6:
-                shareFunction.runBuzzer(0,0,0, define.F, duration);
+                shareFunction.runBuzzer(0,0,0, define.F, _duration);
                 break;
             case 7:
-                shareFunction.runBuzzer(0,0,0, define.F_G, duration);
+                shareFunction.runBuzzer(0,0,0, define.F_G, _duration);
                 break;
             case 8:
-                shareFunction.runBuzzer(0,0,0, define.G, duration);
+                shareFunction.runBuzzer(0,0,0, define.G, _duration);
                 break;
             case 9:
-                shareFunction.runBuzzer(0,0,0, define.G_A, duration);
+                shareFunction.runBuzzer(0,0,0, define.G_A, _duration);
                 break;
             case 10:
-                shareFunction.runBuzzer(0,0,0, define.A, duration);
+                shareFunction.runBuzzer(0,0,0, define.A, _duration);
                 break;
             case 11:
-                shareFunction.runBuzzer(0,0,0, define.A_B, duration);
+                shareFunction.runBuzzer(0,0,0, define.A_B, _duration);
                 break;
             case 12:
-                shareFunction.runBuzzer(0,0,0, define.B, duration);
+                shareFunction.runBuzzer(0,0,0, define.B, _duration);
                 break;
         }
     }
@@ -151,9 +153,9 @@ public class JavaInterface {
     {
         byte[] off = {0x00, 0x00, 0x00};
         shareFunction.runRGB(1,0,0,shareFunction.toBytes(colorLed1));
-        shareFunction.runRGB(2,0,0,shareFunction.toBytes(colorLed2));
-        shareFunction.delay_ms(time * 1000);
-        shareFunction.runRGB(0,0,0, off);
+//        shareFunction.runRGB(2,0,0,shareFunction.toBytes(colorLed2));
+//        shareFunction.delay_ms(time * 1000);
+//        shareFunction.runRGB(0,0,0, off);
     }
     void handleRingLed(long[] color) {
 
@@ -198,7 +200,7 @@ public class JavaInterface {
     public long sendCmd(int action,int port, int module, int duration,
                         int dirMove, int additionModule, long [] value)
     {
-//        Toast.makeText(mView.getViewContext(), Integer.toString(module) + Integer.toString(duration), Toast.LENGTH_LONG).show();
+        Toast.makeText(mView.getViewContext(), Integer.toString(module) + Integer.toString(duration), Toast.LENGTH_LONG).show();
 //        Log.i("TAG","action:" + Integer.toString(action)  + " port:" + Integer.toString(port) +
 //                " module:" +Integer.toString(module) + " duration:" +Integer.toString(duration) +
 //                " value:" + Long.toHexString(value[0])  + " dirMove:" + Integer.toString(dirMove) +
@@ -208,7 +210,7 @@ public class JavaInterface {
         switch (module) {
             case define.SRF05:
                 handleReadSensor(define.SRF05);
-                Toast.makeText(mView.getViewContext(), "handle SRF05", Toast.LENGTH_LONG).show();
+                //Toast.makeText(mView.getViewContext(), "handle SRF05", Toast.LENGTH_LONG).show();
                 break;
             case define.LINE:
                 handleReadSensor(define.LINE);

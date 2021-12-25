@@ -225,32 +225,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
 //                Log.i("mByte ", "++" + msgReceived);
 
                 tmpFbData = handleData(buffer);
-//                String displayText = Float.toString(shareFunction.byteArray2Float(fbData));
-                switch (buffer[2]) {
-                    case define.SRF05: {
-//                        Log.i("testRegistor", Float.toString(shareFunction.byteArray2Float(tmpFbData)));
-                        modelValue1 = byteArray2Float1(tmpFbData);
-                        break;
-                    }
-                    case define.LINE: {
-
-                        break;
-                    }
-                    case define.LIGHT: {
-                        break;
-                    }
-                    case define.COLOR: {
-                        break;
-                    }
-                    case define.MODE_BTN:{
-                        break;
-                    }
-                    case define.SOUND: {
-                        break;
-                    }
-                    default:
-                        break;
-                }
+                modelValue1 = byteArray2Float1(tmpFbData);
             }
         }
     };
@@ -276,47 +251,76 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
+    /* action
+     * STOP 0
+     * GET 1
+     * RUN 2
+     * RESET 4
+     * START 5 */
+
+    /*Module
+     * untrasonic sound_sensor 1
+     * path_detect linefollower 2
+     * light_sensor 3
+     * color_sensor 4
+     * joystich 5
+     * led_matrix 7
+     * rgb_led 8
+     * speaker 9
+     * follow sound sensor 10
+     * ring_led 11
+     * servo 12    * */
+
+    /*diretion for move
+     * tiến 1
+     * lùi 2
+     * trái 3
+     * phải 4*/
+
+    /*addition Module for chose motor, servo
+     * left 1
+     * right 2
+     * both 3*/
 
     public void handle_buzzer(int freq, int duration)
     {
-        Toast.makeText(this.getViewContext(), "run buzzer", Toast.LENGTH_LONG).show();
-//        shareFunction.runBuzzer(0,0,0, define.C, duration);
+        int _duration = duration * 255;
         switch (freq) {
             case 1:
-                shareFunction.runBuzzer(0,0,0, define.C, duration);
+                shareFunction.runBuzzer(0,0,0, define.C, _duration);
                 break;
             case 2:
-                shareFunction.runBuzzer(0,0,0, define.C_D, duration);
+                shareFunction.runBuzzer(0,0,0, define.C_D, _duration);
                 break;
             case 3:
-                shareFunction.runBuzzer(0,0,0, define.D, duration);
+                shareFunction.runBuzzer(0,0,0, define.D, _duration);
                 break;
             case 4:
-                shareFunction.runBuzzer(0,0,0, define.D_E, duration);
+                shareFunction.runBuzzer(0,0,0, define.D_E, _duration);
                 break;
             case 5:
-                shareFunction.runBuzzer(0,0,0, define.E, duration);
+                shareFunction.runBuzzer(0,0,0, define.E, _duration);
                 break;
             case 6:
-                shareFunction.runBuzzer(0,0,0, define.F, duration);
+                shareFunction.runBuzzer(0,0,0, define.F, _duration);
                 break;
             case 7:
-                shareFunction.runBuzzer(0,0,0, define.F_G, duration);
+                shareFunction.runBuzzer(0,0,0, define.F_G, _duration);
                 break;
             case 8:
-                shareFunction.runBuzzer(0,0,0, define.G, duration);
+                shareFunction.runBuzzer(0,0,0, define.G, _duration);
                 break;
             case 9:
-                shareFunction.runBuzzer(0,0,0, define.G_A, duration);
+                shareFunction.runBuzzer(0,0,0, define.G_A, _duration);
                 break;
             case 10:
-                shareFunction.runBuzzer(0,0,0, define.A, duration);
+                shareFunction.runBuzzer(0,0,0, define.A, _duration);
                 break;
             case 11:
-                shareFunction.runBuzzer(0,0,0, define.A_B, duration);
+                shareFunction.runBuzzer(0,0,0, define.A_B, _duration);
                 break;
             case 12:
-                shareFunction.runBuzzer(0,0,0, define.B, duration);
+                shareFunction.runBuzzer(0,0,0, define.B, _duration);
                 break;
         }
     }
@@ -348,8 +352,10 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         byte[] off = {0x00, 0x00, 0x00};
         shareFunction.runRGB(1,0,0,shareFunction.toBytes(colorLed1));
         shareFunction.runRGB(2,0,0,shareFunction.toBytes(colorLed2));
-        shareFunction.delay_ms(time * 1000);
-        shareFunction.runRGB(0,0,0, off);
+        if (time != 0) {
+            shareFunction.delay_ms(time * 1000);
+            shareFunction.runRGB(0, 0, 0, off);
+        }
     }
     void handleRingLed(long[] color) {
         shareFunction.runRingLed(0,0,0, color);
@@ -364,8 +370,8 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     void handleReadSensor(int module)
     {
         shareFunction.getInstance().getData(module);
-        shareFunction.delay_ms(1000);
-        shareFunction.getInstance().getData(define.NONE);
+//        shareFunction.delay_ms(1000);
+//        shareFunction.getInstance().getData(define.NONE);
     }
     /*return int = sensor value when want to get data*/
 
@@ -409,7 +415,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         switch (module) {
             case define.SRF05:
                 handleReadSensor(define.SRF05);
-                Toast.makeText(this.getViewContext(), "handle SRF05", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this.getViewContext(), "handle SRF05", Toast.LENGTH_LONG).show();
                 break;
             case define.LINE:
                 handleReadSensor(define.LINE);
@@ -434,7 +440,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
                 break;
             case define.BUZZER:
                 handle_buzzer((int)value[0], duration);
-                Toast.makeText(this.getViewContext(), "handle buzzer", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this.getViewContext(), "handle buzzer", Toast.LENGTH_LONG).show();
                 break;
             case define.SOUND:
                 break;
@@ -444,7 +450,8 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
             default:
                 break;
         }
-        Log.i("testRegistor+++", Double.toString(modelValue1));
+//        Log.i("testRegistor+++", Double.toString(modelValue1));
+        Toast.makeText(this.getViewContext(), "module: " + Double.toString(module), Toast.LENGTH_LONG).show();
 //        return 1;
 //        Toast.makeText(mView.getViewContext(), Integer.toString(module), Toast.LENGTH_SHORT).show();
 ////        mDrapDropPresenter.sendCmd(action, module, data1, data2, data3, data4, data5, data6, data7);

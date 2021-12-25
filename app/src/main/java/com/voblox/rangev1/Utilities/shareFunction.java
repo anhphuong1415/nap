@@ -24,16 +24,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
-public class shareFunction{
-
+public class shareFunction {
     private static classicBluetooth blue;
     private static Timer timer;
     boolean stateBond = false;
     private static shareFunction mShareFunction = null;
     static classicBluetooth blueshare;
 //    static Control mControl;
-    private IntentFilter mIntentFilter;
-    public static final String mBroadcastGetData = "VrobotGetData";
+//    private IntentFilter mIntentFilter;
+//    public static final String mBroadcastGetData = "VrobotGetData";
 
 //    ServiceConnection shareConnection = new ServiceConnection()
 //    {
@@ -53,8 +52,8 @@ public class shareFunction{
 //        Intent intent = new Intent(this, classicBluetooth.class);
 //        bindService(intent, shareConnection, Context.BIND_AUTO_CREATE);
 
-        mIntentFilter = new IntentFilter();
-        mIntentFilter.addAction(mBroadcastGetData);
+//        mIntentFilter = new IntentFilter();
+//        mIntentFilter.addAction(mBroadcastGetData);
         Log.i("testRegistor","registerReceiver(mReceiver, mIntentFilter)");
     };
     public static void delay_ms(int ms) {
@@ -142,6 +141,17 @@ public class shareFunction{
         System.arraycopy(tmp, 0, define.cmdRunModule, 9, tmp.length);
         sendData();
     }
+    public static void runServo(int id, int port, int slot, int angle)
+    {
+        define.cmdRunModule[2] =  0x09;
+        define.cmdRunModule[3] = (byte)id;
+        define.cmdRunModule[5] = define.SERVO;
+        define.cmdRunModule[6] = (byte)port;
+        define.cmdRunModule[7] = (byte)slot;
+        define.cmdRunModule[8] = (byte)((angle  >> 8) & (byte)0xff);
+        define.cmdRunModule[9] = (byte)(angle  & (byte)0xff);
+        sendData();
+    }
     public static void runMaTrix(int id, int port, int slot, byte[] effect, int duration)
     {
         define.cmdRunModule[2] =  0x0e;
@@ -222,148 +232,161 @@ public class shareFunction{
 //        return bufGet;
 //    }
 
-    int state =  0;
-    byte[] tmpFbData = {0, 0, 0, 0};
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Charset charset = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-                charset = StandardCharsets.ISO_8859_1;
-            }
-            Log.i("testRegistor"," on Share Function");
-            state++;
-            if (intent.getAction().equals(mBroadcastGetData)) {
-                String inputData = intent.getStringExtra("fbData");
-                byte[] buffer = inputData.getBytes(charset);
-//                byte[] buffer1 = blueControl.getInstance().read();
-                final String msgReceived = String.format(String.format(String.format("%02X", buffer[0]) + String.format("%02X", buffer[1]) + String.format("%02X", buffer[2])
-                        + String.format("%02X", buffer[3]) + String.format("%02X", buffer[4]) + String.format("%02X", buffer[5])
-                        + String.format("%02X", buffer[6]) + String.format("%02X", buffer[7]) + String.format("%02X", buffer[8])));
-                Log.i("mByte ", "++" + msgReceived);
-//                tmpFbData = handleData(buffer);
-                String displayText = Float.toString(shareFunction.byteArray2Float(tmpFbData));
-                switch (buffer[2]) {
-                    case define.SRF05: {
-//                        Intent intentPassData = new Intent(shareFunction.this, Control.class);
-//                        intentPassData.putExtra("Srf05", displayText);
-//                        startActivity(intent);
-//                        if (stateGetSrf05) {
-//                            textSrf05.setText(displayText);
-//                            textColor.setText("");
-//                            textLight.setText("");
-//                        }
-                        break;
-                    }
-                    case define.LINE: {
-//                        if (stateGetLine) {
-////                            textSrf05.setText("");
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        registerReceiver(mReceiver, mIntentFilter);
+//        Log.i("testRegistor", "Share fucntion on resume");
+//    }
+
+//    int state =  0;
+//    byte[] tmpFbData = {0, 0, 0, 0};
+//    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            Charset charset = null;
+//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+//                charset = StandardCharsets.ISO_8859_1;
+//            }
+//            Log.i("testRegistor"," on Share Function");
+//            state++;
+//            if (intent.getAction().equals(mBroadcastGetData)) {
+//                String inputData = intent.getStringExtra("fbData");
+//                byte[] buffer = inputData.getBytes(charset);
+////                byte[] buffer1 = blueControl.getInstance().read();
+//                final String msgReceived = String.format(String.format(String.format("%02X", buffer[0]) + String.format("%02X", buffer[1]) + String.format("%02X", buffer[2])
+//                        + String.format("%02X", buffer[3]) + String.format("%02X", buffer[4]) + String.format("%02X", buffer[5])
+//                        + String.format("%02X", buffer[6]) + String.format("%02X", buffer[7]) + String.format("%02X", buffer[8])));
+//                Log.i("mByte ", "++" + msgReceived);
+////                tmpFbData = handleData(buffer);
+//                String displayText = Float.toString(shareFunction.byteArray2Float(tmpFbData));
+//                switch (buffer[2]) {
+//                    case define.SRF05: {
+////                        Intent intentPassData = new Intent(shareFunction.this, Control.class);
+////                        intentPassData.putExtra("Srf05", displayText);
+////                        startActivity(intent);
+////                        if (stateGetSrf05) {
+////                            textSrf05.setText(displayText);
 ////                            textColor.setText("");
 ////                            textLight.setText("");
-//                            switch ((int) shareFunction.byteArray2Float(fbData)) {
-//                                case define.ALL_ON:
-//                                    lineLeft.setBackgroundResource(R.drawable.ic_line_on);
-//                                    lineRight.setBackgroundResource(R.drawable.ic_line_on);
-//                                    break;
-//                                case define.LEFT_ON:
-//                                    lineLeft.setBackgroundResource(R.drawable.ic_line_on);
-//                                    lineRight.setBackgroundResource(R.drawable.ic_line_off);
-//                                    break;
-//                                case define.RIGHT_ON:
-//                                    lineLeft.setBackgroundResource(R.drawable.ic_line_off);
-//                                    lineRight.setBackgroundResource(R.drawable.ic_line_on);
-//                                    break;
-//                                default:
-//                                    lineLeft.setBackgroundResource(R.drawable.ic_line_off);
-//                                    lineRight.setBackgroundResource(R.drawable.ic_line_off);
-//                                    break;
-//                            }
-                            break;
-//                        }
-                    }
-                    case define.LIGHT: {
-//                        if (stateGetLightSensor) {
-//                            textLight.setText(displayText + "%");
-//                        }
-                        break;
-                    }
-                    case define.COLOR: {
-//                        if (stateGetColor) {
-//                            switch ((int) shareFunction.byteArray2Float(fbData)) {
-//                                case define.RED:
-//                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_red);
-//                                    textColor.setText("Màu đỏ");
-//                                    break;
-//                                case define.GREEN:
-//                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_green);
-//                                    textColor.setText("Màu xanh lá");
-//                                    break;
-//                                case define.BLUE:
-//                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_blue);
-//                                    textColor.setText("Màu xanh lam");
-//                                    break;
-//                                case define.YELLOW:
-//                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_yellow);
-//                                    textColor.setText("Màu vàng");
-//                                    break;
-//                                case define.WHITE:
-//                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_white);
-//                                    textColor.setText("Màu trắng");
-//                                    break;
-//                                case define.BLACK:
-//                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_black);
-//                                    textColor.setText("Màu đen");
-//                                    break;
-//                                default: {
-//                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_select);
-//                                    textColor.setText("Màu ?");
-//                                    break;
-//                                }
-//                            }
-//                        }
-                        break;
-                    }
-                    case define.MODE_BTN:{
-//                        if (stateGetButton) {
-//                            switch ((int) shareFunction.byteArray2Float(fbData)) {
-//                                case define.MODE_1:
-//                                    showMode1.setBackgroundResource(R.drawable.ic_mode2);
-//                                    showMode2.setBackgroundResource(R.drawable.ic_mode1);
-//                                    showMode3.setBackgroundResource(R.drawable.ic_mode1);
-//                                    break;
-//                                case define.MODE_2:
-//                                    showMode1.setBackgroundResource(R.drawable.ic_mode2);
-//                                    showMode2.setBackgroundResource(R.drawable.ic_mode2);
-//                                    showMode3.setBackgroundResource(R.drawable.ic_mode1);
-//                                    break;
-//                                case define.MODE_3:
-//                                    showMode1.setBackgroundResource(R.drawable.ic_mode2);
-//                                    showMode2.setBackgroundResource(R.drawable.ic_mode2);
-//                                    showMode3.setBackgroundResource(R.drawable.ic_mode2);
-//                                    break;
-//                                default:
-//                                    showMode1.setBackgroundResource(R.drawable.ic_mode1);
-//                                    showMode2.setBackgroundResource(R.drawable.ic_mode1);
-//                                    showMode3.setBackgroundResource(R.drawable.ic_mode1);
-//                                    break;
-//                            }
-//                        }
-                        break;
-                    }
-                    case define.SOUND: {
-//                        if (stateGetSound) {
-//                            if (shareFunction.byteArray2Float(fbData) >= 1) {
-//                                soundSignal.setBackgroundResource(R.drawable.have_sound);
-//                            } else {
-//                                soundSignal.setBackgroundResource(R.drawable.ic_sound);
-//                            }
-//                        }
-                        break;
-                    }
-                    default:
-                        break;
-                }
-            }
-        }
-    };
+////                        }
+//                        break;
+//                    }
+//                    case define.LINE: {
+////                        if (stateGetLine) {
+//////                            textSrf05.setText("");
+//////                            textColor.setText("");
+//////                            textLight.setText("");
+////                            switch ((int) shareFunction.byteArray2Float(fbData)) {
+////                                case define.ALL_ON:
+////                                    lineLeft.setBackgroundResource(R.drawable.ic_line_on);
+////                                    lineRight.setBackgroundResource(R.drawable.ic_line_on);
+////                                    break;
+////                                case define.LEFT_ON:
+////                                    lineLeft.setBackgroundResource(R.drawable.ic_line_on);
+////                                    lineRight.setBackgroundResource(R.drawable.ic_line_off);
+////                                    break;
+////                                case define.RIGHT_ON:
+////                                    lineLeft.setBackgroundResource(R.drawable.ic_line_off);
+////                                    lineRight.setBackgroundResource(R.drawable.ic_line_on);
+////                                    break;
+////                                default:
+////                                    lineLeft.setBackgroundResource(R.drawable.ic_line_off);
+////                                    lineRight.setBackgroundResource(R.drawable.ic_line_off);
+////                                    break;
+////                            }
+//                            break;
+////                        }
+//                    }
+//                    case define.LIGHT: {
+////                        if (stateGetLightSensor) {
+////                            textLight.setText(displayText + "%");
+////                        }
+//                        break;
+//                    }
+//                    case define.COLOR: {
+////                        if (stateGetColor) {
+////                            switch ((int) shareFunction.byteArray2Float(fbData)) {
+////                                case define.RED:
+////                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_red);
+////                                    textColor.setText("Màu đỏ");
+////                                    break;
+////                                case define.GREEN:
+////                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_green);
+////                                    textColor.setText("Màu xanh lá");
+////                                    break;
+////                                case define.BLUE:
+////                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_blue);
+////                                    textColor.setText("Màu xanh lam");
+////                                    break;
+////                                case define.YELLOW:
+////                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_yellow);
+////                                    textColor.setText("Màu vàng");
+////                                    break;
+////                                case define.WHITE:
+////                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_white);
+////                                    textColor.setText("Màu trắng");
+////                                    break;
+////                                case define.BLACK:
+////                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_black);
+////                                    textColor.setText("Màu đen");
+////                                    break;
+////                                default: {
+////                                    btnGetColor.setBackgroundResource(R.drawable.ic_read_color_select);
+////                                    textColor.setText("Màu ?");
+////                                    break;
+////                                }
+////                            }
+////                        }
+//                        break;
+//                    }
+//                    case define.MODE_BTN:{
+////                        if (stateGetButton) {
+////                            switch ((int) shareFunction.byteArray2Float(fbData)) {
+////                                case define.MODE_1:
+////                                    showMode1.setBackgroundResource(R.drawable.ic_mode2);
+////                                    showMode2.setBackgroundResource(R.drawable.ic_mode1);
+////                                    showMode3.setBackgroundResource(R.drawable.ic_mode1);
+////                                    break;
+////                                case define.MODE_2:
+////                                    showMode1.setBackgroundResource(R.drawable.ic_mode2);
+////                                    showMode2.setBackgroundResource(R.drawable.ic_mode2);
+////                                    showMode3.setBackgroundResource(R.drawable.ic_mode1);
+////                                    break;
+////                                case define.MODE_3:
+////                                    showMode1.setBackgroundResource(R.drawable.ic_mode2);
+////                                    showMode2.setBackgroundResource(R.drawable.ic_mode2);
+////                                    showMode3.setBackgroundResource(R.drawable.ic_mode2);
+////                                    break;
+////                                default:
+////                                    showMode1.setBackgroundResource(R.drawable.ic_mode1);
+////                                    showMode2.setBackgroundResource(R.drawable.ic_mode1);
+////                                    showMode3.setBackgroundResource(R.drawable.ic_mode1);
+////                                    break;
+////                            }
+////                        }
+//                        break;
+//                    }
+//                    case define.SOUND: {
+////                        if (stateGetSound) {
+////                            if (shareFunction.byteArray2Float(fbData) >= 1) {
+////                                soundSignal.setBackgroundResource(R.drawable.have_sound);
+////                            } else {
+////                                soundSignal.setBackgroundResource(R.drawable.ic_sound);
+////                            }
+////                        }
+//                        break;
+//                    }
+//                    default:
+//                        break;
+//                }
+//            }
+//        }
+//    };
+
+//    @Override
+//    protected void onPause() {
+//        unregisterReceiver(mReceiver);
+//        super.onPause();
+//    }
 }

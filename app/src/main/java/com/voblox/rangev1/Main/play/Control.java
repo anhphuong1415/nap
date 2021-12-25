@@ -509,6 +509,7 @@ public class Control extends AppCompatActivity {
         servo.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 textServo.setText("Servo quay: " + progress + " độ");
+                shareFunction.runServo(0,0,0,progress);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -521,7 +522,8 @@ public class Control extends AppCompatActivity {
 
         DC1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textDC1.setText("Tốc độ động cơ 1: " + progress/2.55 + "%");
+                textDC1.setText("Tốc độ động cơ 1: " + (int)(progress/2.55) + "%");
+                shareFunction.runJoystick(0, 0, 0, progress, 0);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -534,7 +536,8 @@ public class Control extends AppCompatActivity {
 
         DC2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textDC2.setText("Tốc độ động cơ 2: " + progress/2.55 + "%");
+                textDC2.setText("Tốc độ động cơ 2: " + (int)(progress/2.55) + "%");
+                shareFunction.runJoystick(0, 0, 0, 0, progress);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -628,9 +631,6 @@ public class Control extends AppCompatActivity {
                     rightSpeed = 0;
                 }
                 shareFunction.runJoystick(0, 0, 0, leftSpeed, rightSpeed);
-//                if (blueControl.getInstance() != null) {
-//                    blueControl.getInstance().write(define.cmdRunModule);
-//                }
                 return true;
             }
         });
