@@ -306,6 +306,7 @@
             function handleGenCode() {
                 stopButton = !Boolean(stopButton);
                 // eval(latestCode);
+                console.log(latestCode);
                 if (Boolean(stopButton)) {
                     resetStepUi();
                     if (!myInterpreter) {

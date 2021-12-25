@@ -99,7 +99,7 @@ Blockly.JavaScript['playwithmatrixledchar'] = function(block) {
 };
 
 Blockly.JavaScript['matrixlebspecialchar'] = function(block) {
-    var dropdown_port = block.getFieldValue('module');
+    var dropdown_port = block.getFieldValue('Port');
     var dropdown_name = block.getFieldValue('NAME');
     // TODO: Assemble JavaScript into code variable.
     if (dropdown_port == "Port 1") var port = 1;

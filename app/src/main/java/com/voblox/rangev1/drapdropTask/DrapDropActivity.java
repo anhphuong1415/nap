@@ -32,6 +32,7 @@ import com.voblox.rangev1.R;
 import com.voblox.rangev1.Utilities.WebChromeClient;
 import com.voblox.rangev1.Utilities.define;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
@@ -354,9 +355,9 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         shareFunction.runRingLed(0,0,0, color);
     }
     void handleLedMatrix(long[] dataDisplay, int duration) {
-        byte[] tmpData = {0};
-        for (int i = 0; i < dataDisplay.length; i++) {
-            tmpData[i] = (byte)(dataDisplay[i]);
+        byte[] tmpData = {0, 0, 0 ,0 ,0 ,0, 0, 0};
+        for (int i = 0; i < 8; i++) {
+            tmpData[i] = (byte)(dataDisplay[i] & 0xFF);
         }
         shareFunction.runMaTrix(0, 0, 0, tmpData, duration);
     }
@@ -425,6 +426,8 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
             case define.MODE_BTN:
                 break;
             case define.LED_MATRIX:
+                Log.e("ANH PHUONG DEBUG", "handleLedMatrix");
+                handleLedMatrix(value, duration);
                 break;
             case define.LED_RGB:
                 handleRGB((long)value[0], (long)value[1], duration);
@@ -467,5 +470,11 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     @JavascriptInterface
     public double GetValue() {
         return modelValue1;
+    }
+
+    public byte[] longToBytes(long x) {
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+        buffer.putLong(x);
+        return buffer.array();
     }
 }
