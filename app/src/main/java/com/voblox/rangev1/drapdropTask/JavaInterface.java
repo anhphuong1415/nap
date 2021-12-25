@@ -151,9 +151,9 @@ public class JavaInterface {
     {
         byte[] off = {0x00, 0x00, 0x00};
         shareFunction.runRGB(1,0,0,shareFunction.toBytes(colorLed1));
-        shareFunction.runRGB(2,0,0,shareFunction.toBytes(colorLed2));
-        shareFunction.delay_ms(time * 1000);
-        shareFunction.runRGB(0,0,0, off);
+//        shareFunction.runRGB(2,0,0,shareFunction.toBytes(colorLed2));
+//        shareFunction.delay_ms(time * 1000);
+//        shareFunction.runRGB(0,0,0, off);
     }
     void handleRingLed(long[] color) {
 
@@ -198,7 +198,7 @@ public class JavaInterface {
     public long sendCmd(int action,int port, int module, int duration,
                         int dirMove, int additionModule, long [] value)
     {
-//        Toast.makeText(mView.getViewContext(), Integer.toString(module) + Integer.toString(duration), Toast.LENGTH_LONG).show();
+        Toast.makeText(mView.getViewContext(), Integer.toString(module) + Integer.toString(duration), Toast.LENGTH_LONG).show();
 //        Log.i("TAG","action:" + Integer.toString(action)  + " port:" + Integer.toString(port) +
 //                " module:" +Integer.toString(module) + " duration:" +Integer.toString(duration) +
 //                " value:" + Long.toHexString(value[0])  + " dirMove:" + Integer.toString(dirMove) +
@@ -208,7 +208,7 @@ public class JavaInterface {
         switch (module) {
             case define.SRF05:
                 handleReadSensor(define.SRF05);
-                Toast.makeText(mView.getViewContext(), "handle SRF05", Toast.LENGTH_LONG).show();
+                //Toast.makeText(mView.getViewContext(), "handle SRF05", Toast.LENGTH_LONG).show();
                 break;
             case define.LINE:
                 handleReadSensor(define.LINE);

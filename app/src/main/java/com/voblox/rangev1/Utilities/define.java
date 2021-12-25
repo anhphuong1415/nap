@@ -18,6 +18,8 @@ public class define {
     public static final int SOUND = 10;
     public static final int RING_LED = 11;
     public static final int SERVO = 12;
+    public static final int MOTOR1_RUN = 13;
+    public static final int MOTOR2_RUN = 14;
 
     public static final int LINE_DETECT_MODE = 100;
     public static final int LINE_CIRCLE_MODE = 101;
@@ -119,7 +121,8 @@ public class define {
      * LED_RGB: header1(0) header2(1) length(2) id(3) action(4) device(5) port(6) slot(7) idx(8) r(9) g(10) b(11)
      * JOY_STICK: header1(0) header2(1) length(2) id(3) action(4) device(5) left_speed(6<<7) right_speed(8<<9)
      * LED_MATRIX: header1(0) header2(1) length(2) id(3) action(4) device(5) dataMatrix(6->13) duration(14)
-     * BUZZER: header1(0) header2(1) length(2) id(3) action(4) device(5) port(6) slot(7) freq(8<<9) duration(10<<11)*/
+     * BUZZER: header1(0) header2(1) length(2) id(3) action(4) device(5) port(6) slot(7) freq(8<<9) duration(10<<11)
+     * SERVO: header1(0) header2(1) length(2) id(3) action(4) device(5) port(6) slot(7) h_byte_Angle(8) l_byte_Angle(9)*/
     public static byte[] cmdRunModule = {(byte)0xff, 0x55, 0, 0, RUN, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public  static final int MAX_STEP_RANZER = 24;
