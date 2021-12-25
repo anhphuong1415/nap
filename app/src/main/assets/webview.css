@@ -10,8 +10,8 @@
     text-transform: uppercase;
     padding: 3mm 3mm;
     display: inline-block;
-    width: 10mm;
-    height: 10mm;
+    width: 13mm;
+    height: 13mm;
 }
 
 #SAVE {
@@ -24,7 +24,7 @@
     text-transform: uppercase;
     padding: 3mm 3mm; */
     position: absolute;
-    top: 14mm;
+    top: 17mm;
     right: 4mm;
     background-color: #f1f2f5;
     background: url("Utils/BlockIcon/Icon_Save.svg") no-repeat top left;
@@ -34,8 +34,32 @@
     text-transform: uppercase;
     padding: 3mm 3mm;
     display: inline-block;
-    width: 10mm;
-    height: 10mm;
+    width: 13mm;
+    height: 13mm;
+}
+
+#BLUETOOTH {
+    /* position: absolute;
+    top: 20mm;
+    right: 2mm;
+    background-color: #d1e7ee;
+    border-radius: 3mm;
+    color: white;
+    text-transform: uppercase;
+    padding: 3mm 3mm; */
+    position: absolute;
+    top: 32mm;
+    right: 4mm;
+    background-color: #f1f2f5;
+    background: url("Utils/Icon/svg/BLE.svg") no-repeat top left;
+    background-size: cover;
+    border-radius: 1mm;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    padding: 3mm 3mm;
+    display: inline-block;
+    width: 13mm;
+    height: 13mm;
 }
 
 

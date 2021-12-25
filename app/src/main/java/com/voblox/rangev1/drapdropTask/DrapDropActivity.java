@@ -479,6 +479,10 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         return modelValue1;
     }
 
+    @JavascriptInterface
+    public void connectBluetooth() {
+    }
+
     public byte[] longToBytes(long x) {
         ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
         buffer.putLong(x);
