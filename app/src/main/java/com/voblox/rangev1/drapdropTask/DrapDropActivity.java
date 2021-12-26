@@ -479,8 +479,14 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         return modelValue1;
     }
 
+    // Call when press Bluetooth button
     @JavascriptInterface
     public void connectBluetooth() {
+    }
+
+    // Call when stop, finish code, or change code in workspace
+    @JavascriptInterface
+    public void finishCmd() {
     }
 
     public byte[] longToBytes(long x) {
