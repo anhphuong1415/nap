@@ -84,7 +84,10 @@ Blockly.Blocks['playwithmatrixledchar'] = {
                 ["Port 4", "Port 4"]
             ]), "Port")
             .appendField(" hiển thị chữ")
-            .appendField(new Blockly.FieldTextInput("A"), "char");
+            .appendField(new Blockly.FieldTextInput("A"), "char")
+            .appendField("trong")
+            .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "Duration")
+            .appendField("giây");
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -117,7 +120,10 @@ Blockly.Blocks['matrixlebspecialchar'] = {
                 [{ "src": "Utils/BlockIcon/effect_1.gif", "width": 15, "height": 15, "alt": "*" }, "effect_1"],
                 [{ "src": "Utils/BlockIcon/effect_2.gif", "width": 15, "height": 15, "alt": "*" }, "effect_2"],
                 [{ "src": "Utils/BlockIcon/effect_3.gif", "width": 15, "height": 15, "alt": "*" }, "effect_3"]
-            ]), "NAME");
+            ]), "NAME")
+            .appendField("trong")
+            .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "Duration")
+            .appendField("giây");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(230);
@@ -463,6 +469,8 @@ Blockly.Blocks['while'] = {
             .setCheck(null)
             .appendField("Thực hiện liên tục");
         this.setColour(285);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
         this.setTooltip("");
         this.setHelpUrl("");
     }

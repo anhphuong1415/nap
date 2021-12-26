@@ -84,6 +84,8 @@ Blockly.JavaScript['playwithmatrixledchar'] = function(block) {
 
     var dropdown_port = block.getFieldValue('Port');
     var text_char = block.getFieldValue('char');
+    var number_duration = block.getFieldValue('Duration');
+
     if (dropdown_port == "Port 1") var port = 1;
     else if (dropdown_port == "Port 2") var port = 2;
     else if (dropdown_port == "Port 3") var port = 3;
@@ -92,8 +94,7 @@ Blockly.JavaScript['playwithmatrixledchar'] = function(block) {
     else if (dropdown_port == "Port 6") var port = 6;
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
-    var code = 'sendCmd(' + '2,' + port + ',7,0,' + '0,0,' +
-        // '[' + text_char.charCodeAt(0) + ']);\n';
+    var code = 'sendCmd(' + '2,' + port + ',7,' + number_duration + ',0,0,' +
         matrixCharMap[text_char.charCodeAt(0) - 65].toString() + ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);\n';
     return code;
 };
@@ -101,6 +102,8 @@ Blockly.JavaScript['playwithmatrixledchar'] = function(block) {
 Blockly.JavaScript['matrixlebspecialchar'] = function(block) {
     var dropdown_port = block.getFieldValue('Port');
     var dropdown_name = block.getFieldValue('NAME');
+    var number_duration = block.getFieldValue('Duration');
+
     // TODO: Assemble JavaScript into code variable.
     if (dropdown_port == "Port 1") var port = 1;
     else if (dropdown_port == "Port 2") var port = 2;
@@ -122,7 +125,7 @@ Blockly.JavaScript['matrixlebspecialchar'] = function(block) {
     else if (dropdown_name == "effect_2") var vl = 308;
     else if (dropdown_name == "effect_3") var vl = 309;
 
-    var code = 'sendCmd(' + '2,' + port + ',7,0,' + '0,0,' +
+    var code = 'sendCmd(' + '2,' + port + ',7,' + number_duration + ',0,0,' +
         vl + ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);\n';
     return code;
 };
