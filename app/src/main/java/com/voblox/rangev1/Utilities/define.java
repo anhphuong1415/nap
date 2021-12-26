@@ -75,6 +75,19 @@ public class define {
 
     /*Define command send to ESP32 to get value of sensor module*/
     public static byte[] cmd_get_valModule = {(byte)0xff, 0x55, 0x04, 0x00, GET, 0x00, 0,0,0,0,};
+    public static final int L2R_ARROW = 300;
+    public static final int R2L_ARROW = 301;
+    public static final int UP_ARROW = 302;
+    public static final int DOWN_ARROW = 303;
+    public static final int HEART_SYMB = 304;
+    public static final int SMILE_SYMB = 305;
+    public static final int START_SYMB = 306;
+    public static final int EFFECT1 = 307;
+    public static final int EFFECT2 = 308;
+    public static final int EFFECT3 = 309;
+
+
+    /*Define led matrix command effect*/
 
     /*Define led matrix effect*/
     public static byte motion_effect [][] = {

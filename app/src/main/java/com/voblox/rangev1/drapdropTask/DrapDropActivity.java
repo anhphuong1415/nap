@@ -121,7 +121,6 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
         decorView2
                 .setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener()
                 {
-
                     @Override
                     public void onSystemUiVisibilityChange(int visibility)
                     {
@@ -402,7 +401,13 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
                         long value5, long value6, long value7, long value8,
                         long value9, long value10, long value11, long value12)
     {
-//        Toast.makeText(mView.getViewContext(), Integer.toString(module) + Integer.toString(duration), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this.getViewContext(), Integer.toString(module) + Integer.toString(duration) +
+//                Long.toString(value1) + Long.toString(value2) +
+//                Long.toString(value3) + Long.toString(value4) +
+//                Long.toString(value5) + Long.toString(value6) +
+//                Long.toString(value7) + Long.toString(value8) +
+//                Long.toString(value9) + Long.toString(value10) +
+//                Long.toString(value11) + Long.toString(value12), Toast.LENGTH_LONG).show();
 //        Log.i("TAG","action:" + Integer.toString(action)  + " port:" + Integer.toString(port) +
 //                " module:" +Integer.toString(module) + " duration:" +Integer.toString(duration) +
 //                " value:" + Long.toHexString(value[0])  + " dirMove:" + Integer.toString(dirMove) +
@@ -432,8 +437,42 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
             case define.MODE_BTN:
                 break;
             case define.LED_MATRIX:
-                Log.e("ANH PHUONG DEBUG", "handleLedMatrix");
-                handleLedMatrix(value, duration);
+                switch ((int)value1) {
+                    case define.L2R_ARROW:
+                        Toast.makeText(this.getViewContext(), "L2R_ARROW", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.R2L_ARROW:
+                        Toast.makeText(this.getViewContext(), "R2L_ARROW", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.UP_ARROW:
+                        Toast.makeText(this.getViewContext(), "UP_ARROW", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.DOWN_ARROW:
+                        Toast.makeText(this.getViewContext(), "DOWN_ARROW", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.HEART_SYMB:
+                        Toast.makeText(this.getViewContext(), "HEART_SYMB", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.SMILE_SYMB:
+                        Toast.makeText(this.getViewContext(), "SMILE_SYMB", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.START_SYMB:
+                        Toast.makeText(this.getViewContext(), "START_SYMB", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.EFFECT1:
+                        Toast.makeText(this.getViewContext(), "EFFECT1", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.EFFECT2:
+                        Toast.makeText(this.getViewContext(), "EFFECT2", Toast.LENGTH_LONG).show();
+                        break;
+                    case define.EFFECT3:
+                        Toast.makeText(this.getViewContext(), "EFFECT3", Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        handleLedMatrix(value, 0xa0);
+                        break;
+                }
+
                 break;
             case define.LED_RGB:
                 handleRGB((long)value[0], (long)value[1], duration);
@@ -451,7 +490,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
                 break;
         }
 //        Log.i("testRegistor+++", Double.toString(modelValue1));
-        Toast.makeText(this.getViewContext(), "module: " + Double.toString(module), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this.getViewContext(), "module: " + Double.toString(module), Toast.LENGTH_LONG).show();
 //        return 1;
 //        Toast.makeText(mView.getViewContext(), Integer.toString(module), Toast.LENGTH_SHORT).show();
 ////        mDrapDropPresenter.sendCmd(action, module, data1, data2, data3, data4, data5, data6, data7);
