@@ -1,7 +1,7 @@
 #RUN {
     position: absolute;
     top: 2mm;
-    right: 4mm;
+    right: 2mm;
     background-color: #082e8157;
     background: url("Utils/Icon/svg/Start.svg") no-repeat top left;
     background-size: cover;
@@ -25,9 +25,9 @@
     padding: 3mm 3mm; */
     position: absolute;
     top: 17mm;
-    right: 4mm;
+    right: 2mm;
     background-color: #f1f2f5;
-    background: url("Utils/BlockIcon/Icon_Save.svg") no-repeat top left;
+    background: url("Utils/Icon/svg/Save.svg") no-repeat top left;
     background-size: cover;
     border-radius: 1mm;
     color: rgb(255, 255, 255);
@@ -49,7 +49,7 @@
     padding: 3mm 3mm; */
     position: absolute;
     top: 32mm;
-    right: 4mm;
+    right: 2mm;
     background-color: #f1f2f5;
     background: url("Utils/Icon/svg/BLE.svg") no-repeat top left;
     background-size: cover;
@@ -85,16 +85,6 @@
     opacity: 0.9;
 }
 
-.a-button.iconPlay {
-    padding-right: 50px !important;
-    background: url("Utils/BlockIcon/Icon_Play.svg") no-repeat 5px center;
-}
-
-.a-button.iconSave {
-    padding-right: 50px !important;
-    background: url("Utils/BlockIcon/Icon_Save.svg") no-repeat 5px center;
-}
-
 #SAVE_ICON {
     width: 5mm;
     height: 5mm;
@@ -117,14 +107,61 @@
     height: 10mmm;
 } */
 
-#blocklyDiv {
-    display: inline-block;
+#bodyDiv {
+    display: flex;
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-image: url("Utils/Background.png");
     background-color: royalblue;
     background-size: cover;
+}
+
+#blocklyDiv {
+    display: inline-block;
+    position: absolute;
+    top: 11mm;
+    left: 0;
+    height: calc(100vh - 11mm);
+    width: calc(100vw - 17mm);
+}
+
+#headerDiv_ {
+    width: 100vw;
+    height: 10mm;
+    position: absolute;
     top: 0;
     left: 0;
+    background: url("Utils/MenuBar.svg") no-repeat bottom center;
+    background-size: contain;
+    border-style: none;
+    border-color: rgba(4, 124, 194, 0.822);
+    border-width: 1px;
+}
+
+#tabName {
+    width: 20vw;
+    height: 9mm;
+    position: absolute;
+    top: 0;
+    left: 40vw;
+    background: url("Utils/ProgramTitle.svg") no-repeat top center;
+    background-size: contain;
+}
+
+#functionButton {
+    width: 17mm;
+    height: calc(100vh - 11mm);
+    position: absolute;
+    top: 11mm;
+    right: 0mm;
+    border-style: solid;
+    border-color: rgb(5, 181, 250);
+    border-width: 2px;
+    border-radius: 1%;
+    background-color: rgba(3, 3, 3, 0.65);
 }
 
 #snackbar {
@@ -226,3 +263,7 @@
     top: 0;
     left: 50vw;
 } */
+
+.blocklyMainBackground {
+    stroke-width: 0;
+}

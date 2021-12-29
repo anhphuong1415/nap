@@ -24,7 +24,12 @@ class CustomCategory extends Blockly.ToolboxCategory {
      * @override
      */
     addColourBorder_(colour) {
-        this.rowDiv_.style.backgroundColor = colour;
+        // this.rowDiv_.style.backgroundColor = colour;
+        this.rowDiv_.style.backgroundColor = '#00ffff2f';
+        // this.rowDiv_.style.background = "url(Utils/Icon/svg/Start.svg) no-repeat top left";
+        // this.rowDiv_.style.backgroundSize = "cover";
+        // this.opt_parent.style.background = "url(Utils/ToolboxFrame.svg) no-repeat top left";
+        // this.opt_parent.style.backgroundSize = "cover";
     }
 
     /**
@@ -44,7 +49,8 @@ class CustomCategory extends Blockly.ToolboxCategory {
             this.iconDom_.style.color = this.colour_;
         } else {
             // Set the background back to the original colour.
-            this.rowDiv_.style.backgroundColor = this.colour_;
+            // this.rowDiv_.style.backgroundColor = this.colour_;
+            this.rowDiv_.style.backgroundColor = '#00ffff2f';
             // Set the text back to white.
             labelDom.style.color = 'white';
             this.iconDom_.style.color = 'white';

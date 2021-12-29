@@ -3,7 +3,8 @@ Blockly.Themes.Halloween = Blockly.Theme.defineTheme('halloween', {
     'base': Blockly.Themes.Classic,
     'categoryStyles': {
         'list_category': {
-            'colour': "#093a8f"
+            'colour': "#093a8f",
+            'opacity': '0.5'
         },
         'logic_category': {
             'colour': "#8b4513",

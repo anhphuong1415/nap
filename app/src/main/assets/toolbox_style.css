@@ -24,7 +24,7 @@
 /* Changes color of the icon to white. */
 
 .customIcon {
-    color: rgba(11, 3, 54, 0.377);
+    color: rgba(238, 237, 245, 0);
 }
 
 
@@ -38,4 +38,21 @@
 
 .blocklyTreeRow {
     height: initial;
+}
+
+.blocklyToolboxDiv {
+    /* background: url('Utils/ToolboxFrame.svg') no-repeat;
+    background-size: cover;
+    padding: 0 0 0 0; */
+    border-style: solid;
+    border-color: rgb(8, 83, 245);
+    border-width: 2px;
+    border-radius: 2%;
+}
+
+.blocklyFlyout {
+    border-style: outset;
+    border-color: aqua;
+    border-width: 2px;
+    border-radius: 1%;
 }
