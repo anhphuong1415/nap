@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingTop="0dp"
@@ -268,19 +269,48 @@
 
         <!--- ____________Start layout Joystick________-->
         <RelativeLayout
-            android:layout_width="105pt"
-            android:layout_height="105pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="2dp"
             android:layout_marginLeft="35dp"
             android:orientation="horizontal">
-
+            <at.grabner.circleprogress.CircleProgressView
+                android:id="@+id/circlePr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cpv_barStartEndLineSweep="@integer/material_motion_duration_long_1"
+                app:cpv_autoTextSize="true"
+                app:cpv_barColor="@color/primary"
+                app:cpv_barWidth="21.5dp"
+                app:cpv_barStartEndLineWidth="@dimen/cardview_default_radius"
+                app:cpv_innerContourSize="0dp"
+                app:cpv_maxValue="500"
+                app:cpv_outerContourSize="0dp"
+                app:cpv_rimColor="@color/rimColor"
+                app:cpv_rimWidth="21.5dp"
+                app:cpv_seekMode="true"
+                app:cpv_showUnit="true"
+                app:cpv_spinColor="@color/primary"
+                app:cpv_textSize="0dp"
+                app:cpv_value="0"
+                app:cpv_blockCount="40"
+                app:cpv_blockScale="10.9"
+                app:cpv_startAngle="91"
+                app:cpv_barColor1="@color/yellow"
+                app:cpv_barColor2="@color/orange"
+                app:cpv_barColor3="@color/red"
+                app:cpv_barStartEndLineColor="@color/black"
+                />
             <RelativeLayout
-                android:layout_width="105pt"
-                android:layout_height="105pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/layout_joystick"
                 android:orientation = "horizontal"
-                android:background="@drawable/ic_joystick">
+                android:background="@drawable/ic_joystick"
+                android:layout_marginLeft="21.5dp"
+                android:layout_marginTop="21.5dp">
+
             </RelativeLayout>
             /*Design joystick*/
         </RelativeLayout>
@@ -433,20 +463,32 @@
                 android:layout_width="180dp"
                 android:layout_height="100dp"
                 android:id="@+id/val_servo"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="70dp"
+                android:textSize="12dp"
                 android:textColor="#58FFFF"/>
-            <SeekBar
-                android:id="@+id/sbServo"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_marginRight="35dp"
-                android:progressBackgroundTint="#24b6ce"
-                android:progressTint="#58FFFF"
-                android:max = "180"
-                android:progress= "0"
-                android:thumb="@drawable/point" />
+<!--            <SeekBar-->
+<!--                android:id="@+id/sbServo"-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="60dp"-->
+<!--                android:layout_marginRight="35dp"-->
+<!--                android:progressBackgroundTint="#24b6ce"-->
+<!--                android:progressTint="#58FFFF"-->
+<!--                android:max = "180"-->
+<!--                android:progress= "0"-->
+<!--                android:thumb="@drawable/point" />-->
+                <com.marcinmoskala.arcseekbar.ArcSeekBar
+                    android:id="@+id/sbServo"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="30dp"
+                    app:progressColor="#58FFFF"
+                    app:progressBackgroundColor="#24b6ce"
+                    app:maxProgress="180"
+                    app:progressWidth="3dp"
+                    app:thumb="@drawable/point"
+                    app:roundEdges="true" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -467,8 +509,9 @@
                     android:layout_width="180dp"
                     android:layout_height="100dp"
                     android:id="@+id/val_dc1"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="90dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="105dp"
+                    android:textSize="12dp"
                     android:textColor="#58FFFF"/>
                 <SeekBar
                     android:id="@+id/sbDC1"
@@ -510,7 +553,9 @@
                     android:layout_width="180dp"
                     android:layout_height="100dp"
                     android:id="@+id/val_dc2"
-                    android:layout_marginTop="150dp"
+                    android:layout_marginTop="165dp"
+                    android:layout_marginLeft="40dp"
+                    android:textSize="12dp"
                     android:textColor="#58FFFF"/>
 
                 <SeekBar

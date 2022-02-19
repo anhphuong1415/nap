@@ -283,43 +283,42 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
 
     public void handle_buzzer(int freq, int duration)
     {
-        int _duration = duration * 255;
         switch (freq) {
             case 1:
-                shareFunction.runBuzzer(0,0,0, define.C, _duration);
+                shareFunction.runBuzzer(0,0,0, define.C, duration);
                 break;
             case 2:
-                shareFunction.runBuzzer(0,0,0, define.C_D, _duration);
+                shareFunction.runBuzzer(0,0,0, define.C_D, duration);
                 break;
             case 3:
-                shareFunction.runBuzzer(0,0,0, define.D, _duration);
+                shareFunction.runBuzzer(0,0,0, define.D, duration);
                 break;
             case 4:
-                shareFunction.runBuzzer(0,0,0, define.D_E, _duration);
+                shareFunction.runBuzzer(0,0,0, define.D_E, duration);
                 break;
             case 5:
-                shareFunction.runBuzzer(0,0,0, define.E, _duration);
+                shareFunction.runBuzzer(0,0,0, define.E, duration);
                 break;
             case 6:
-                shareFunction.runBuzzer(0,0,0, define.F, _duration);
+                shareFunction.runBuzzer(0,0,0, define.F, duration);
                 break;
             case 7:
-                shareFunction.runBuzzer(0,0,0, define.F_G, _duration);
+                shareFunction.runBuzzer(0,0,0, define.F_G, duration);
                 break;
             case 8:
-                shareFunction.runBuzzer(0,0,0, define.G, _duration);
+                shareFunction.runBuzzer(0,0,0, define.G, duration);
                 break;
             case 9:
-                shareFunction.runBuzzer(0,0,0, define.G_A, _duration);
+                shareFunction.runBuzzer(0,0,0, define.G_A, duration);
                 break;
             case 10:
-                shareFunction.runBuzzer(0,0,0, define.A, _duration);
+                shareFunction.runBuzzer(0,0,0, define.A, duration);
                 break;
             case 11:
-                shareFunction.runBuzzer(0,0,0, define.A_B, _duration);
+                shareFunction.runBuzzer(0,0,0, define.A_B, duration);
                 break;
             case 12:
-                shareFunction.runBuzzer(0,0,0, define.B, _duration);
+                shareFunction.runBuzzer(0,0,0, define.B, duration);
                 break;
         }
     }
@@ -361,6 +360,7 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     }
     void handleLedMatrix(long[] dataDisplay, int duration) {
         byte[] tmpData = {0, 0, 0 ,0 ,0 ,0, 0, 0};
+        Toast.makeText(this.getViewContext(), "duration" + Integer.toString(duration), Toast.LENGTH_LONG).show();
         for (int i = 0; i < 8; i++) {
             tmpData[i] = (byte)(dataDisplay[i] & 0xFF);
         }
@@ -369,8 +369,6 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
     void handleReadSensor(int module)
     {
         shareFunction.getInstance().getData(module);
-//        shareFunction.delay_ms(1000);
-//        shareFunction.getInstance().getData(define.NONE);
     }
     /*return int = sensor value when want to get data*/
 
@@ -439,37 +437,43 @@ public class DrapDropActivity extends AppCompatActivity implements DrapDropContr
             case define.LED_MATRIX:
                 switch ((int)value1) {
                     case define.L2R_ARROW:
-                        Toast.makeText(this.getViewContext(), "L2R_ARROW", Toast.LENGTH_LONG).show();
+                        shareFunction.runMaTrix(0, 0, 0, define.motion_effect[11], duration);
                         break;
                     case define.R2L_ARROW:
-                        Toast.makeText(this.getViewContext(), "R2L_ARROW", Toast.LENGTH_LONG).show();
+                        shareFunction.runMaTrix(0, 0, 0, define.motion_effect[12], duration);
                         break;
                     case define.UP_ARROW:
-                        Toast.makeText(this.getViewContext(), "UP_ARROW", Toast.LENGTH_LONG).show();
+                        shareFunction.runMaTrix(0, 0, 0, define.motion_effect[9], duration);
                         break;
                     case define.DOWN_ARROW:
-                        Toast.makeText(this.getViewContext(), "DOWN_ARROW", Toast.LENGTH_LONG).show();
+                        shareFunction.runMaTrix(0, 0, 0, define.motion_effect[10], duration);
                         break;
                     case define.HEART_SYMB:
-                        Toast.makeText(this.getViewContext(), "HEART_SYMB", Toast.LENGTH_LONG).show();
+                        shareFunction.runMaTrix(0, 0, 0, define.motion_effect[13], duration);
                         break;
                     case define.SMILE_SYMB:
-                        Toast.makeText(this.getViewContext(), "SMILE_SYMB", Toast.LENGTH_LONG).show();
+                        shareFunction.runMaTrix(0, 0, 0, define.motion_effect[14], duration);
                         break;
-                    case define.START_SYMB:
-                        Toast.makeText(this.getViewContext(), "START_SYMB", Toast.LENGTH_LONG).show();
+                    case define.STAR_SYMB:
+                        shareFunction.runMaTrix(0, 0, 0, define.motion_effect[15], duration);
                         break;
                     case define.EFFECT1:
-                        Toast.makeText(this.getViewContext(), "EFFECT1", Toast.LENGTH_LONG).show();
+                        for (int i = 0; i <= 12; i++) {
+                            shareFunction.runMaTrix(0, 0, 0, define.effect1[i], duration);
+                        }
                         break;
                     case define.EFFECT2:
-                        Toast.makeText(this.getViewContext(), "EFFECT2", Toast.LENGTH_LONG).show();
+                        for (int i = 0; i <= 14; i++) {
+                            shareFunction.runMaTrix(0, 0, 0, define.effect2[i], duration);
+                        }
                         break;
                     case define.EFFECT3:
-                        Toast.makeText(this.getViewContext(), "EFFECT3", Toast.LENGTH_LONG).show();
+                        for (int i = 0; i <= 15; i++) {
+                            shareFunction.runMaTrix(0, 0, 0, define.effect3[i], duration);
+                        }
                         break;
                     default:
-                        handleLedMatrix(value, 0xa0);
+                        handleLedMatrix(value, duration);
                         break;
                 }
 
