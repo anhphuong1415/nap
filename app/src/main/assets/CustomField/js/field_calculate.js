@@ -38,11 +38,6 @@ CustomFields.FieldCalculate.fromJson = function(options) {
         undefined, undefined, undefined, undefined, options);
 };
 
-//
-CustomFields.FieldCalculate.prototype.createView_ = function() {
-
-}
-
 // Save the new field value
 CustomFields.FieldCalculate.prototype.doValueUpdate_ = function(newValue) {
     CustomFields.FieldCalculate.superClass_.doValueUpdate_.call(this, newValue);
@@ -108,7 +103,7 @@ CustomFields.FieldCalculate.prototype.createUI = function() {
         cell.className = 'text';
         var text = document.createTextNode(val);
         cell.appendChild(text);
-        cell.textElement = text;
+        cell.textElement = val;
         row.appendChild(cell);
         return cell;
     };
