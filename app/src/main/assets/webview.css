@@ -125,7 +125,7 @@
     top: 11mm;
     left: 0;
     height: calc(100vh - 11mm);
-    width: calc(100vw - 17mm);
+    width: calc(100vw - 19mm);
 }
 
 #headerDiv_ {
@@ -136,9 +136,11 @@
     left: 0;
     background: url("Utils/MenuBar.svg") no-repeat bottom center;
     background-size: contain;
+    background-color: #03030370;
     border-style: none;
     border-color: rgba(4, 124, 194, 0.822);
-    border-width: 1px;
+    border-width: 2px;
+    border-radius: 2%;
 }
 
 #tabName {
@@ -152,15 +154,15 @@
 }
 
 #functionButton {
-    width: 17mm;
+    width: 18mm;
     height: calc(100vh - 11mm);
     position: absolute;
     top: 11mm;
     right: 0mm;
     border-style: solid;
     border-color: rgb(5, 181, 250);
-    border-width: 2px;
-    border-radius: 1%;
+    border-width: 1px;
+    border-radius: 1mm;
     background-color: rgba(3, 3, 3, 0.65);
 }
 
@@ -265,5 +267,14 @@
 } */
 
 .blocklyMainBackground {
-    stroke-width: 0;
+    stroke-width: 0px;
+    /* stroke: rgba(3, 3, 3, 0.438) */
+}
+
+.injectionDiv {
+    background-color: rgba(3, 3, 3, 0.438);
+    border-style: solid;
+    border-color: rgba(4, 124, 194, 0.822);
+    border-width: 1px;
+    border-radius: 1mm;
 }

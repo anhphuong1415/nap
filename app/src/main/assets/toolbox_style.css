@@ -41,18 +41,24 @@
 }
 
 .blocklyToolboxDiv {
-    /* background: url('Utils/ToolboxFrame.svg') no-repeat;
-    background-size: cover;
-    padding: 0 0 0 0; */
+    height: calc(100vh - 13mm);
+    margin-top: 1mm;
+    margin-bottom: 1mm;
+    margin-left: 1mm;
+    margin-right: 1px;
     border-style: solid;
     border-color: rgb(8, 83, 245);
-    border-width: 2px;
-    border-radius: 2%;
+    border-width: 1px;
+    border-radius: 1mm;
 }
 
 .blocklyFlyout {
-    border-style: outset;
+    margin-top: 1mm;
+    margin-bottom: 1mm;
+    margin-left: 2mm;
+    margin-right: 1px;
+    border-style: solid;
     border-color: aqua;
-    border-width: 2px;
-    border-radius: 1%;
+    border-width: 1px;
+    border-radius: 1mm;
 }
