@@ -281,7 +281,6 @@ public class Control extends AppCompatActivity {
                     for (int j = 0; j< 10000; j++) {
                         for (int k = 0; k < 2000; k++) {}
                     }
-
                 }
             }
         });
@@ -473,7 +472,7 @@ public class Control extends AppCompatActivity {
                 stateGetButton = !stateGetButton;
                 if (stateGetButton) {
                     shareFunction.getInstance().getData(define.MODE_BTN);
-                    btnGetBtn.setBackgroundResource(R.drawable.background_music);
+                    btnGetBtn.setBackgroundResource(R.drawable.ic_read_button_select);
                 } else {
                     shareFunction.getInstance().getData(define.NONE);
                 }
