@@ -1,0 +1,56 @@
+.customFieldsCalWidget {
+    width: 150px;
+    height: 200px;
+    align-items: center;
+    display: flex;
+}
+
+.customFieldsCalWidget button {
+    border-radius: 1px;
+    border: solid;
+    background-color: #fff;
+    opacity: .6;
+    color: rgb(12, 146, 170);
+    width: 100%;
+    height: 100%;
+}
+
+.customFieldsCalWidget .table {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.customFieldsCalWidget .row {
+    width: 100%;
+    height: 25%;
+    position: relative;
+    display: flex;
+}
+
+#textRow {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.customFieldsCalWidget .button_n {
+    width: 33.3%;
+    height: 100%;
+    text-align: center;
+}
+
+.customFieldsCalWidget .text {
+    height: 40px;
+    width: 100%;
+    color: rgb(15, 190, 221);
+    background-color: aqua;
+    text-align: end;
+    align-items: flex-end;
+    border: none;
+    display: flex;
+    flex-direction: column-reverse;
+}

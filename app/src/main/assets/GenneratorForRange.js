@@ -360,3 +360,10 @@ Blockly.JavaScript['while'] = function(block) {
         statements_actions + '\n}'
     return code;
 };
+
+Blockly.JavaScript['test_cal_field'] = function(block) {
+    // var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = 'let k = ' + block.getFieldValue('NAME');
+    console.log("CODE GEN: " + code);
+    return code;
+};

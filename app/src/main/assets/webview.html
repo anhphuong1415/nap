@@ -23,15 +23,17 @@
             require: function() {}
         };
     </script>
-    <script src="field_pitch.js"></script>
-    <script src="field_turtle.js"></script>
+    <script src="CustomField/js/field_pitch.js"></script>
+    <script src="CustomField/js/field_calculate.js"></script>
+    <script src="CustomField/js/field_turtle.js"></script>
     <script src="GenneratorForRange.js"></script>
     <script src="custom_category_es6.js"></script>
     <script src="toolbox_label_es6.js"></script>
     <script src="theme.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="pitch.css">
-    <link rel="stylesheet" type="text/css" href="turtle.css">
+    <link rel="stylesheet" type="text/css" href="CustomField/css/pitch.css">
+    <link rel="stylesheet" type="text/css" href="CustomField/css/turtle.css">
+    <link rel="stylesheet" type="text/css" href="CustomField/css/calculate.css">
 </head>
 
 <body>
@@ -42,7 +44,7 @@
         <div id="innerSnackbackText"> SHOW TEXT HERE</div>
     </div>
 
-    <div style="width: 100%; height: 100vh">
+    <div id="bodyDiv" style="width: 100%; height: 100vh">
         <xml id="toolbox" style="display: none">
             <category name="Di chuyển" categorystyle="list_category">
                 <block type="robot_move">
@@ -162,28 +164,31 @@
         </xml>
 
         <xml id="startBlocks" style="display: none">
-            <block type="dummy_play_block" x="150" y="50"></block>
+            <!-- <block type="dummy_play_block" x="400" y="50"></block> -->
+            <block type="test_cal_field"></block>
         </xml>
         <!-- <textarea id="codeSpaceText" style="height: 100vh; width: 50vw;">
         </textarea> -->
-
-        <div id="blocklyDiv" style="height: 100vh; width: 100vw">
+        <div id="headerDiv_">
+            <div id="tabName"></div>
         </div>
-
+        <div id="blocklyDiv">
+        </div>
+        <div id="functionButton">
+            <button id="RUN" onclick="handleGenCode()"></button>
+            <button id="SAVE" onclick="handleSave()"></button>
+            <button id="BLUETOOTH" onclick="handleBT()"></button>
+        </div>
         <!-- <div style="margin-left: 50%; height: 600px;">
             <textarea rows="40" cols="80" id="codeSpaceText"></textarea>
         </div> -->
-
-        <button id="RUN" onclick="handleGenCode()"></button>
-        <button id="SAVE" onclick="handleSave()"></button>
-        <button id="BLUETOOTH" onclick="handleBT()"></button>
 
 
         <script>
             var workspacePlayground = Blockly.inject('blocklyDiv', {
                 media: 'media/',
                 toolbox: document.getElementById('toolbox'),
-                collapse: true,
+                collapse: false,
                 comments: true,
                 disable: true,
                 maxBlocks: Infinity,

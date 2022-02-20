@@ -475,3 +475,11 @@ Blockly.Blocks['while'] = {
         this.setHelpUrl("");
     }
 };
+
+Blockly.Blocks['test_cal_field'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(new CustomFields.FieldCalculate(0, 0, 1000, 1), 'NAME');
+        this.setColour(285);
+    }
+};
