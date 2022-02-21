@@ -2,6 +2,9 @@ package com.voblox.rangev1.Main.play;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.marcinmoskala.arcseekbar.ArcSeekBar;
+import com.marcinmoskala.arcseekbar.ProgressListener;
 import com.voblox.rangev1.R;
 import com.voblox.rangev1.Utilities.classicBluetooth.LocalBinder;
 import com.voblox.rangev1.Utilities.classicBluetooth;
@@ -47,6 +50,8 @@ import java.util.TimerTask;
 
 import android.view.View.OnTouchListener;
 
+import at.grabner.circleprogress.CircleProgressView;
+
 public class Control extends AppCompatActivity {
     ImageButton backCtrBtn;
     ImageButton btnDance, btnLed, btnConnect, btnBuzzer, btnLedMatrix, btnRingLed;
@@ -55,7 +60,9 @@ public class Control extends AppCompatActivity {
     TextView textSrf05, textLight, textColor, textSound, textDC1, textDC2, textServo, lineRight, lineLeft;
     ImageButton showMode1, showMode2, showMode3;
     pl.droidsonroids.gif.GifImageView soundSignal;
-    SeekBar DC1, DC2, servo;
+    CircleProgressView magnitudeSpeed;
+    SeekBar DC1, DC2;
+    ArcSeekBar servo;
     boolean state_led = false;
     int ledColor = 0;
     int leftSpeed = 0, rightSpeed = 0;
@@ -74,6 +81,7 @@ public class Control extends AppCompatActivity {
     byte[] fbData = {0, 0, 0, 0};
     public static final String mBroadcastGetData = "VrobotGetData";
     private IntentFilter mIntentFilter;
+    int value_speed = 0;
 
     final BluetoothAdapter bAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -227,7 +235,7 @@ public class Control extends AppCompatActivity {
 
         textServo = (TextView) findViewById(R.id.val_servo);
         textServo.setTypeface(null, Typeface.BOLD);
-        servo = (SeekBar) findViewById(R.id.sbServo);
+        servo = (ArcSeekBar) findViewById(R.id.sbServo);
 
         textDC1 = (TextView) findViewById(R.id.val_dc1);
         textDC1.setTypeface(null, Typeface.BOLD);
@@ -237,6 +245,7 @@ public class Control extends AppCompatActivity {
         textDC2.setTypeface(null, Typeface.BOLD);
         DC2 = (SeekBar) findViewById(R.id.sbDC2);
         soundSignal = (pl.droidsonroids.gif.GifImageView) findViewById(R.id.btnSound);
+        magnitudeSpeed = findViewById(R.id.circlePr);
         check_connected();
 //        String srf05Val = getIntent().getStringExtra("Srf05");
 //        textSrf05.setText(srf05Val);
@@ -272,7 +281,6 @@ public class Control extends AppCompatActivity {
                     for (int j = 0; j< 10000; j++) {
                         for (int k = 0; k < 2000; k++) {}
                     }
-
                 }
             }
         });
@@ -328,12 +336,12 @@ public class Control extends AppCompatActivity {
             }
         });
         btnLedMatrix.setOnClickListener(new View.OnClickListener() {
-            int duration = 0x1a;
+            int duration = 1;
 
             @Override
             public void onClick(View v) {
                 cnt_effect++;
-                if (cnt_effect >= 12)
+                if (cnt_effect >= 16)
                     cnt_effect = 0;
                 shareFunction.runMaTrix(0, 0, 0, define.motion_effect[cnt_effect], duration);
             }
@@ -344,7 +352,7 @@ public class Control extends AppCompatActivity {
                 if (index >= 25)
                     index = 0;
                 buzzerFreq = define.hpbdSong[index];
-                buzzerDuration = 250;
+                buzzerDuration = 1;
                 shareFunction.runBuzzer(0, 0, 0, buzzerFreq, buzzerDuration);
                 index++;
             }
@@ -506,17 +514,22 @@ public class Control extends AppCompatActivity {
             finish();
             return;
         }
-        servo.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textServo.setText("Servo quay: " + progress + " độ");
-                shareFunction.runServo(0,0,0,progress);
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
+//        servo.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                textServo.setText("Servo quay: " + progress + " độ");
+//                shareFunction.runServo(0,0,0,progress);
+//            }
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//                // TODO Auto-generated method stub
+//            }
+//
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//            }
+//        });
+        servo.setOnProgressChangedListener(new ProgressListener() {
+            @Override
+            public void invoke(int i) {
+                textServo.setText("Servo quay: " + i + " độ");
             }
         });
 
@@ -550,7 +563,7 @@ public class Control extends AppCompatActivity {
 
         js = new joystick(getApplicationContext(), layout_joystick, R.drawable.joystick_center);
         js.setStickSize(180, 180);
-        js.setLayoutSize(500, 500);
+        js.setLayoutSize(420, 420);
         js.setLayoutAlpha(255);
         js.setStickAlpha(255);
         js.setOffset(90);
@@ -631,6 +644,12 @@ public class Control extends AppCompatActivity {
                     rightSpeed = 0;
                 }
                 shareFunction.runJoystick(0, 0, 0, leftSpeed, rightSpeed);
+                if (leftSpeed >  rightSpeed)
+                    value_speed = Math.abs(leftSpeed);
+                else
+                    value_speed = Math.abs(rightSpeed);
+
+                magnitudeSpeed.setValue(value_speed);
                 return true;
             }
         });

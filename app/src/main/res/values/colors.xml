@@ -24,4 +24,10 @@
     <color name="comp_stat">#3EC2FA</color>
     <color name="comp_end">#526AEE</color>
     <color name="round_joystick">#00A2E8</color>
+    <color name="primary">#23a6b7</color>
+    <color name="rimColor">#23a6b700</color>
+    <color name="primary_light">#FF018786</color>
+    <color name="yellow">#fee202</color>
+    <color name="orange">#ff7403</color>
+    <color name="red">#ff0f03</color>
 </resources>

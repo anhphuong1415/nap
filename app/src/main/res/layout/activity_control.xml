@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingTop="0dp"
@@ -264,22 +265,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id ="@+id/layoutBodyBottom"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <!--- ____________Start layout Joystick________-->
         <RelativeLayout
-            android:layout_width="105pt"
-            android:layout_height="105pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutJoystickBlock"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="2dp"
-            android:layout_marginLeft="35dp"
+            android:layout_marginLeft="30dp"
             android:orientation="horizontal">
-
+            <at.grabner.circleprogress.CircleProgressView
+                android:id="@+id/circlePr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cpv_barStartEndLineSweep="@integer/material_motion_duration_long_1"
+                app:cpv_autoTextSize="true"
+                app:cpv_barColor="@color/primary"
+                app:cpv_barWidth="21.5dp"
+                app:cpv_barStartEndLineWidth="@dimen/cardview_default_radius"
+                app:cpv_innerContourSize="0dp"
+                app:cpv_maxValue="500"
+                app:cpv_outerContourSize="0dp"
+                app:cpv_rimColor="@color/rimColor"
+                app:cpv_rimWidth="21.5dp"
+                app:cpv_seekMode="true"
+                app:cpv_showUnit="true"
+                app:cpv_spinColor="@color/primary"
+                app:cpv_textSize="0dp"
+                app:cpv_value="0"
+                app:cpv_blockCount="40"
+                app:cpv_blockScale="10.9"
+                app:cpv_startAngle="91"
+                app:cpv_barColor1="@color/yellow"
+                app:cpv_barColor2="@color/orange"
+                app:cpv_barColor3="@color/red"
+                app:cpv_barStartEndLineColor="@color/black"
+                />
             <RelativeLayout
-                android:layout_width="105pt"
-                android:layout_height="105pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/layout_joystick"
                 android:orientation = "horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:background="@drawable/ic_joystick">
             </RelativeLayout>
             /*Design joystick*/
@@ -287,252 +318,274 @@
         <!--- _____________End layout Joystick________-->
         <!--- ____________Start layout Read Line, SRF05, COLOR, LIGHT sensor________-->
         <!--- ____________Start layout Read Line Sensor________-->
+    <RelativeLayout
+        android:layout_width="145dp"
+        android:layout_height="match_parent"
+        android:id="@+id/layoutReadSensor"
+        android:orientation ="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
             android:id="@+id/layoutGetLine"
-            android:layout_marginTop="0dp"
             android:orientation ="horizontal"
             android:layout_centerHorizontal="true">
+
             <TextView
                 android:id="@+id/line_left"
-                android:layout_width="20pt"
-                android:layout_height="17pt"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="0dp"
-                android:background="@drawable/ic_line_off"/>
+                android:layout_width="41dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_line_off" />
+
             <ImageButton
                 android:id="@+id/btnIconLine"
-                android:layout_width="40pt"
-                android:layout_height="15pt"
-                android:layout_marginLeft="39dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/ic_read_line"/>
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/line_left"
+                android:background="@drawable/ic_read_line" />
             <TextView
                 android:id="@+id/line_right"
-                android:layout_width="20pt"
-                android:layout_height="17pt"
-                android:layout_marginLeft="120dp"
-                android:layout_marginTop="1dp"
+                android:layout_width="42dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/btnIconLine"
                 android:background="@drawable/ic_line_off"/>
         </RelativeLayout>
         <!--- ____________Start layout Read button, sound Sensor________-->
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
             android:id="@+id/layoutGetSoundButton"
-            android:layout_marginTop="42dp"
+            android:layout_below="@+id/layoutGetLine"
+            android:layout_marginTop="5dp"
             android:orientation ="horizontal"
             android:layout_centerHorizontal="true">
 
             <ImageButton
                 android:id="@+id/btnIconSound"
-                android:layout_width="43pt"
-                android:layout_height="18pt"
-                android:layout_marginLeft="2dp"
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/ic_read_sound" />
             <ImageButton
                 android:id="@+id/btnIconButton"
-                android:layout_width="39pt"
-                android:layout_height="18pt"
-                android:layout_marginLeft="82dp"
+                android:layout_width="75dp"
+                android:layout_toRightOf="@+id/btnIconSound"
+                android:layout_height="match_parent"
                 android:background="@drawable/ic_read_button" />
         </RelativeLayout>
         <!--- ____________Start layout Read SRF05 Sensor________-->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/layoutGetSrf05"
-            android:layout_marginTop="84dp"
+            android:layout_below="@+id/layoutGetSoundButton"
+            android:layout_marginTop="5dp"
             android:orientation ="horizontal"
             android:layout_centerHorizontal="true">
 
             <ImageButton
                 android:id="@+id/btnIconSrf05"
-                android:layout_width="75pt"
-                android:layout_height="18pt"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/ic_read_srf05" />
             <TextView
                 android:id="@+id/text_srf05"
-                android:layout_width="75pt"
-                android:layout_height="18pt"
-                android:layout_marginLeft="120dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="8dp"
                 android:text="Read srf05" />
         </RelativeLayout>
         <!--- ____________Start layout Read Color Sensor________-->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/layoutGetColor"
-            android:layout_marginTop="126dp"
+            android:layout_below="@id/layoutGetSrf05"
+            android:layout_marginTop="5dp"
             android:orientation ="horizontal"
             android:layout_centerHorizontal="true">
 
             <ImageButton
                 android:id="@+id/btnIconColor"
-                android:layout_width="75pt"
-                android:layout_height="18pt"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="56dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/ic_read_color" />
             <TextView
                 android:id="@+id/text_color"
-                android:layout_width="75pt"
-                android:layout_height="18pt"
-                android:layout_marginLeft="110dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="12dp"
                 android:text="Read color"
                 android:textColor="#ffFFFF"/>
         </RelativeLayout>
         <!--- ____________Start layout Read Light  Sensor________-->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/layoutGetLight"
-            android:layout_marginTop="168dp"
+            android:layout_below="@+id/layoutGetColor"
+            android:layout_marginTop="5dp"
             android:orientation ="horizontal"
             android:layout_centerHorizontal="true">
 
             <ImageButton
                 android:id="@+id/btnIconLight"
-                android:layout_width="75pt"
-                android:layout_height="18pt"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/ic_read_light" />
             <TextView
                 android:id="@+id/text_light"
-                android:layout_width="75pt"
-                android:layout_height="18pt"
-                android:layout_marginLeft="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
                 android:text="Read light" />
         </RelativeLayout>
+    </RelativeLayout>
         <!--- __________________End_________________________-->
 
-        <!--- ____________Start layout Servo_____________-->
+        <!--- ____________Start layout Servo + Motor_____________-->
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/layoutServo"
-            android:orientation ="vertical"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_alignParentRight="true" >
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+                /*__________________Layout Servo________________*/
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation ="vertical"
-                android:layout_marginRight="0dp"
+                android:id="@+id/layout_servo"
                 android:layout_marginTop="5dp"
-                android:layout_alignParentRight="true" >
-            <TextView
-                android:layout_width="180dp"
-                android:layout_height="100dp"
-                android:id="@+id/val_servo"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:textColor="#58FFFF"/>
-            <SeekBar
-                android:id="@+id/sbServo"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:layout_marginRight="35dp"
-                android:progressBackgroundTint="#24b6ce"
-                android:progressTint="#58FFFF"
-                android:max = "180"
-                android:progress= "0"
-                android:thumb="@drawable/point" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation ="horizontal"
-                android:layout_marginRight="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_alignParentRight="true" >
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
                 <TextView
+                    android:id="@+id/val_servo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="70dp"
+                    android:textColor="#58FFFF"
+                    android:textSize="12dp" />
+
+                <com.marcinmoskala.arcseekbar.ArcSeekBar
+                    android:id="@+id/sbServo"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginRight="30dp"
+                    app:maxProgress="180"
+                    app:progressBackgroundColor="#24b6ce"
+                    app:progressColor="#58FFFF"
+                    app:progressWidth="3dp"
+                    app:roundEdges="true"
+                    app:thumb="@drawable/point" />
+            </RelativeLayout>
+            /*__________________Layout Motor 1________________*/
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_motor1"
+                android:layout_below="@id/layout_servo"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
                     android:id="@+id/textMinDC1"
-                    android:layout_marginTop="120dp"
-                    android:textColor="#58FFFF"
-                    android:text="Lùi"/>
-
-                <TextView
-                    android:layout_width="180dp"
-                    android:layout_height="100dp"
-                    android:id="@+id/val_dc1"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="90dp"
-                    android:textColor="#58FFFF"/>
-                <SeekBar
-                    android:id="@+id/sbDC1"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="120dp"
-                    android:layout_toRightOf="@+id/textMinDC1"
-                    android:progressBackgroundTint="#24b6ce"
-                    android:progressTint="#58FFFF"
-                    android:min="-255"
-                    android:max = "255"
-                    android:progress= "0"
-                    android:thumb="@drawable/point" />
+                    android:text="Lùi"
+                    android:textColor="#58FFFF" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_arc_m1"
+                    android:orientation="vertical" >
+                    <TextView
+                        android:id="@+id/val_dc1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:textColor="#58FFFF"
+                        android:textSize="12dp" />
+
+                    <SeekBar
+                        android:id="@+id/sbDC1"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/textMinDC1"
+                        android:max="255"
+                        android:min="-255"
+                        android:progress="0"
+                        android:progressBackgroundTint="#24b6ce"
+                        android:progressTint="#58FFFF"
+                        android:thumb="@drawable/point" />
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="120dp"
-                    android:layout_toRightOf="@+id/sbDC1"
-                    android:textColor="#58FFFF"
-                    android:text="Tiến"/>
+                    android:layout_toRightOf="@+id/layout_arc_m1"
+                    android:text="Tiến"
+                    android:textColor="#58FFFF" />
             </RelativeLayout>
+<!--            /*Layout Motor 2*/-->
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation ="horizontal"
+                android:id="@+id/layout_motor2"
+                android:layout_below="@+id/layout_motor1"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_alignParentRight="true" >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/textMinDC2"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="180dp"
-                    android:textColor="#58FFFF"
-                    android:text="Lùi"/>
-                <TextView
-                    android:layout_width="180dp"
-                    android:layout_height="100dp"
-                    android:id="@+id/val_dc2"
-                    android:layout_marginTop="150dp"
-                    android:textColor="#58FFFF"/>
-
-                <SeekBar
-                    android:id="@+id/sbDC2"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="180dp"
-                    android:layout_toRightOf="@+id/textMinDC2"
-                    android:progressBackgroundTint="#24b6ce"
-                    android:progressTint="#58FFFF"
-                    android:min="-255"
-                    android:max = "255"
-                    android:progress= "0"
-                    android:thumb="@drawable/point" />
+                    android:layout_marginLeft="0dp"
+                    android:text="Lùi"
+                    android:textColor="#58FFFF" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_arc_m2"
+                    android:orientation="vertical" >
+                    <TextView
+                        android:id="@+id/val_dc2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:textColor="#58FFFF"
+                        android:textSize="12dp" />
+
+                    <SeekBar
+                        android:id="@+id/sbDC2"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/textMinDC2"
+                        android:max="255"
+                        android:min="-255"
+                        android:progress="0"
+                        android:progressBackgroundTint="#24b6ce"
+                        android:progressTint="#58FFFF"
+                        android:thumb="@drawable/point" />
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/sbDC2"
-                    android:layout_marginTop="180dp"
-                    android:textColor="#58FFFF"
-                    android:text="Tiến"/>
-
+                    android:layout_toRightOf="@+id/layout_arc_m2"
+                    android:text="Tiến"
+                    android:textColor="#58FFFF" />
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
