@@ -45,7 +45,7 @@
     z-index: 10;
 }
 
-.knob_surround .knob:before {
+.knob:before {
     content: "";
     position: absolute;
     bottom: 19%;
@@ -118,4 +118,10 @@
 
 .knob_surround .knob {
     background-image: url(../../Utils/knobImage.png);
+}
+
+#text_vel {
+    line-height: 150%;
+    max-width: 36em;
+    margin: 1em auto;
 }
