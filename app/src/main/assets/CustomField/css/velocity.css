@@ -15,11 +15,11 @@
 .knob_surround {
     position: relative;
     background-color: grey;
-    width: 14em;
-    height: 14em;
+    width: 10em;
+    height: 10em;
     border-radius: 50%;
     border: solid 0.25em #0e0e0e;
-    margin: 5em auto;
+    margin: 3em auto;
     background: #181818;
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d1d1d), color-stop(1, #131313));
     background: -ms-linear-gradient(bottom, #1d1d1d, #131313);
@@ -72,13 +72,13 @@
 }
 
 .knob_surround .min {
-    bottom: 1em;
-    left: -2.5em;
+    bottom: 0.1em;
+    left: -3em;
 }
 
 .knob_surround .max {
-    bottom: 1em;
-    right: -2.5em;
+    bottom: 0.1em;
+    right: -3em;
 }
 
 .knob_surround .tick {
@@ -122,6 +122,9 @@
 
 #text_vel {
     line-height: 150%;
-    max-width: 36em;
+    width: 100%;
+    height: 5%;
     margin: 1em auto;
+    text-align: center;
+    text-shadow: #79c3f4;
 }

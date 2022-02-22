@@ -370,7 +370,7 @@ Blockly.JavaScript['test_cal_field'] = function(block) {
 
 Blockly.JavaScript['test_vel_field'] = function(block) {
     // var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = 'let k = ' + block.getFieldValue('NAME');
+    var code = 'var m = ' + block.getFieldValue('NAME');
     console.log("CODE GEN Vel: " + code);
     return code;
 };
