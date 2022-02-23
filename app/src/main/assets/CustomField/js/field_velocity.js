@@ -2,6 +2,7 @@
 
 goog.provide('CustomFields.FieldVelocity');
 
+goog.require('Blockly.browserEvents');
 goog.require('Blockly.FieldNumber');
 goog.require('Blockly.Field');
 goog.require('Blockly.fieldRegistry');
@@ -17,24 +18,27 @@ var CustomFields = CustomFields || {}
 CustomFields.FieldVelocity = function(opt_value, opt_min, opt_max, opt_precision) {
     this.max_ = opt_value;
     this.min_ = opt_min;
+    this.value_ = opt_value;
     CustomFields.FieldVelocity.superClass_.constructor.call(this, opt_value, opt_min, opt_max, opt_precision);
 }
 Blockly.utils.object.inherits(CustomFields.FieldVelocity, Blockly.FieldNumber);
+
+CustomFields.FieldVelocity.prototype.CURSOR = 'pointer';
 
 CustomFields.FieldVelocity.prototype.initView = function() {
     CustomFields.FieldVelocity.superClass_.initView.call(this);
 }
 
 CustomFields.FieldVelocity.fromJson = function(options) {
-    return new CustomFields.FieldCalculate(options['value'],
+    return new CustomFields.FieldVelocity(options['value'],
         undefined, undefined, undefined, undefined, options);
 }
 
 CustomFields.FieldVelocity.prototype.showEditor_ = function() {
     CustomFields.FieldVelocity.superClass_.showEditor_.call(this);
+    this.WidgetCreate_();
     Blockly.WidgetDiv.show(
         this, this.sourceBlock_.RTL, this.widgetDispose_.bind(this));
-    this.WidgetCreate_();
 }
 
 CustomFields.FieldVelocity.prototype.WidgetCreate_ = function() {
@@ -94,7 +98,8 @@ CustomFields.FieldVelocity.prototype.CreateWidget_ = function() {
     knod_surround.appendChild(tickContainer);
 
     this.listener_ = Blockly.bindEvent_(knod, this.getMouseDown(), this, this.onMouseDown);
-    document.addEventListener(this.getMouseUp(), this.onMouseUp);
+    // document.addEventListener(this.getMouseUp(), this.onMouseUp);
+    this.mouseUpWrapper_ = Blockly.browserEvents.bind(document.body, this.getMouseUp(), this, this.onMouseUp);
     return knod_surround;
 }
 
@@ -126,14 +131,14 @@ CustomFields.FieldVelocity.prototype.createTicks = function(tickContainer, numTi
 }
 
 CustomFields.FieldVelocity.prototype.onMouseDown = function() {
-    document.addEventListener(this.getMouseMove(), this.onMouseMove);
-    console.log('Add Mouse Move');
+    this.mouseMoveWrapper_ = Blockly.browserEvents.bind(document.body, this.getMouseMove(), this, this.onMouseMove);
 }
 
 CustomFields.FieldVelocity.prototype.onMouseUp = function() {
-    console.log(CustomFields.FieldVelocity.prototype.getMouseMove());
-    document.removeEventListener(CustomFields.FieldVelocity.prototype.getMouseMove(), CustomFields.FieldVelocity.prototype.onMouseMove);
-    console.log('On mouse up');
+    if (this.mouseMoveWrapper_) {
+        Blockly.browserEvents.unbind(this.mouseMoveWrapper_);
+        this.mouseMoveWrapper_ = null;
+    }
 }
 
 CustomFields.FieldVelocity.prototype.onMouseMove = function(event) {
@@ -188,10 +193,10 @@ CustomFields.FieldVelocity.prototype.onMouseMove = function(event) {
 
         tickHighlightPosition = Math.round((volumeSetting * 2.7) / 10); //interpolate how many ticks need to be highlighted
 
-        CustomFields.FieldVelocity.prototype.createTicks(tickContainer, 27, tickHighlightPosition); //highlight ticks
+        this.createTicks(tickContainer, 27, tickHighlightPosition); //highlight ticks
 
         document.getElementById("volumeValue").innerHTML = volumeSetting; //update volume text
-        CustomFields.FieldVelocity.prototype.setDirty(volumeSetting);
+        this.setDirty(volumeSetting);
     }
 }
 
@@ -230,16 +235,27 @@ CustomFields.FieldVelocity.prototype.getMouseMove = function() {
 }
 
 CustomFields.FieldVelocity.prototype.setDirty = function(volumeSetting) {
-    this.isDirty_ = true;
     this.displayValue_ = volumeSetting;
     this.setValue(volumeSetting);
-    this.forceRerender();
+    this.isDirty_ = true;
 }
 
 CustomFields.FieldVelocity.prototype.widgetDispose_ = function() {
-    Blockly.unbindEvent_(this.listener_);
+    if (this.listener_) {
+        Blockly.unbindEvent_(this.listener_);
+        this.listener_ = null;
+    }
+
+    if (this.mouseUpWrapper_) {
+        Blockly.browserEvents.unbind(this.mouseUpWrapper_);
+        this.mouseUpWrapper_ = null;
+    }
+
+    if (this.mouseMoveWrapper_) {
+        Blockly.browserEvents.unbind(this.mouseMoveWrapper_);
+        this.mouseMoveWrapper_ = null;
+    }
     document.removeEventListener(this.getMouseUp(), this.onMouseUp);
-    console.log('Dispose');
 };
 
 CustomFields.FieldVelocity.prototype.showInlineEditor_ = function() {};
@@ -248,7 +264,7 @@ CustomFields.FieldVelocity.prototype.showPromptEditor_ = function() {};
 
 CustomFields.FieldVelocity.prototype.doValueUpdate_ = function(newValue) {
     CustomFields.FieldVelocity.superClass_.doValueUpdate_.call(this, newValue);
-    this.value_ = newValue;
+    this.displayValue_ = newValue;
     this.isValueInvalid_ = false;
 };
 
