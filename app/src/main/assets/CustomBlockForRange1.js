@@ -483,3 +483,11 @@ Blockly.Blocks['test_cal_field'] = {
         this.setColour(285);
     }
 };
+
+Blockly.Blocks['test_vel_field'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(new CustomFields.FieldVelocity(0, 0, 1000, 1), 'NAME');
+        this.setColour(285);
+    }
+};
