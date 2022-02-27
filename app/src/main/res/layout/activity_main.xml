@@ -53,8 +53,8 @@
 
         <LinearLayout
             android:id="@+id/layoutLeft"
-            android:layout_width="350dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="0dp"
@@ -63,9 +63,9 @@
             <!--- ____________Start layout Mechanical________-->
             <ImageButton
                 android:id="@+id/btn_mechanical"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:background="@drawable/ic_mechanical"/>
@@ -74,7 +74,7 @@
                 android:id="@+id/btn_play"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:background="@drawable/ic_play"/>
@@ -83,7 +83,7 @@
                 android:id="@+id/btn_guidle"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:background="@drawable/ic_guidle"/>
@@ -92,7 +92,7 @@
                 android:id="@+id/btn_program"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:background="@drawable/ic_program"/>
@@ -101,9 +101,10 @@
                 android:id="@+id/btn_exit"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/ic_btn_exit"/>
         </LinearLayout>
 

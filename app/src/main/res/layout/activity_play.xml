@@ -31,12 +31,12 @@
 
         <ImageButton
             android:id="@+id/btnConnBluePlay"
-            android:layout_width="13pt"
-            android:layout_height="13pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="2dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/ic_ble_off" />
 
         <RelativeLayout
@@ -63,8 +63,8 @@
 
             /*Layout for control interface*/
             <LinearLayout
-                android:layout_width="435px"
-                android:layout_height="540px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/layout_control"
                 android:layout_gravity="center"
                 android:layout_marginLeft="100dp"
@@ -79,8 +79,8 @@
             </LinearLayout>
             /*Layout for play music interface*/
                 <LinearLayout
-                    android:layout_width="435px"
-                    android:layout_height="540px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/layout_music"
                     android:layout_gravity="center"
                     android:layout_marginLeft="250dp"
@@ -96,8 +96,8 @@
                 </LinearLayout>
             /*Layout for voice control interface*/
                 <LinearLayout
-                    android:layout_width="435px"
-                    android:layout_height="540px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/layout_voice_control"
                     android:layout_gravity="center"
                     android:layout_marginLeft="250dp"

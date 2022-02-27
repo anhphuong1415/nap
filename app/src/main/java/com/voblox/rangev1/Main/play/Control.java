@@ -562,8 +562,10 @@ public class Control extends AppCompatActivity {
         });
 
         js = new joystick(getApplicationContext(), layout_joystick, R.drawable.joystick_center);
-        js.setStickSize(180, 180);
-        js.setLayoutSize(420, 420);
+        int width = js.getLayoutWidth() / 3;
+        int height = js.getStickHeight() / 3;
+        js.setStickSize(width, width);
+//        js.setLayoutSize(420, 420);
         js.setLayoutAlpha(255);
         js.setStickAlpha(255);
         js.setOffset(90);

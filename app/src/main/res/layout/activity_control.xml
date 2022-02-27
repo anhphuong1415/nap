@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
     android:paddingTop="0dp"
-    android:paddingRight="16dp"
     android:background="@drawable/bg_control_menu"
     tools:context=".Main.MainActivity">
 
@@ -19,10 +17,10 @@
 
         <ImageButton
             android:id="@+id/btnCtrBack"
-            android:layout_width="50dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/ic_back_icon" />
 
@@ -37,11 +35,12 @@
 
         <ImageButton
             android:id="@+id/btnConnectBluetooth"
-            android:layout_width="13pt"
-            android:layout_height="13pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/ic_ble_off" />
 
     </RelativeLayout>
@@ -73,15 +72,15 @@
 
                 <ImageButton
                     android:id="@+id/btn_ledmatrix"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
                     android:background="@drawable/matrix_config" />
 
                 <ImageButton
                     android:id="@+id/btn_ledRGB"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/btn_ledmatrix"
                     android:layout_marginLeft="35dp"
                     android:layout_marginTop="2dp"
@@ -99,16 +98,16 @@
 
                 <ImageButton
                     android:id="@+id/btn_ringled"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="100dp"
                     android:layout_marginTop="2dp"
                     android:background="@drawable/ringled_config" />
 
                 <ImageButton
                     android:id="@+id/btn_buzzer"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/btn_ringled"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="2dp"
@@ -129,22 +128,22 @@
 
             <ImageButton
                 android:id="@+id/btnMode1"
-                android:layout_width="20pt"
-                android:layout_height="12pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/ic_mode1" />
             <ImageButton
                 android:id="@+id/btnMode2"
-                android:layout_width="20pt"
-                android:layout_height="12pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/btnMode1"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/ic_mode1" />
             <ImageButton
                 android:id="@+id/btnMode3"
-                android:layout_width="20pt"
-                android:layout_height="12pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/btnMode2"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="0dp"
@@ -168,8 +167,8 @@
             <!--                android:background="@drawable/ic_sound"/>-->
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/btnSound"
-                android:layout_width="62pt"
-                android:layout_height="12pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_sound"/>
 
         </RelativeLayout>
@@ -194,16 +193,16 @@
 
                 <ImageButton
                     android:id="@+id/btnRoundMode"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="0dp"
                     android:layout_marginTop="0dp"
                     android:background="@drawable/ic_round_mode" />
 
                 <ImageButton
                     android:id="@+id/btnSRF05Mode"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/btnRoundMode"
                     android:layout_marginRight="0dp"
                     android:layout_marginTop="2dp"
@@ -222,16 +221,16 @@
 
                 <ImageButton
                     android:id="@+id/btnSoundMode"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/ic_sound_mode" />
 
                 <ImageButton
                     android:id="@+id/btnLineMode"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/btnSoundMode"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="2dp"
@@ -243,14 +242,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/layoutDance"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="128dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginRight="130dp"
                 android:layout_alignParentRight="true" >
 
                 <ImageButton
                     android:id="@+id/btnDanceMode"
-                    android:layout_width="28pt"
-                    android:layout_height="26pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/runaround_config" />
@@ -276,7 +275,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="2dp"
             android:layout_marginLeft="30dp"
-            android:orientation="horizontal">
+            android:layout_alignParentLeft="true">
             <at.grabner.circleprogress.CircleProgressView
                 android:id="@+id/circlePr"
                 android:layout_width="wrap_content"
@@ -305,10 +304,10 @@
                 app:cpv_barStartEndLineColor="@color/black"
                 />
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:id="@+id/layout_joystick"
-                android:orientation = "horizontal"
+                android:orientation="horizontal"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/ic_joystick">
@@ -328,35 +327,35 @@
         android:layout_marginBottom="5dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/layoutGetLine"
             android:orientation ="horizontal"
             android:layout_centerHorizontal="true">
 
             <TextView
                 android:id="@+id/line_left"
-                android:layout_width="41dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_line_off" />
 
             <ImageButton
                 android:id="@+id/btnIconLine"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/line_left"
                 android:background="@drawable/ic_read_line" />
             <TextView
                 android:id="@+id/line_right"
-                android:layout_width="42dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/btnIconLine"
                 android:background="@drawable/ic_line_off"/>
         </RelativeLayout>
         <!--- ____________Start layout Read button, sound Sensor________-->
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/layoutGetSoundButton"
             android:layout_below="@+id/layoutGetLine"
             android:layout_marginTop="5dp"
@@ -365,20 +364,20 @@
 
             <ImageButton
                 android:id="@+id/btnIconSound"
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_read_sound" />
             <ImageButton
                 android:id="@+id/btnIconButton"
-                android:layout_width="75dp"
+                android:layout_width="wrap_content"
                 android:layout_toRightOf="@+id/btnIconSound"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_read_button" />
         </RelativeLayout>
         <!--- ____________Start layout Read SRF05 Sensor________-->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:id="@+id/layoutGetSrf05"
             android:layout_below="@+id/layoutGetSoundButton"
             android:layout_marginTop="5dp"
@@ -387,13 +386,13 @@
 
             <ImageButton
                 android:id="@+id/btnIconSrf05"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_read_srf05" />
             <TextView
                 android:id="@+id/text_srf05"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="8dp"
                 android:text="Read srf05" />
@@ -401,7 +400,7 @@
         <!--- ____________Start layout Read Color Sensor________-->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:id="@+id/layoutGetColor"
             android:layout_below="@id/layoutGetSrf05"
             android:layout_marginTop="5dp"
@@ -410,13 +409,13 @@
 
             <ImageButton
                 android:id="@+id/btnIconColor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_read_color" />
             <TextView
                 android:id="@+id/text_color"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="12dp"
@@ -426,7 +425,7 @@
         <!--- ____________Start layout Read Light  Sensor________-->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:id="@+id/layoutGetLight"
             android:layout_below="@+id/layoutGetColor"
             android:layout_marginTop="5dp"
@@ -435,13 +434,13 @@
 
             <ImageButton
                 android:id="@+id/btnIconLight"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/ic_read_light" />
             <TextView
                 android:id="@+id/text_light"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
@@ -472,7 +471,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="78dp"
                     android:textColor="#58FFFF"
                     android:textSize="12dp" />
 
