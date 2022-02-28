@@ -41,6 +41,34 @@ Blockly.JavaScript['robot_move'] = function(block) {
     return code;
 };
 
+Blockly.JavaScript['playwithmatrix'] = function(block) {
+    var dropdown_port = block.getFieldValue('Port');
+    var map1 = block.getFieldValue('Map');
+    var map = [block.getFieldValue('Map')[0],
+        block.getFieldValue('Map')[1],
+        block.getFieldValue('Map')[2],
+        block.getFieldValue('Map')[3],
+        block.getFieldValue('Map')[4],
+        block.getFieldValue('Map')[5],
+        block.getFieldValue('Map')[6],
+        block.getFieldValue('Map')[7]
+    ];
+    var number_duration = block.getFieldValue('Duration');
+
+    if (dropdown_port == "Port 1") var port = 1;
+    else if (dropdown_port == "Port 2") var port = 2;
+    else if (dropdown_port == "Port 3") var port = 3;
+    else if (dropdown_port == "Port 4") var port = 4;
+    else if (dropdown_port == "Port 5") var port = 5;
+    else if (dropdown_port == "Port 6") var port = 6;
+    else if (dropdown_port == "Port 7") var port = 7;
+    else if (dropdown_port == "Port 8") var port = 8;
+    var code = 'sendCmd(' + '2,' + port + ',7,' + number_duration + ',0,0,' +
+        map.toString() + ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);\n';
+    console.log("MAP: " + code);
+    return code;
+};
+
 Blockly.JavaScript['playwithmatrixledchar'] = function(block) {
 
     matrixCharMap = [
@@ -371,6 +399,13 @@ Blockly.JavaScript['test_cal_field'] = function(block) {
 Blockly.JavaScript['test_vel_field'] = function(block) {
     // var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
     var code = 'var m = ' + block.getFieldValue('NAME');
+    console.log("CODE GEN Vel: " + code);
+    return code;
+};
+
+Blockly.JavaScript['field_matrix'] = function(block) {
+    // var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = 'var m = ' + block.getFieldValue('NAME')[1];
     console.log("CODE GEN Vel: " + code);
     return code;
 };

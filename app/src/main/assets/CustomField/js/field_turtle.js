@@ -527,7 +527,7 @@ CustomFields.FieldTurtle.prototype.createView_ = function() {
         'transform': 'scale(1.5)'
     }, this.movableGroup_);
     this.turtleGroup_ = Blockly.utils.dom.createSvgElement('g', {
-        // Makes the smaller turtle graphic align with the hats.
+        // Makes the smaller turtle graphic align with the hats.-
         'class': 'turtleBody'
     }, scaleGroup);
     var tail = Blockly.utils.dom.createSvgElement('path', {
