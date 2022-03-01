@@ -14,6 +14,16 @@ goog.require('Blockly.utils.Size');
 var CustomFields = CustomFields || {};
 
 CustomFields.FieldMatrix = function(R1, R2, R3, R4, R5, R6, R7, R8, opt_validator) {
+    this.cellLed_ = [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null]
+    ];
     var value = {};
     value.R1 = R1 || 0x00;
     value.R2 = R2 || 0x00;
@@ -25,7 +35,8 @@ CustomFields.FieldMatrix = function(R1, R2, R3, R4, R5, R6, R7, R8, opt_validato
     value.R8 = R8 || 0x00;
 
     CustomFields.FieldMatrix.superClass_.constructor.call(this, value, opt_validator);
-    this.size_ = new Blockly.utils.Size(0, 0);
+    // this.size_ = new Blockly.utils.Size(0, 0);
+    this.isDirty_ = true;
 }
 Blockly.utils.object.inherits(CustomFields.FieldMatrix, Blockly.Field);
 
@@ -44,16 +55,6 @@ CustomFields.FieldMatrix.fromJson = function(options) {
 
 CustomFields.FieldMatrix.prototype.CURSOR = 'pointer';
 CustomFields.FieldMatrix.prototype.SERIALIZABLE = true;
-CustomFields.FieldMatrix.prototype.cellLed_ = [
-    [null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null]
-];
 
 CustomFields.FieldMatrix.prototype.initView = function() {
     CustomFields.FieldMatrix.superClass_.initView.call(this);
