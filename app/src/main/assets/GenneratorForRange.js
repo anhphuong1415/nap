@@ -43,16 +43,7 @@ Blockly.JavaScript['robot_move'] = function(block) {
 
 Blockly.JavaScript['playwithmatrix'] = function(block) {
     var dropdown_port = block.getFieldValue('Port');
-    var map1 = block.getFieldValue('Map');
-    var map = [block.getFieldValue('Map')[0],
-        block.getFieldValue('Map')[1],
-        block.getFieldValue('Map')[2],
-        block.getFieldValue('Map')[3],
-        block.getFieldValue('Map')[4],
-        block.getFieldValue('Map')[5],
-        block.getFieldValue('Map')[6],
-        block.getFieldValue('Map')[7]
-    ];
+    var map = block.getFieldValue('Map');
     var number_duration = block.getFieldValue('Duration');
 
     if (dropdown_port == "Port 1") var port = 1;
@@ -64,7 +55,15 @@ Blockly.JavaScript['playwithmatrix'] = function(block) {
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
     var code = 'sendCmd(' + '2,' + port + ',7,' + number_duration + ',0,0,' +
-        map.toString() + ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);\n';
+        map.R1.toString() + ',' +
+        map.R2.toString() + ',' +
+        map.R3.toString() + ',' +
+        map.R4.toString() + ',' +
+        map.R5.toString() + ',' +
+        map.R6.toString() + ',' +
+        map.R7.toString() + ',' +
+        map.R8.toString() + ',' +
+        '0, 0, 0, 0);\n';
     console.log("MAP: " + code);
     return code;
 };
@@ -123,7 +122,7 @@ Blockly.JavaScript['playwithmatrixledchar'] = function(block) {
     else if (dropdown_port == "Port 7") var port = 7;
     else if (dropdown_port == "Port 8") var port = 8;
     var code = 'sendCmd(' + '2,' + port + ',7,' + number_duration + ',0,0,' +
-        matrixCharMap[text_char.charCodeAt(0) - 65].toString() + ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);\n';
+        matrixCharMap[text_char.charCodeAt(0) - 65].toString() + ', 0, 0, 0, 0);\n';
     return code;
 };
 
