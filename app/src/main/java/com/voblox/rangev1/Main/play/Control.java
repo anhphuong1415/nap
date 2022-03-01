@@ -13,6 +13,10 @@ import com.voblox.rangev1.Utilities.shareFunction;
 import com.voblox.rangev1.Utilities.define;
 import com.voblox.rangev1.Utilities.connectingBluetooth;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
+
 import com.voblox.rangev1.Utilities.define;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
@@ -35,6 +39,8 @@ import android.view.MotionEvent;
 import android.view.View;
 //import android.support.v4.app.ActivityCompat;
 //import android.support.v4.content.ContextCompat;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -178,21 +184,20 @@ public class Control extends AppCompatActivity {
         shareFunction.getInstance().getData(define.NONE);
     }
 
+    private View decorView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control);
-        View decorView = getWindow().getDecorView();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            );
-        }
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0)
+                    decorView.setSystemUiVisibility(hideSystemBars());
+            }
+        });
 
         layout_joystick = (RelativeLayout) findViewById(R.id.layout_joystick);
 
@@ -562,8 +567,10 @@ public class Control extends AppCompatActivity {
         });
 
         js = new joystick(getApplicationContext(), layout_joystick, R.drawable.joystick_center);
-        js.setStickSize(180, 180);
-        js.setLayoutSize(420, 420);
+        int width = js.getLayoutWidth() / 3;
+        int height = js.getStickHeight() / 3;
+        js.setStickSize(width, width);
+//        js.setLayoutSize(420, 420);
         js.setLayoutAlpha(255);
         js.setStickAlpha(255);
         js.setOffset(90);
@@ -654,6 +661,29 @@ public class Control extends AppCompatActivity {
             }
         });
 
+    }
+    
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            );
+        }
+    }
+    private int hideSystemBars() {
+        return    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
     }
     @Override
     protected void onStart() {
