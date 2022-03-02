@@ -1,0 +1,24 @@
+.ringLed {
+    height: 2em;
+    width: 1.5em;
+    margin: 0.05em;
+    border: solid;
+    border-width: 1px;
+    border-radius: 10%;
+    box-shadow: 0 0 0.2em 0 #61a7d6;
+    background-color: transparent;
+}
+
+.editorRingLed {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#RingDivParent {
+    border: #79c3f4;
+    border-radius: 50;
+    border-width: 1px;
+    width: 15em;
+    height: 15em;
+}

@@ -524,3 +524,11 @@ Blockly.Blocks['field_matrix'] = {
         this.setColour(285);
     }
 };
+
+Blockly.Blocks['field_ring'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(new CustomFields.FieldRing(), 'NAME');
+        this.setColour(285);
+    }
+};

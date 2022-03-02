@@ -408,3 +408,10 @@ Blockly.JavaScript['field_matrix'] = function(block) {
     console.log("CODE GEN Vel: " + code);
     return code;
 };
+
+Blockly.JavaScript['field_ring'] = function(block) {
+    // var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = 'var m = ' + block.getFieldValue('NAME').L1;
+    console.log("CODE GEN Vel: " + code);
+    return code;
+};
