@@ -185,34 +185,8 @@ Blockly.Blocks['ringled'] = {
                 ["Port 3", "Port 3"],
                 ["Port 5", "Port 5"]
             ]), "ringLedModule")
-            .appendField("phát sáng như");
-        this.appendDummyInput()
-            .appendField("Led 1: ")
-            .appendField(new Blockly.FieldColour("#ff6666"), "Led_1")
-            .appendField("Led 2: ")
-            .appendField(new Blockly.FieldColour("#990000"), "Led_2")
-            .appendField("Led 3: ")
-            .appendField(new Blockly.FieldColour("#009900"), "Led_3")
-            .appendField("Led 4: ")
-            .appendField(new Blockly.FieldColour("#009900"), "Led_4");
-        this.appendDummyInput()
-            .appendField("Led 5: ")
-            .appendField(new Blockly.FieldColour("#3366ff"), "Led_5")
-            .appendField("Led 6: ")
-            .appendField(new Blockly.FieldColour("#000099"), "Led_6")
-            .appendField("Led 7: ")
-            .appendField(new Blockly.FieldColour("#cc33cc"), "Led_7")
-            .appendField("Led 8: ")
-            .appendField(new Blockly.FieldColour("#66ffff"), "Led_8");
-        this.appendDummyInput()
-            .appendField("Led 9: ")
-            .appendField(new Blockly.FieldColour("#ff99ff"), "Led_9")
-            .appendField("Led 10: ")
-            .appendField(new Blockly.FieldColour("#33cc00"), "Led_10")
-            .appendField("Led 11: ")
-            .appendField(new Blockly.FieldColour("#33ffff"), "Led_11")
-            .appendField("Led 12: ")
-            .appendField(new Blockly.FieldColour("#ffff66"), "Led_12");
+            .appendField("phát sáng như")
+            .appendField(new CustomFields.FieldRing(), 'LED');
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);

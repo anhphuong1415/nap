@@ -165,18 +165,18 @@ Blockly.JavaScript['turnoffledrbg'] = function(block) {
 
 Blockly.JavaScript['ringled'] = function(block) {
     var dropdown_port = block.getFieldValue('ringLedModule');
-    var colour_led_1 = block.getFieldValue('Led_1');
-    var colour_led_2 = block.getFieldValue('Led_2');
-    var colour_led_3 = block.getFieldValue('Led_3');
-    var colour_led_4 = block.getFieldValue('Led_4');
-    var colour_led_5 = block.getFieldValue('Led_5');
-    var colour_led_6 = block.getFieldValue('Led_6');
-    var colour_led_7 = block.getFieldValue('Led_7');
-    var colour_led_8 = block.getFieldValue('Led_8');
-    var colour_led_9 = block.getFieldValue('Led_9');
-    var colour_led_10 = block.getFieldValue('Led_10');
-    var colour_led_11 = block.getFieldValue('Led_11');
-    var colour_led_12 = block.getFieldValue('Led_12');
+    var colour_led_1 = block.getFieldValue('LED').L9;
+    var colour_led_2 = block.getFieldValue('LED').L10;
+    var colour_led_3 = block.getFieldValue('LED').L11;
+    var colour_led_4 = block.getFieldValue('LED').L12;
+    var colour_led_5 = block.getFieldValue('LED').L1;
+    var colour_led_6 = block.getFieldValue('LED').L2;
+    var colour_led_7 = block.getFieldValue('LED').L3;
+    var colour_led_8 = block.getFieldValue('LED').L4;
+    var colour_led_9 = block.getFieldValue('LED').L5;
+    var colour_led_10 = block.getFieldValue('LED').L6;
+    var colour_led_11 = block.getFieldValue('LED').L7;
+    var colour_led_12 = block.getFieldValue('LED').L8;
 
     if (dropdown_port == "Port 1") var port = 1;
     else if (dropdown_port == "Port 2") var port = 2;
