@@ -31,11 +31,14 @@ import com.voblox.rangev1.R;
 
 public class Music extends AppCompatActivity {
     ImageButton MusicBackBtn, musicConnectBluetooth;
+    ImageButton btnMCSong, btnHpbd_song, btnChickenSong, btnStarSong;
     View c_s, d_s, e_s, f_s, g_s, a_s, b_s;
     View c_d_s, d_e_s, f_g_s, g_a_s, a_b_s;
     BluetoothAdapter bluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
     Timer timer;
+    int index = 0;
+    int buzzerFreq = 0;
 
     private void check_connected() {
         TimerTask timerTask = new TimerTask() {
@@ -44,7 +47,7 @@ public class Music extends AppCompatActivity {
                 try {
                     if (shareFunction.getStateConnectBluetooth()) {
                         musicConnectBluetooth.setBackgroundResource(R.drawable.ic_ble_on);
-                        timer.cancel();
+//                        timer.cancel();
                     } else {
                         musicConnectBluetooth.setBackgroundResource(R.drawable.ic_ble_off);
                     }
@@ -55,7 +58,7 @@ public class Music extends AppCompatActivity {
         if (timer != null)
             timer.cancel();
         timer = new Timer("Timer");
-        timer.schedule(timerTask, 0, 1000);
+        timer.schedule(timerTask, 0, 2000);
     }
     private View decorView;
 
@@ -64,6 +67,16 @@ public class Music extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
         decorView = getWindow().getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            );
+        }
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
             public void onSystemUiVisibilityChange(int visibility) {
@@ -73,7 +86,11 @@ public class Music extends AppCompatActivity {
         });
 
         MusicBackBtn = (ImageButton) findViewById(R.id.btnMusicBack);
-        musicConnectBluetooth = (ImageButton)findViewById(R.id.btnConnectBluetooth) ;
+        musicConnectBluetooth = (ImageButton)findViewById(R.id.btnConnectBluetooth);
+        btnMCSong = (ImageButton) findViewById(R.id.btn_merry_chrismas);
+        btnHpbd_song = (ImageButton) findViewById(R.id.btn_hpbd);
+        btnChickenSong = (ImageButton) findViewById(R.id.btn_chicken);
+        btnStarSong = (ImageButton) findViewById(R.id.btn_star);
         c_s = (View)findViewById(R.id.c_sound);
         d_s = (View)findViewById(R.id.d_sound);
         e_s = (View)findViewById(R.id.e_sound);
@@ -109,91 +126,198 @@ public class Music extends AppCompatActivity {
         c_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.C, 250);
+                shareFunction.runBuzzer(0,0,0, define.C, 1);
             }
         });
         d_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.D, 250);
+                shareFunction.runBuzzer(0,0,0, define.D, 1);
             }
         });
         e_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.E, 250);
+                shareFunction.runBuzzer(0,0,0, define.E, 1);
             }
         });
         f_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.F, 250);
+                shareFunction.runBuzzer(0,0,0, define.F, 1);
             }
         });
         g_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.G, 250);
+                shareFunction.runBuzzer(0,0,0, define.G, 1);
             }
         });
         a_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.A, 250);
+                shareFunction.runBuzzer(0,0,0, define.A, 1);
             }
         });
         b_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.B, 250);
+                shareFunction.runBuzzer(0,0,0, define.B, 1);
             }
         });
         c_d_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.C_D, 250);
+                shareFunction.runBuzzer(0,0,0, define.C_D, 1);
             }
         });
         d_e_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.D_E, 250);
+                shareFunction.runBuzzer(0,0,0, define.D_E, 1);
             }
         });
         f_g_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.F_G, 250);
+                shareFunction.runBuzzer(0,0,0, define.F_G, 1);
             }
         });
         g_a_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.G_A, 250);
+                shareFunction.runBuzzer(0,0,0, define.G_A, 1);
             }
         });
         a_b_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFunction.runBuzzer(0,0,0, define.A_B, 250);
+                shareFunction.runBuzzer(0,0,0, define.A_B, 1);
+            }
+        });
+        btnMCSong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (index = 0; index < 44; index++) {
+                    buzzerFreq = define.merryChrimasSong[index];
+                    switch (index) {
+                        case 2:
+                        case 5:
+                        case 20:
+                        case 21:
+                        case 24:
+                        case 27:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 2);
+                            break;
+                        case 10:
+                        case 32:
+                        case 43:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 4);
+                            break;
+                        default:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 1);
+                            break;
+                    }
+                    shareFunction.delay_ms(300);
+                }
+            }
+        });
+
+        btnHpbd_song.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (index = 0; index < 25; index++) {
+                    buzzerFreq = define.hpbdSong[index];
+                    switch (index) {
+                        case 2:
+                        case 5:
+                        case 8:
+                        case 11:
+                        case 15:
+                        case 19:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 2);
+                            break;
+                        case 3:
+                        case 9:
+                        case 14:
+                        case 18:
+                        case 22:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 3);
+                            break;
+                        case 24:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 4);
+                            break;
+                        default:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 1);
+                            break;
+                    }
+                    shareFunction.delay_ms(300);
+                }
+            }
+        });
+        btnChickenSong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (index = 0; index < 41; index++) {
+                    buzzerFreq = define.chickenSong[index];
+                    switch (index) {
+                        case 8:
+                        case 9:
+                        case 18:
+                        case 19:
+                        case 30:
+                        case 31:
+                        case 39:
+                        case 40:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 3);
+                            break;
+                        case 20:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 2);
+                            break;
+                        default:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 1);
+                            break;
+                    }
+                    shareFunction.delay_ms(300);
+                }
+            }
+        });
+        btnStarSong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (index = 0; index < 34; index++) {
+                    buzzerFreq = define.starLightSong[index];
+                    switch (index) {
+                        case 2:
+                        case 6:
+                        case 10:
+                        case 18:
+                        case 19:
+                        case 31:
+                        case 24:
+                        case 29:
+                        case 3:
+                        case 7:
+                        case 11:
+                        case 16:
+                        case 20:
+                        case 25:
+                        case 30:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 2);
+                            break;
+                        case 33:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 3);
+                            break;
+                        default:
+                            shareFunction.runBuzzer(0, 0, 0, buzzerFreq, 1);
+                            break;
+                    }
+                    shareFunction.delay_ms(300);
+                }
             }
         });
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            );
-        }
-    }
     private int hideSystemBars() {
         return    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

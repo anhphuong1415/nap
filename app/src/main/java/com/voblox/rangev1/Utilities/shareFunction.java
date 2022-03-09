@@ -25,8 +25,8 @@ import java.util.TimerTask;
 import java.util.Vector;
 
 public class shareFunction {
-    private static classicBluetooth blue;
     private static Timer timer;
+    private static Timer timerCheckAlive;
     boolean stateBond = false;
     private static shareFunction mShareFunction = null;
     static classicBluetooth blueshare;
@@ -67,6 +67,11 @@ public class shareFunction {
     public static void sendData() {
         if (blueshare.getInstance() != null) {
             blueshare.getInstance().write(define.cmdRunModule);
+        }
+    }
+    public static void sendStartCmd() {
+        if (blueshare.getInstance() != null) {
+            blueshare.getInstance().write(define.cmdStartCtrRobot);
         }
     }
     public static shareFunction getInstance ()
@@ -222,6 +227,20 @@ public class shareFunction {
                 timer.cancel();
             }
         }
+    }
+
+    public void checkConnectAlive() {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                blueshare.resetConnectionAlive(0);
+                shareFunction.sendGetCommand(define.HEARTBIT, define.ON_MODULE);
+            }
+        };
+        if (timerCheckAlive != null)
+            timerCheckAlive.cancel();
+        timerCheckAlive = new Timer("Timer");
+        timerCheckAlive.schedule(timerTask, 0, 3000);
     }
 //    byte[] handleData(byte[] inBuffer) {
 //        byte[] bufGet = {0, 0, 0, 0};

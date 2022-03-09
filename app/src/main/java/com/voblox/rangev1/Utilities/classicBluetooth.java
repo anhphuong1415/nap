@@ -55,6 +55,7 @@ public class classicBluetooth  extends Service {
     public static final int STATE_CONNECTING = 2;
     public static final int STATE_CONNECTED = 3;
     private static boolean statusConnect = false;
+    private static float hearBitData = 0;
 
     private ConnectBtThread mConnectThread;
     private static ConnectedBtThread mConnectedThread;
@@ -231,6 +232,10 @@ public class classicBluetooth  extends Service {
     {
         statusConnect = state;
     }
+    public static void resetConnectionAlive(float state) {
+        hearBitData = state;
+        Log.i("TAG","Reset Connection Alive:" + Float.toString(hearBitData));
+    }
     public void retry_connect()
     {
         connectToDevice(BT_DEVICE);
@@ -250,7 +255,7 @@ public class classicBluetooth  extends Service {
         private final BluetoothSocket mSocket;
         private final BluetoothDevice mDevice;
 
-        public ConnectBtThread(BluetoothDevice device){
+        public ConnectBtThread(BluetoothDevice device) {
             mDevice = device;
             BluetoothSocket socket = null;
             try {
@@ -268,15 +273,14 @@ public class classicBluetooth  extends Service {
 
             try {
                 mSocket.connect();
-                Log.d("service","connect thread run method (connected)");
+                Log.i("hhhh","connect thread run method (connected)");
                 SharedPreferences pre = getSharedPreferences("BT_NAME",0);
                 pre.edit().putString("bluetooth_connected",mDevice.getName()).apply();
-
             } catch (IOException e) {
 
                 try {
                     mSocket.close();
-                    Log.d("service","connect thread run method ( close function)");
+                    Log.i("hhhh","connect thread run method ( close function)");
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -302,6 +306,7 @@ public class classicBluetooth  extends Service {
         private final InputStream inS;
         private final OutputStream outS;
         private int mByte;
+        float heartBitData = 0;
         ByteArrayOutputStream inputStream = new ByteArrayOutputStream( );
         byte[] tmpData = new byte[100];
         byte[] sendData =  new byte[100];
@@ -320,8 +325,8 @@ public class classicBluetooth  extends Service {
             }
             inS = tmpIn;
             outS = tmpOut;
-            statusConnect = true;
-            Log.i("hhhh","statusConnect = true");
+//            shareFunction.getInstance().checkConnectAlive();
+            Log.i("BACPD1","inputStream = " + inS + " OutputStream: " + outS);
         }
 
         @Override
@@ -341,17 +346,29 @@ public class classicBluetooth  extends Service {
 //                                + String.format("%02X", sendData[3]) + String.format("%02X", sendData[4]) + String.format("%02X", sendData[5])
 //                                + String.format("%02X", sendData[6]) + String.format("%02X", sendData[7])
 //                                + String.format("%02X", sendData[8])));
-//
-//                        Log.i("mByte ", "--" + msgReceived);
+//                        Log.i("TAG ", "--" + msgReceived);
                         String dataSend = new String(sendData, charset);
                         result.setAction(mBroadcastGetData);
                         result.putExtra("fbData", dataSend);
                         sendBroadcast(result);
+                        if (sendData[2] == 0x0F) {
+                           // statusConnect = true;
+                            int intBits = (((byte)sendData[6] & 0xFF) << 24) |
+                                    (((byte)sendData[5] & 0xFF) << 16) |
+                                    (((byte)sendData[4] & 0xFF) << 8) |
+                                    ((byte)sendData[3] & 0xFF);
+                            hearBitData = Float.intBitsToFloat(intBits);
+                        }
                         inputStream.reset();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Log.i("hhhh ", "errr");
+                    Log.i("ERR", "error");
+                }
+                if (hearBitData == 12345) {
+                    statusConnect = true;
+                } else {
+                    statusConnect = false;
                 }
             }
         }

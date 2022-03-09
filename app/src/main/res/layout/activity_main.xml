@@ -48,32 +48,33 @@
         android:layout_below="@id/layout_header"
         android:orientation="horizontal"
         android:stretchColumns="1,1"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/layoutLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/ic_menu_bg">
             <!--- ____________Start layout Mechanical________-->
             <ImageButton
                 android:id="@+id/btn_mechanical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:background="@drawable/ic_mechanical"/>
             <!--- ____________Start layout Programming________-->
             <ImageButton
                 android:id="@+id/btn_play"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_mechanical"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
@@ -81,8 +82,9 @@
             <!--- ____________Start layout Guidle________-->
             <ImageButton
                 android:id="@+id/btn_guidle"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_play"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
@@ -90,8 +92,9 @@
             <!--- ____________Start layout Control________-->
             <ImageButton
                 android:id="@+id/btn_program"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_guidle"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
@@ -99,23 +102,26 @@
             <!--- ____________Start layout Exit________-->
             <ImageButton
                 android:id="@+id/btn_exit"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_program"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/ic_btn_exit"/>
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+    <RelativeLayout
             android:id="@+id/layoutRight"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/layoutLeft"
             android:orientation="horizontal"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/ranzer_robot">
-        </LinearLayout>
+    </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

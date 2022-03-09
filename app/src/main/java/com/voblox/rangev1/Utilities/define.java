@@ -20,6 +20,7 @@ public class define {
     public static final int SERVO = 12;
     public static final int MOTOR1_RUN = 13;
     public static final int MOTOR2_RUN = 14;
+    public static final int HEARTBIT = 15;
 
     public static final int LINE_DETECT_MODE = 100;
     public static final int LINE_CIRCLE_MODE = 101;
@@ -178,7 +179,16 @@ public class define {
     public static final int A_B = 932;
     public static final int B = 987;
     /*Define song for buzzer*/
-    public static int [] hpbdSong= {525, 525, 587, 525, 698, 659, 525,525, 587, 525,784, 698, 525, 525, 987, 880, 698, 659, 587, 932, 932, 880, 698, 784, 698};
+    public static int [] hpbdSong = {525, 525, 587, 525, 698, 659, 525,525, 587,
+            525,784, 698, 525, 525, 987, 880, 698, 659, 587, 932, 932, 880, 698, 784, 698};
+    public static int [] merryChrimasSong = { E, E, E, E, E, E, E, G, C, D, E, F, F, F, E, E, E, D, D, E, D, G, E, E, E, E, E, E ,E, G, C, D, E, F, F, F, E, E, E, G, G, F, D, C};
+    public static int [] starLightSong = {C, E, F, G, F, F, G, E, E, E, F,
+                                          G, G, G, G, G, D, E, D, E, D, C, E, E, F,
+                                          G, C, B, G, B, F, D, C, B};
+    public static int [] chickenSong = {A, G, E, A, B, A, G, E, G, G,
+                                        G, B, B, A, B, A, G, F, D, D,
+                                        B, B, A, G, D, E, G, A, G, E, A, A,
+                                        D, D, E, G, A, G, E, G ,G, };
     /* header1(0) header2(1) length(2) id(3) action(4) device(5)
      * action: GET: 1, RUN: 2, RESET: 4, START: 5
      * device: SR05: 1, LINE: 2, LIGHT: 3, COLOR: 4, JOYSTIC: 5, BTN_MODE: 6, LEDMATRIX: 7, RGB: 8, BUZZER: 9
@@ -191,5 +201,6 @@ public class define {
     public static byte[] cmdRunModule = {(byte)0xff, 0x55, 0, 0, RUN, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public  static final int MAX_STEP_RANZER = 24;
+    public static byte[] cmdStartCtrRobot = {(byte)0xff, 0x55, 0x09, 0, START, 0, 0, 0, 0, 0, 0};
 
 }

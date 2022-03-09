@@ -68,13 +68,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/layoutMatrixRgb"
-                android:layout_marginTop="31dp">
+                android:layout_marginTop="29dp">
 
                 <ImageButton
                     android:id="@+id/btn_ledmatrix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="39dp"
                     android:background="@drawable/matrix_config" />
 
                 <ImageButton
@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/btn_ledmatrix"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="39dp"
                     android:layout_marginTop="2dp"
                     android:background="@drawable/ic_rgb_off" />
             </RelativeLayout>
@@ -215,8 +215,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/layoutSoundLine"
-                android:layout_marginTop="2dp"
-                android:layout_marginRight="82dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="77dp"
                 android:layout_alignParentRight="true" >
 
                 <ImageButton
@@ -243,14 +243,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/layoutDance"
                 android:layout_marginTop="28dp"
-                android:layout_marginRight="130dp"
+                android:layout_marginRight="120dp"
                 android:layout_alignParentRight="true" >
 
                 <ImageButton
                     android:id="@+id/btnDanceMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="24dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/runaround_config" />
             </RelativeLayout>
@@ -264,7 +264,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id ="@+id/layoutBodyBottom"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal">
 
         <!--- ____________Start layout Joystick________-->

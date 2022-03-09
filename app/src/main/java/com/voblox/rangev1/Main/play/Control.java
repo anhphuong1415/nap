@@ -125,7 +125,7 @@ public class Control extends AppCompatActivity {
                     if (shareFunction.getStateConnectBluetooth()) {
                         Log.i("TAG"," connectedr");
                         btnConnect.setBackgroundResource(R.drawable.ic_ble_on);
-                        timer.cancel();
+//                        timer.cancel();
                     } else {
                         btnConnect.setBackgroundResource(R.drawable.ic_ble_off);
                         Log.i("TAG"," not connect");
@@ -137,7 +137,7 @@ public class Control extends AppCompatActivity {
         if (timer != null)
             timer.cancel();
         timer = new Timer("Timer");
-        timer.schedule(timerTask, 0, 1000);
+        timer.schedule(timerTask, 0, 2000);
     }
 
     void resetState(boolean state)
@@ -191,6 +191,16 @@ public class Control extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control);
         decorView = getWindow().getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            );
+        }
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
             public void onSystemUiVisibilityChange(int visibility) {
@@ -661,21 +671,6 @@ public class Control extends AppCompatActivity {
             }
         });
 
-    }
-    
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            );
-        }
     }
     private int hideSystemBars() {
         return    View.SYSTEM_UI_FLAG_LAYOUT_STABLE

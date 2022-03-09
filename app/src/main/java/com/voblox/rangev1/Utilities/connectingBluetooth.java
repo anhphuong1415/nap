@@ -31,10 +31,12 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import com.voblox.rangev1.R;
+import com.voblox.rangev1.Utilities.classicBluetooth;
 
 public class connectingBluetooth extends AppCompatActivity {
     ImageButton btnCancle;
     classicBluetooth blueConnecting;
+    static classicBluetooth blueToothSend;
     boolean stateBond = false;
     Timer timer;
     static boolean stateConnected = false;
@@ -46,11 +48,11 @@ public class connectingBluetooth extends AppCompatActivity {
     ListView deviceList;
     ArrayList arrayList;
     private ArrayAdapter<String> btArrayAdapter;
+    int cntSendCmd = 0;
 
     public void toastMsg(String mess){
         Toast.makeText(this,mess,Toast.LENGTH_SHORT).show();
     }
-
     public void check_connected()
     {
         TimerTask timerTask = new TimerTask() {
@@ -59,20 +61,20 @@ public class connectingBluetooth extends AppCompatActivity {
                 try {
                     if (blueConnecting.get_state_blue_connect()) {
                         Log.i("TAG","connected to the bluetooth Device");
+                        shareFunction.getInstance().checkConnectAlive();
                         finish();
                         timer.cancel();
                         stateConnected = true;
                     }
                     else {
-                        if(!bAdapter.isDiscovering()){
-                            //check BT permissions in manifest
-                            checkBTPermissions();
-                            bAdapter.startDiscovery();
-                            IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-                            registerReceiver(mReceiver, discoverDevicesIntent);
+                        cntSendCmd++;
+                        shareFunction.getInstance().sendStartCmd();
+                        if (cntSendCmd >= 3) {
+                            cntSendCmd = 0;
+                            blueConnecting.retry_connect();
+                            Log.i("BACPD1","retry_connect");
                         }
-                        blueConnecting.retry_connect();
-                        Log.i("TAG","retry_connect");
+                        stateConnected = false;
                     }
                 }
                 catch (NullPointerException ex) {
@@ -104,6 +106,16 @@ public class connectingBluetooth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connecting_bluetooth);
         decorView = getWindow().getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            );
+        }
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
             public void onSystemUiVisibilityChange(int visibility) {
@@ -172,40 +184,27 @@ public class connectingBluetooth extends AppCompatActivity {
 //            blueConnecting.stopService(serviceIntent);
 //        else
         startService(serviceIntent);
-        
+
         check_connected();
 
         btnCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 blueConnecting.stopService(serviceIntent);
-//                bAdapter = BluetoothAdapter.getDefaultAdapter();
-//                if(bAdapter.isDiscovering()){
-//                bAdapter.cancelDiscovery();
-//                stopService(serviceIntent);
-//                    Log.i("TAG", "btnDiscover: Canceling discovery.");
-//                }
+                bAdapter = BluetoothAdapter.getDefaultAdapter();
+                if(bAdapter.isDiscovering()){
+                    bAdapter.cancelDiscovery();
+                    stopService(serviceIntent);
+                    Log.i("TAG", "btnDiscover: Canceling discovery.");
+                }
                 Log.i("TAG", "btnDiscover: Distroy everything.");
                 finish();
+                if (timer != null)
+                    timer.cancel();
 //                unregisterReceiver(mReceiver);
 //                unregisterReceiver(mBroadcastReceiver1);
             }
         });
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            );
-        }
     }
     private int hideSystemBars() {
         return    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
