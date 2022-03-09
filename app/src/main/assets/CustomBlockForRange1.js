@@ -18,7 +18,7 @@ Blockly.Blocks['playmusicnote'] = {
                 ["B", "B"]
             ]), "Note")
             .appendField("trong ")
-            .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "Duration")
+            .appendField(new CustomFields.FieldCalculate(0, 0, 255, 1), "Duration")
             .appendField("giây");
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
@@ -38,7 +38,7 @@ Blockly.Blocks['rgb_led'] = {
             .appendField(new Blockly.FieldColour("#00cccc"), "color_left")
             .appendField(new Blockly.FieldColour("#00cccc"), "color_right")
             .appendField("trong ")
-            .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "duration")
+            .appendField(new CustomFields.FieldCalculate(0, 0, 255, 1), "duration")
             .appendField("giây");
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
@@ -59,14 +59,39 @@ Blockly.Blocks['robot_move'] = {
                 ["Rẽ phải", "Rẽ phải"]
             ]), "Direction")
             .appendField("với vận tốc")
-            .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "Velocity")
+            .appendField(new CustomFields.FieldVelocity(0, 0, 255, 1), "Velocity")
             .appendField("trong")
-            .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "Duration")
+            .appendField(new CustomFields.FieldCalculate(0, 0, 255, 1), "Duration")
             .appendField("giây");
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(195);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['playwithmatrix'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("Utils/BlockIcon/dot_matrix.png", 30, 30, { alt: "*", flipRtl: "FALSE" }))
+            .appendField("Ma trận Led ở")
+            .appendField(new Blockly.FieldDropdown([
+                ["Port 1", "Port 1"],
+                ["Port 2", "Port 2"],
+                ["Port 3", "Port 3"],
+                ["Port 4", "Port 4"]
+            ]), "Port")
+            .appendField(" hiển thị ")
+            .appendField(new CustomFields.FieldMatrix(), "Map")
+            .appendField("trong")
+            .appendField(new CustomFields.FieldCalculate(0, 0, 255, 1), "Duration")
+            .appendField("giây");
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -86,7 +111,7 @@ Blockly.Blocks['playwithmatrixledchar'] = {
             .appendField(" hiển thị chữ")
             .appendField(new Blockly.FieldTextInput("A"), "char")
             .appendField("trong")
-            .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "Duration")
+            .appendField(new CustomFields.FieldCalculate(0, 0, 255, 1), "Duration")
             .appendField("giây");
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
@@ -122,7 +147,7 @@ Blockly.Blocks['matrixlebspecialchar'] = {
                 [{ "src": "Utils/BlockIcon/effect_3.gif", "width": 15, "height": 15, "alt": "*" }, "effect_3"]
             ]), "NAME")
             .appendField("trong")
-            .appendField(new Blockly.FieldNumber(0, 0, 255, 1), "Duration")
+            .appendField(new CustomFields.FieldCalculate(0, 0, 255, 1), "Duration")
             .appendField("giây");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -160,34 +185,8 @@ Blockly.Blocks['ringled'] = {
                 ["Port 3", "Port 3"],
                 ["Port 5", "Port 5"]
             ]), "ringLedModule")
-            .appendField("phát sáng như");
-        this.appendDummyInput()
-            .appendField("Led 1: ")
-            .appendField(new Blockly.FieldColour("#ff6666"), "Led_1")
-            .appendField("Led 2: ")
-            .appendField(new Blockly.FieldColour("#990000"), "Led_2")
-            .appendField("Led 3: ")
-            .appendField(new Blockly.FieldColour("#009900"), "Led_3")
-            .appendField("Led 4: ")
-            .appendField(new Blockly.FieldColour("#009900"), "Led_4");
-        this.appendDummyInput()
-            .appendField("Led 5: ")
-            .appendField(new Blockly.FieldColour("#3366ff"), "Led_5")
-            .appendField("Led 6: ")
-            .appendField(new Blockly.FieldColour("#000099"), "Led_6")
-            .appendField("Led 7: ")
-            .appendField(new Blockly.FieldColour("#cc33cc"), "Led_7")
-            .appendField("Led 8: ")
-            .appendField(new Blockly.FieldColour("#66ffff"), "Led_8");
-        this.appendDummyInput()
-            .appendField("Led 9: ")
-            .appendField(new Blockly.FieldColour("#ff99ff"), "Led_9")
-            .appendField("Led 10: ")
-            .appendField(new Blockly.FieldColour("#33cc00"), "Led_10")
-            .appendField("Led 11: ")
-            .appendField(new Blockly.FieldColour("#33ffff"), "Led_11")
-            .appendField("Led 12: ")
-            .appendField(new Blockly.FieldColour("#ffff66"), "Led_12");
+            .appendField("phát sáng như")
+            .appendField(new CustomFields.FieldRing(), 'LED');
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -226,9 +225,9 @@ Blockly.Blocks['motorselect'] = {
                 [{ "src": "Utils/BlockIcon/both_motor.png", "width": 15, "height": 15, "alt": "*" }, "Both"]
             ]), "MotorSelect")
             .appendField("quay với vận tốc")
-            .appendField(new Blockly.FieldNumber(1, 1, 255, 1), "velocity")
+            .appendField(new CustomFields.FieldVelocity(1, 1, 255, 1), "velocity")
             .appendField("trong")
-            .appendField(new Blockly.FieldNumber(1, 0, 255, 1), "duration")
+            .appendField(new CustomFields.FieldCalculate(1, 0, 255, 1), "duration")
             .appendField("giây");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -415,7 +414,7 @@ Blockly.Blocks['loop'] = {
             .appendField("Thực hiện");
         this.appendDummyInput()
             .appendField("lặp lại")
-            .appendField(new Blockly.FieldNumber(0, 0, 100, 1), "NAME")
+            .appendField(new CustomFields.FieldCalculate(0, 0, 100, 1), "NAME")
             .appendField("lần");
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
@@ -488,6 +487,22 @@ Blockly.Blocks['test_vel_field'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new CustomFields.FieldVelocity(0, 0, 1000, 1), 'NAME');
+        this.setColour(285);
+    }
+};
+
+Blockly.Blocks['field_matrix'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(new CustomFields.FieldMatrix(1, 16), 'NAME');
+        this.setColour(285);
+    }
+};
+
+Blockly.Blocks['field_ring'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(new CustomFields.FieldRing(), 'NAME');
         this.setColour(285);
     }
 };

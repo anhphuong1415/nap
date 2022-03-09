@@ -255,7 +255,6 @@ CustomFields.FieldVelocity.prototype.widgetDispose_ = function() {
         Blockly.browserEvents.unbind(this.mouseMoveWrapper_);
         this.mouseMoveWrapper_ = null;
     }
-    document.removeEventListener(this.getMouseUp(), this.onMouseUp);
 };
 
 CustomFields.FieldVelocity.prototype.showInlineEditor_ = function() {};

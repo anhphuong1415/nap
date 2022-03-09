@@ -27,6 +27,8 @@
     <script src="CustomField/js/field_calculate.js"></script>
     <script src="CustomField/js/field_turtle.js"></script>
     <script src="CustomField/js/field_velocity.js"></script>
+    <script src="CustomField/js/field_matrix.js"></script>
+    <script src="CustomField/js/field_ring.js"></script>
     <script src="GenneratorForRange.js"></script>
     <script src="custom_category_es6.js"></script>
     <script src="toolbox_label_es6.js"></script>
@@ -36,6 +38,8 @@
     <link rel="stylesheet" type="text/css" href="CustomField/css/turtle.css">
     <link rel="stylesheet" type="text/css" href="CustomField/css/calculate.css">
     <link rel="stylesheet" type="text/css" href="CustomField/css/velocity.css">
+    <link rel="stylesheet" type="text/css" href="CustomField/css/matrixLed.css">
+    <link rel="stylesheet" type="text/css" href="CustomField/css/ringled.css">
 </head>
 
 <body>
@@ -72,27 +76,8 @@
                 </block>
                 <block type="ringled">
                     <field name="ringLedModule">Port 1</field>
-                    <field name="Led_1">#ff6666</field>
-                    <field name="Led_2">#990000</field>
-                    <field name="Led_3">#009900</field>
-                    <field name="Led_4">#009900</field>
-                    <field name="Led_5">#3366ff</field>
-                    <field name="Led_6">#000099</field>
-                    <field name="Led_7">#cc33cc</field>
-                    <field name="Led_8">#66ffff</field>
-                    <field name="Led_9">#ff99ff</field>
-                    <field name="Led_10">#33cc00</field>
-                    <field name="Led_11">#33ffff</field>
-                    <field name="Led_12">#ffff66</field>
                 </block>
-                <block type="playwithmatrixledchar">
-                    <field name="Port">Port 1</field>
-                    <field name="char">A</field>
-                </block>
-                <block type="matrixlebspecialchar">
-                    <field name="Port">Port 1</field>
-                    <field name="NAME">heart</field>
-                </block>
+                <block type="playwithmatrix"></block>
                 <block type="rgb_led">
                     <field name="color_left">#00cccc</field>
                     <field name="color_right">#00cccc</field>
@@ -166,8 +151,7 @@
         </xml>
 
         <xml id="startBlocks" style="display: none">
-            <!-- <block type="dummy_play_block" x="400" y="50"></block> -->
-            <block type="test_vel_field" x="400" y="50"></block>
+            <block type="dummy_play_block" x="400" y="50"></block>
         </xml>
         <!-- <textarea id="codeSpaceText" style="height: 100vh; width: 50vw;">
         </textarea> -->
